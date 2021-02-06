@@ -1,0 +1,41 @@
+#header {
+    background: #F2F2F2;
+    width: 100%;
+    height: 100px;
+}
+.downloadBtn {
+    width: max-content;
+    height: 50px;
+    margin-top: 25px !important;
+}
+.drawer {
+    display: none;
+}
+.drawer img{
+    /*background: url("/images/menu.png") no-repeat;*/
+    width: 48px;
+    height: 48px;
+    position: relative;
+    top: 36px;
+    cursor: pointer;
+    z-index: 10000000;
+    float: right;
+}
+@media (max-width: 992px) {
+    .drawer, .Backdrop {
+        display: block;
+    }
+    .topMenu{
+        display: none;
+    }
+}
+@media (max-width: 1280px) {
+    li.MenuItem {
+        margin: 0 20px !important;
+    }
+}
+@media (max-width: 1130px) {
+    li.MenuItem {
+        margin: 0 10px !important;
+    }
+}

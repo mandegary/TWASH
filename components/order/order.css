@@ -1,0 +1,306 @@
+.orderForm .MuiFormControl-root {
+    width: 100%;
+}
+.orderForm {
+    margin: 20px auto;
+    padding: 20px 0;
+}
+.orderRow .formLabel {
+    text-align: center;
+    width: 95%;
+    margin: 5px auto;
+    font-weight: bold;
+}
+.orderRow.row {
+    width: 85%;
+    border-bottom: 2px solid #E4E4E4;
+    padding-bottom: 25px;
+    margin: 10px 20px;
+    padding-top: 20px;
+}
+.orderRow:first-child {
+    padding-top: 0;
+}
+.switchTile {
+    background: none !important;
+    color: #000 !important;
+    width: max-content !important;
+}
+.orderRow .MuiInputLabel-filled {
+    transform: translate(-12px, 17px) scale(1) ;
+    font-size: 14px !important;
+    color: #ffffff;
+}
+.orderRow .MuiFilledInput-root {
+    height: 50px;
+}
+.MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiListItem-gutters.MuiListItem-button {
+    justify-content: flex-end !important;
+}
+.MuiFilledInput-root,.MuiSelect-select:focus {
+    background-color: #BFBFBF!important;
+}
+.selectedCar .MuiFilledInput-root {
+    background-color: #D9D9D9!important;
+}
+/*
+.MuiFilledInput-underline::after {
+    border-bottom: 2px solid #F04641 !important;
+}*/
+.MuiFilledInput-root ,.MuiFilledInput-underline::before,.MuiFilledInput-underline::after{
+    border-radius: 4px !important;
+}
+.MuiFilledInput-underline::before {
+    border-bottom: none!important;
+}
+.MuiSelect-icon {
+    color: #fff!important;
+}
+.switch-field {
+    overflow: hidden;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+}
+.switch-title {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+.switch-field input {
+    position: absolute !important;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+.switch-field label {
+    display: inline-block;
+    width: 55px;
+    background-color: #e4e4e4;
+    color: #fff;
+    font-weight: normal;
+    text-shadow: none;
+    padding: 12px 15px;
+    transition: all 0.1s ease-in-out;
+    height: 50px;
+    text-align: center;
+    font-size: 16px;
+}
+.switch-field label:hover {
+    cursor: pointer;
+}
+.switch-field input:checked + label {
+    background-color: #329B96;
+    color: #fff;
+    box-shadow: none;
+}
+.switch-field label:first-of-type {
+    border-radius: 4px 0 0 4px;
+}
+.switch_left {
+    border-radius: 0 4px 4px 0;
+}
+.orderRow  .MuiFormLabel-root.Mui-focused {
+    color: #ffffff !important;
+}
+.MuiSelect-select {
+    color: #fff !important;
+    margin-left: 20px !important;
+}
+.Component-root-1.Component-checked-2,.MuiCheckbox-colorSecondary.Mui-checked {
+    color: #329B96 !important;
+}
+.orderRow .MuiFormGroup-root {
+    flex-direction: row !important;
+}
+.checkServices {
+    margin-right: 12px;
+    margin-top: 20px;
+}
+.servicesPrice {
+    margin-top: 0;
+    background: #329B96;
+    color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    width: 250px;
+    height: 50px;
+    text-align: right;
+}
+.datepicker-input {
+    width: 100%;
+    height: 50px;
+    border-radius: 4px;
+    border: none;
+    background: #BFBFBF;
+    color: #fff;
+    padding-right: 15px;
+    text-align: right;
+}
+.servicesTime {
+    font-size: 12px;
+    text-align: right;
+    margin-top: 5px;
+}
+.servicesTime {
+    font-size: 14px;
+    text-align: right;
+    margin-top: 5px;
+    width: 100%;
+    padding-right: 5px;
+    direction: rtl;
+}
+.orderBtn {
+    margin: 40px auto;
+    width: 92% !important;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.orderBtn button {
+    height: 50px;
+    background: rgb(240,70,65);
+}
+#map {
+    height: 100vh !important;/*calc(100vh - 100px) !important;*/
+}
+.mapForm {
+    background: #F2F2F2;
+}
+.orderBtn.orderMapBtn {
+    position: fixed;
+    bottom: 20px;
+    margin: 0 auto;
+    width: 100% !important;
+    max-width: 100%;
+}
+.orderBtn.orderMapBtn.orderBtn button {
+    width: 300px;
+    font-size: 16px !important;
+}
+button.Mui-disabled {
+    background: #FAAAAA !important;
+    color: #fff !important;
+    font-size: 16px !important;
+}
+/*ORDER INFO*/
+.orderData {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+    padding: 10px 3%;
+    justify-content: right;
+    align-items: start;
+}
+.formLabel {
+    font-size: 18px;
+    font-weight: bold;
+    width: 98%;
+    text-align: right;
+}
+.orderSummary {
+    background: #A3D5D3;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: right;
+    line-height: 3;
+    margin-bottom: 30px;
+    min-width: 350px;
+}
+.orderSummary button {
+    float: left;
+    background: #BFBFBF;
+    color: #000;
+    height: 50px;
+}
+.orderPayment .form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: start;
+}
+.orderPayment .form-group input {
+    width: 50%;
+    margin-left: 15px;
+    background: #A3D5D3;
+    border: none;
+    height: 40px !important;
+}
+.orderPayment .form-group label.form-label {
+    width: 135px;
+    margin-left: 10px;
+    padding-top: 10px;
+    font-size: 14px;
+    text-align: right;
+}
+.orderInfo {
+    padding-top: 20px;
+    margin-top: 0;
+}
+.orderPayment {
+    width: 90%;
+    margin: 30px 0;
+}
+.plus, .help {
+    background: #FCD0D0;
+    margin: 0px 5px;
+    width: 40px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+    height: 40px;
+    font-size: 25px;
+    cursor: pointer;
+}
+.plus {
+    margin-right: 8px;
+}
+.payment {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    text-align: right;
+    margin-top: 30px;
+    padding-top: 10px;
+}
+.payment button {
+    height: 50px;
+    width: 350px;
+}
+.payment .MuiFormLabel-root {
+    color: #000;
+    font-size: 18px;
+    margin: 12px 0px;
+    width: 150px;
+}
+.payment .MuiFormGroup-root {
+    flex-direction: row !important;
+}
+.payment .MuiTypography-body1 {
+    font-size: 14px;
+    font-weight: normal;
+}
+.payment .MuiFormControl-root {
+    margin-bottom: 20px;
+}
+.payment button {
+    height: 50px;
+    background: rgb(240,70,65);
+}
+.orderDescription .MuiFormControl-root.MuiTextField-root {
+    width: 100%;
+}
+.orderDescription {
+    width: 60%;
+    min-width: 350px;
+}
+.orderDescription label {
+    color: #fff;
+}
+.MuiSelect-select:focus {
+    background-color: transparent!important;
+}

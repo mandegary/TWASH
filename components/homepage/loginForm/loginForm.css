@@ -1,0 +1,43 @@
+.homeForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 45px;
+    padding: 45px;
+}
+.homeForm .MuiFormControl-root.MuiTextField-root {
+    width: 70%;
+    margin: 5px auto;
+}
+.homeForm button{
+    width: 70%;
+    margin: 20px auto !important;
+    color: #fff !important;
+    font-size: 20px;
+    background: rgb(240,70,65);
+}
+.homeForm button.Mui-disabled{
+    background: #FAAAAA;
+}
+.homeForm input {
+    padding: 10px;
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    color: #A6A6A6;
+    height: 40px;
+    text-align: left;
+}
+.homeForm .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,.homeForm .MuiFormLabel-root.Mui-focused {
+    border-color: #999!important;
+    color:#999!important;
+}
+.homeForm .MuiFormLabel-root {
+    color: #999 !important;
+
+}
+.homeForm .MuiFilledInput-underline::before,.homeForm .MuiFilledInput-underline:hover {
+     border-bottom: none !important;
+}
+.homeForm .MuiFilledInput-underline::after {
+    border-bottom: 3px solid #F04641 !important;
+}

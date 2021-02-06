@@ -1,0 +1,24 @@
+.MenuItems {
+    padding: 0;
+    display: flex;
+    list-style: none;
+    flex-direction: row-reverse;
+    height: 100px;
+    /*justify-content: center;*/
+    align-items: center;
+}
+li.MenuItem {
+    margin: 0 30px;
+    text-align: right;
+}
+li.MenuItem a:hover {
+    border-bottom: 3px solid #008D9A;
+    text-decoration: none;
+    padding-bottom: 33px;
+    color: #008D9A;
+}
+@media(max-width:499px){
+    .MenuItems{
+        flex-flow: column
+    }
+}

@@ -1,0 +1,8 @@
+.Logo {
+    height: 100%;
+}
+.Logo img {
+    height: 100px;
+    width: auto;
+    float: right;
+}

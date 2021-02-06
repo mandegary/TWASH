@@ -1,0 +1,24 @@
+html,
+body , *{
+  padding: 0;
+  margin: 0;
+  font-family: IRANSansWeb !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+ul,li{
+  list-style: none;
+}
+.container {
+  max-width: 100% !important;
+}
+:focus {
+  outline: none;
+}
