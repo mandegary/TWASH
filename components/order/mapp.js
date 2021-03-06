@@ -12,7 +12,7 @@ import delBtn from "../../assets/images/del.svg"
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
 import Notiflix from "notiflix";
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGVnYXJ5IiwiYSI6ImNra3V4aHFuZjRkYjkycHF0YnA3eXVpd2kifQ.M1TpZFI8ZVRvjEHgy7uEsw';
+mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGVnYXJ5IiwiYSI6ImNrbHh1djFuNDB4dmsydm82bG5kYXhqaTgifQ.xCsvcrN041OMUoQtaiLE-g';
 const theme = createMuiTheme({
     direction: 'rtl'
 });
