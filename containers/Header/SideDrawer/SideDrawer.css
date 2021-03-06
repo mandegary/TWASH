@@ -9,7 +9,7 @@
     box-sizing: border-box;
     transition: transform 0.3s ease-out;
     z-index: 100000000000000;
-    overflow: scroll;
+    overflow: auto;
 }
 .SideDrawerHead {
     background: #008D9A;
@@ -20,8 +20,9 @@
     flex-direction: row-reverse;
     padding: 0px 20px;
     margin-bottom: 20px;
+    justify-content: space-between;
 }
-.SideDrawer a {
+.SideDrawer a:not(.Logo a) {
     color: #212121;
     opacity: 0.7;
     text-align: right;
@@ -75,14 +76,19 @@
     opacity: .9;
     margin-left: 20px;
     cursor: pointer;
+    margin-right: 10px;
 }
 .SideDrawer .Logo img {
     height: 75px;
-    width: 210px;
+    width: 75px;
     margin-top: 10px;
 }
+.SideDrawer .walletPlus {
+    background: #fff;
+    color: #3CB9EE;
+}
 @media(min-width:992px){
-    .SideDrawer{
+    .SideDrawer, .Backdrop {
         display: none;
     }
 }

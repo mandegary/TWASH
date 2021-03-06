@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 0 30px;
+    padding: 0;
     height: calc(100vh - 100px);
 }
 
@@ -17,36 +17,45 @@
 }
 
 .styles_react-code-input__CRulA input {
-    margin: 0 6px;
+    margin: 0px 8px !important;
     border: none !important;
-    background: #f7f7f7;
+    background: #eaeaea !important;
     text-align: center !important;
     font-size: 20px !important;
     border-radius: 3px !important;
+    width: 40px !important;
+    height: 50px !important;
+    box-shadow: none !important;
 }
-
+.styles_react-code-input__CRulA input:focus {
+    border-bottom: 3px solid red !important;
+    /*transition: border 1s ease-in-out!important;*/
+}
 .styles_react-code-input__CRulA {
-    display: flex;
-    flex-direction: row-reverse;
+    display: flex !important;
+    flex-direction: row-reverse !important;
 }
 
 .styles_react-code-input-container__tpiKG {
-    width: auto !important;
+    width: 100% !important;
     margin: 30px auto;
+    display: flex;
+    justify-content: center;
 }
-/*.styles_react-code-input__CRulA input:focus {
+.react-code-input input:focus {
     border:none;
     border-bottom: 3px solid #F04641 !important;
     box-shadow: none;
     background: #f7f7f7;
     transition: 0.2s ease all;
-}*/
+}
 .verificationTop {
     margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 100%;
 }
 
 .verificationBottom {
@@ -54,17 +63,18 @@
     bottom: 15px;
     margin: 0 auto;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-
 .verificationCodeSend {
     font-size: 14px;
     margin-top: 5px;
     color: #4d4d4d;
+    text-align: center;
+    margin-bottom: 10px;
 }
 .sendVCode{
     margin-bottom: 5px;
@@ -106,15 +116,18 @@
     box-sizing: border-box;
     text-align: center;
 }
-.isNotSendCode {
+.isNotSendCode  , .isSendCode{
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 .verificationForm button{
     margin: 20px auto !important;
     color: #fff !important;
     font-size: 20px;
-    background: rgb(240,70,65);
+    background: rgb(240,70,65) !important;
 }
 .verificationForm button.Mui-disabled{
     background: #FAAAAA;
@@ -288,4 +301,13 @@ input{
     text-align: center
 }
 */
-
+@media only screen and (max-width: 400px) {
+    .sendVCode {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .isNotSendCode {
+        justify-content: center;
+    }
+}

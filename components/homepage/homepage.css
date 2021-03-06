@@ -2,20 +2,21 @@
     background: #F2F2F2;
 }
 .homeBg {
-    background: linear-gradient(92deg, rgba(194, 220, 227,0.85), rgba(118, 176, 191,0.9)), url(/images/carwash.jpg);
-    min-height: 650px;
+    background: linear-gradient(92deg, rgba(194, 220, 227,0.85), rgba(118, 176, 191,0.7)), url(/images/carwash.jpg);
+    height: 100vh;
     background-clip: content-box;
     width: 100%;
     padding: 0 15px;
     background-size: cover;
     position: relative;
+    min-height: 506px;
 }
 .homeDiv {
     position: absolute;
     width: 90%;
     display: flex;
     flex-direction: row-reverse;
-    top: 15%;
+    top: 100px;
 }
 .tWashTtx{
     text-align: right;
@@ -32,4 +33,26 @@
     padding-right: 15px;
     margin: 10px;
     font-size: 15px;
+}
+.downloadBtn.MuiButton-containedSecondary {
+    color: #fff;
+    background-color: rgb(240,70,65) !important;
+}
+@media only screen and (max-width: 780px) {
+    .homeDiv {
+        flex-direction: column-reverse!important;
+    }
+    .homeDiv {
+        position: relative!important;
+        top: 5%!important;
+        margin: 0 auto!important;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .homeBg {
+        min-height: 600px !important;
+    }
+    .homeDiv {
+        top: 20px;
+    }
 }

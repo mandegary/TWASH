@@ -2,7 +2,41 @@
     height: 100%;
 }
 .Logo img {
-    height: 100px;
+    height: 90px;
     width: auto;
     float: right;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+.Logo span {
+    font-size: 30px;
+    position: relative;
+    height: 100px;
+    color: #008D9A;
+    font-weight: bold;
+    display: block;
+    padding-top: 28px;
+    text-align: center;
+    text-decoration: none;
+    font-family: YekanBakh !important;
+}
+.Logo a {
+    text-decoration: none;
+}
+@media only screen and (max-width: 1250px) {
+    .Logo span {
+        display: none;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .Logo img {
+        height: 75px;
+        margin-top: 15px;
+    }
+    .Logo {
+        height: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
 }

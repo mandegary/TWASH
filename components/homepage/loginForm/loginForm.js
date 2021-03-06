@@ -1,23 +1,35 @@
-import React,{useState,useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import "./loginForm.css"
 import {Button, TextField} from "@material-ui/core";
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
+import {useRouter} from "next/router";
 
 const theme = createMuiTheme({
     direction: 'rtl'
 });
 
 const HomePageForm = (props) => {
-
+    const router = useRouter()
     const [mobile, setMobile] = useState("");
-    const [identifierCode, setIdentifierCode] = useState("");
+    const [referralCode, setReferralCode] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [btnDisabled, setBtnDisabled] = useState(true);
 
-    let token=null;
-    if(typeof window !="undefined")
-        token=JSON.parse(localStorage.getItem('token'));
+    let token = null;
+    let link,code;
 
+    if (typeof window != "undefined"){
+        token = JSON.parse(localStorage.getItem('accessToken'));
+    }
+    useEffect(() => {
+        link = window.location.href.split('/');
+        if(link[link.length - 2]=="refferal")
+        {
+            code = link[link.length - 1];
+            code = code.substring(0, 6)
+            setReferralCode(code)
+        }
+    }, [])
     const validate = () => {
         /*if (password.length < 5) {
             setErrorMessage('رمز عبور اشتباه است.');
@@ -27,13 +39,15 @@ const HomePageForm = (props) => {
         return true;
     }
     const mobileHandler = (e) => {
+        let pattern = /09\d{9}/;
         setMobile(e.target.value)
-        if (e.target.value.length == 11)
+        if (e.target.value.length == 11 && pattern.test(e.target.value)) {
             setBtnDisabled(false)
+        }
         else setBtnDisabled(true)
     }
-    const identifieCodeHandler = (e) => {
-        setIdentifierCode(e.target.value)
+    const referralCodeHandler = (e) => {
+        setReferralCode(e.target.value)
     }
 
     const ENTER_KEY = 13
@@ -41,25 +55,31 @@ const HomePageForm = (props) => {
         if (e.keyCode === ENTER_KEY)
             props.formAction(mobile);
     }
+    const createOrder = (e) => {
+        router.push("/order")
+    }
 
     return (
         <MuiThemeProvider theme={theme}>
             <div className="homeForm" dir="rtl">
-            {token == null ?
-                <React.Fragment>
-                    <TextField id="outlined-basic" label="شماره موبایل خود را وارد کنید." variant="filled" value={mobile}
-                               onKeyDown={handleKeyDown} inputProps={{maxLength: 11}} onChange={mobileHandler}/>
-                    <TextField id="outlined-basic" label="کد معرف (اختیاری)" variant="filled" value={identifierCode}
-                               inputProps={{maxLength: 5}} onChange={identifieCodeHandler}/>
-                    <Button className="downloadBtn" variant="contained" color="secondary" onClick={()=>props.formAction(mobile)}
-                            disabled={btnDisabled}>دریافت
-                        کد</Button>
-                </React.Fragment>
-                :
-                <Button className="downloadBtn" variant="contained" color="secondary">
-                    ثبت سفارش
-                </Button>
-            }
+                {token == null ?
+                    <React.Fragment>
+
+                        <TextField id="outlined-basic" label="شماره موبایل خود را وارد کنید." variant="filled"
+                                   value={mobile}
+                                   onKeyDown={handleKeyDown} inputProps={{maxlength: 11,inputMode:"numeric"}} onChange={mobileHandler}/>
+                        <TextField id="outlined-basic" label="کد معرف (اختیاری)" variant="filled" value={referralCode}
+                                   inputProps={{maxLength: 6,inputMode:"numeric"}} onChange={referralCodeHandler} onKeyDown={handleKeyDown} />
+                        <Button className="homeFormBtn" variant="contained" color="secondary"
+                                onClick={() => props.formAction(mobile, referralCode)}
+                                disabled={btnDisabled}>دریافت
+                            کد</Button>
+                    </React.Fragment>
+                    :
+                    <Button className="homeFormBtn" variant="contained" color="secondary" onClick={createOrder}>
+                        ثبت سفارش
+                    </Button>
+                }
             </div>
         </MuiThemeProvider>
     );

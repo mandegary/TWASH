@@ -4,7 +4,9 @@ body , *{
   margin: 0;
   font-family: IRANSansWeb !important;
 }
-
+body{
+  background: #F2F2F2;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -12,6 +14,10 @@ a {
 
 * {
   box-sizing: border-box;
+  /*-webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;*/
 }
 ul,li{
   list-style: none;
@@ -21,4 +27,53 @@ ul,li{
 }
 :focus {
   outline: none;
+}
+/*Notiflix*/
+[id^="NotiflixNotifyWrap"] > div > span.with-icon{
+  text-align: center;
+  direction: rtl;
+}
+#Notiflix-Icon-Failure {
+  fill: #fff;
+}
+#Notiflix-Icon-Failure {
+  fill: #ffff !important;
+}
+.click2close {
+  fill: #ffff !important;
+}
+[id^="NotiflixNotifyWrap"] > div.rtl-on > span.notify-close-button {
+  left: 15px !important;
+}
+[id^="NotiflixNotifyWrap"] > div.rtl-on > span.with-icon {
+  padding: 0 10px 0 0;
+  margin: 0 0px 0 0 !important;
+}
+[id^="NotiflixNotifyWrap"] > div.rtl-on > .nmi {
+  display: none;
+}
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #329B96;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+  margin-top: 5px;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+[id^="NotiflixNotifyWrap"] > div > span.the-message {
+  text-align: center !important;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
 }

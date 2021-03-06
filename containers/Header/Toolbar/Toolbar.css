@@ -18,8 +18,132 @@
     position: relative;
     top: 36px;
     cursor: pointer;
-    z-index: 10000000;
+    z-index: 1000;
     float: right;
+}
+.userIsLoginLinks {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+.userIsLoginLinks a,.userIsLoginLinks span {
+    margin: 0 10px;
+    text-align: center;
+}
+.userIsLoginLinks span {
+    cursor:default
+}
+.userIsLoginLinks a:hover,.userIsLoginLinks span:hover {
+    color: #008D9A;
+    text-decoration: none;
+}
+.avatar {
+    left: 10px;
+    position: relative;
+    top: 30px;
+    width: 40px;
+}
+.userMenu {
+    display: none;
+    position: absolute;
+    border: 1px solid #eaeaea;
+    padding: 15px;
+    background: #fff;
+    z-index: 3500;
+    font-size: 12px;
+    width: 200px;
+    text-align: right;
+    direction: rtl;
+}
+
+.userLnk:hover .userMenu {
+    display: block;
+}
+.userMenu > span:first-child {
+    padding-right: 15px !important;
+    margin-bottom: 8px;
+}
+.userMenu a {
+
+}
+.wallet {
+    background: url("/images/wallet.svg") 90% 50% no-repeat;
+}
+.userInfoEditLnk {
+    background: url("/images/user.png") 90% 50% no-repeat;
+}
+.exitLnk {
+    background: url("/images/exit.png") 90% 100% no-repeat;
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    height: 30px !important;
+    cursor: pointer;
+}
+.userMenu span {
+    width: 100%;
+    height: 18px;
+    color: #555;
+    text-align: right;
+    padding-top: 2px;
+    margin-top: 10px;
+    display: inline-block;
+    padding-right: 40px;
+}
+
+.userMenu a:hover {
+    text-decoration: none;
+}
+
+.exitLnk {
+    width: 100%;
+    display: inherit;
+    height: 25px;
+    margin-top: 10px;
+    color: #555;
+    text-align: right;
+    padding-right: 45px;
+    border-top: 1px solid #ccc;
+    padding-top: 7px;
+}
+.refferal {
+    text-align: center;
+}
+.refferal div {
+    width: 200px;
+    text-align: center;
+    margin: 30px auto 10px;
+    font-weight: bold;
+    font-size: 24px;
+}
+.refferal div span {
+    margin: 0 15px;
+}
+.MuiDialogActions-root {
+    align-items: center!important;
+    justify-content: center!important;
+}
+.MuiDialog-root .MuiTypography-h6 {
+    text-align: center !important;
+}
+.MuiDialogContentText-root {
+    text-align: center !important;
+}
+.MuiDialogContentText-root {
+    direction: rtl;
+    text-align: center;
+}
+button.dialogBtn {
+    margin-right: 10px;
+    height: 40px;
+    color: #fff;
+    border: 1px solid #329B96;
+    background: #329B96;
+}
+button.dialogBtn:hover {
+    color: #329B96;
+    background: rgba(0, 0, 0, 0.04);
 }
 @media (max-width: 992px) {
     .drawer, .Backdrop {
@@ -37,5 +161,15 @@
 @media (max-width: 1130px) {
     li.MenuItem {
         margin: 0 10px !important;
+    }
+}
+@media (max-width: 992px) {
+    #header {
+        background: #008D9A;
+    }
+}
+@media (max-width: 450px) {
+    .downloadBtn {
+        display: none !important;
     }
 }

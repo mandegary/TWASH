@@ -5,4 +5,10 @@
     url("/fonts/IRANSansWeb/IRANSansWeb.woff2") format("woff2"),
     url("/fonts/IRANSansWeb/IRANSansWeb.ttf") format("ttf")
 }
-
+@font-face {
+    font-family: "YekanBakh";
+    src: url("/fonts/YekanBakh-Bold/YekanBakh-Bold.eot") format("eot"),
+    url("/fonts/YekanBakh-Bold/YekanBakh-Bold.woff") format("woff"),
+/*    url("/fonts/YekanBakh-Bold/YekanBakh-Bold.woff2") format("woff2"),*/
+    url("/fonts/YekanBakh-Bold/YekanBakh-Bold.ttf") format("ttf")
+}

@@ -1,6 +1,6 @@
 {
   "name": "twash-app",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,24 +8,37 @@
     "start": "next start"
   },
   "dependencies": {
+    "-": "^0.0.1",
+    "@mapbox/mapbox-gl-geocoder": "^4.7.0",
     "@material-ui/core": "^4.11.3",
+    "@material-ui/lab": "^4.0.0-alpha.57",
     "@mui-treasury/styles": "^1.13.1",
     "@mui-treasury/utils": "^0.4.1",
     "@zeit/next-css": "^1.0.1",
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "jss": "^10.5.1",
     "jss-rtl": "^0.3.0",
+    "make": "^0.8.1",
     "next": "10.0.6",
     "next-fonts": "^1.5.1",
     "next-images": "^1.7.0",
     "next-videos": "^1.4.0",
+    "notiflix": "^2.7.0",
+    "persian-tools2": "^1.5.0",
     "react": "17.0.1",
     "react-bootstrap": "^1.4.3",
+    "react-code-input": "^3.10.0",
     "react-datepicker2": "^3.3.13",
     "react-dom": "17.0.1",
+    "react-js-pagination": "^3.0.3",
     "react-map-gl": "^5.2.7",
     "react-mapbox-gl": "^4.8.6",
+    "react-multi-carousel": "^2.6.1",
+    "react-share": "^4.3.1",
+    "react-star-ratings": "^2.3.0",
     "react-transition-group": "^4.4.1",
-    "react-verification-code-input": "^1.2.9"
+    "react-verification-code-input": "^1.2.9",
+    "webpack": "^4.46.0"
   }
 }

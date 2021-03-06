@@ -8,7 +8,8 @@ const Logo = (props)=>{
         <div className="Logo">
             <Link href="/">
                 <a>
-                    <img src={TLogo} alt="کارواش تی واش" title="TWash"/>
+                    <img src={TLogo} alt="کارواش تی سپ" title="TWash"/>
+                    <span>تی سپ</span>
                 </a>
             </Link>
         </div>

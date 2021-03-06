@@ -2,21 +2,66 @@
     width: 100%;
 }
 .orderForm {
-    margin: 20px auto;
-    padding: 20px 0;
+    margin: 0px auto;
+    padding: 35px 0;
+    background: #fff;
 }
 .orderRow .formLabel {
-    text-align: center;
+    text-align: right;
     width: 95%;
-    margin: 5px auto;
+    margin: 4px 0;
     font-weight: bold;
 }
+.checkServices label.MuiFormControlLabel-root {
+    border: 1px solid #ccc;
+    padding: 0 15px;
+    border-radius: 5px;
+    text-align: center;
+    background: #F2F2F2;
+}
+.checkServices label.MuiFormControlLabel-root .MuiButtonBase-root.MuiIconButton-root {
+    display: none;
+}
+.checkServices label:has(.Mui-checked) {
+    background: red;
+}
+.form-check label {
+    width: 100%;
+    background: #F2F2F2;
+    padding: 10px 15px;
+    height: 45px;
+    cursor: pointer;
+    border: 1px solid #212121;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
+.form-check{
+    width: 25%;
+}
+.false.disabled {
+    color: #ccc;
+    cursor: default;
+}
+.true {
+    background: #FAAAAA !important;
+    color: #212121;
+}
+.form-check-input {
+    display: none;
+}
+.checkServices {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+}
 .orderRow.row {
-    width: 85%;
+    width: 98%;
     border-bottom: 2px solid #E4E4E4;
     padding-bottom: 25px;
     margin: 10px 20px;
     padding-top: 20px;
+    margin: 0 auto;
 }
 .orderRow:first-child {
     padding-top: 0;
@@ -33,6 +78,20 @@
 }
 .orderRow .MuiFilledInput-root {
     height: 50px;
+}
+.orderRow button.Mui-disabled {
+    background: transparent !important;
+}
+.MuiAutocomplete-inputRoot .MuiAutocomplete-input {
+    color: #212121;
+    opacity: 1;
+    font-size: 14px;
+}
+.car .MuiSvgIcon-root {
+    color: #000;
+}
+.MuiAutocomplete-tag {
+    margin: 10px 3px !important;
 }
 .MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiListItem-gutters.MuiListItem-button {
     justify-content: flex-end !important;
@@ -61,6 +120,7 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: start;
+    justify-content: flex-end;
 }
 .switch-title {
     font-weight: bold;
@@ -78,7 +138,7 @@
     display: inline-block;
     width: 55px;
     background-color: #e4e4e4;
-    color: #fff;
+    color: #000;
     font-weight: normal;
     text-shadow: none;
     padding: 12px 15px;
@@ -124,9 +184,10 @@
     color: #fff;
     padding: 10px;
     border-radius: 4px;
-    width: 250px;
+    width: 100%;
     height: 50px;
-    text-align: right;
+    text-align: center;
+    float: right;
 }
 .datepicker-input {
     width: 100%;
@@ -134,9 +195,18 @@
     border-radius: 4px;
     border: none;
     background: #BFBFBF;
-    color: #fff;
+    color: #000;
     padding-right: 15px;
     text-align: right;
+}
+.MuiSelect-iconFilled {
+    color: #000 !important;
+}
+.orderRow .MuiInputLabel-filled ,.orderRow .MuiSelect-filled.MuiSelect-filled{
+    color: #000 !important;
+}
+.tether-element{
+    z-index: 2;
 }
 .servicesTime {
     font-size: 12px;
@@ -146,7 +216,7 @@
 .servicesTime {
     font-size: 14px;
     text-align: right;
-    margin-top: 5px;
+    margin-top: 12px;
     width: 100%;
     padding-right: 5px;
     direction: rtl;
@@ -162,13 +232,15 @@
 }
 .orderBtn button {
     height: 50px;
-    background: rgb(240,70,65);
+    background: rgb(240,70,65) !important;
 }
 #map {
     height: 100vh !important;/*calc(100vh - 100px) !important;*/
 }
 .mapForm {
     background: #F2F2F2;
+    position: relative;
+    overflow: hidden;
 }
 .orderBtn.orderMapBtn {
     position: fixed;
@@ -191,16 +263,17 @@ button.Mui-disabled {
     width: 70%;
     display: flex;
     flex-direction: column;
-    margin: 20px 0;
+    margin: 0;
     padding: 10px 3%;
-    justify-content: right;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
 }
 .formLabel {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
     width: 98%;
-    text-align: right;
+    text-align: center;
+    margin-bottom: 25px;
 }
 .orderSummary {
     background: #A3D5D3;
@@ -209,7 +282,9 @@ button.Mui-disabled {
     text-align: right;
     line-height: 3;
     margin-bottom: 30px;
+    width:80%;
     min-width: 350px;
+    max-width: 600px;
 }
 .orderSummary button {
     float: left;
@@ -220,8 +295,8 @@ button.Mui-disabled {
 .orderPayment .form-group {
     display: flex;
     flex-direction: row;
-    justify-content: right;
-    align-items: start;
+    justify-content: center;
+    align-items: center;
 }
 .orderPayment .form-group input {
     width: 50%;
@@ -240,9 +315,10 @@ button.Mui-disabled {
 .orderInfo {
     padding-top: 20px;
     margin-top: 0;
+    background: #fff;
 }
 .orderPayment {
-    width: 90%;
+    width: 100%;
     margin: 30px 0;
 }
 .plus, .help {
@@ -255,6 +331,8 @@ button.Mui-disabled {
     height: 40px;
     font-size: 25px;
     cursor: pointer;
+    display: block;
+    float: right;
 }
 .plus {
     margin-right: 8px;
@@ -262,20 +340,24 @@ button.Mui-disabled {
 .payment {
     display: flex;
     flex-direction: column;
-    width: 70%;
-    text-align: right;
+    width: 100%;
+    text-align: center;
     margin-top: 30px;
     padding-top: 10px;
+    align-items: center;
 }
 .payment button {
     height: 50px;
-    width: 350px;
+    width: 100%;
+    min-width: 280px;
+    max-width: 350px;
 }
 .payment .MuiFormLabel-root {
-    color: #000;
+    color: #000 !important;
     font-size: 18px;
     margin: 12px 0px;
     width: 150px;
+    text-align: right;
 }
 .payment .MuiFormGroup-root {
     flex-direction: row !important;
@@ -287,20 +369,404 @@ button.Mui-disabled {
 .payment .MuiFormControl-root {
     margin-bottom: 20px;
 }
-.payment button {
+.payment button:not(.Mui-disabled) {
     height: 50px;
-    background: rgb(240,70,65);
+    background: rgb(240,70,65) !important;
+    margin: 0 auto;
 }
 .orderDescription .MuiFormControl-root.MuiTextField-root {
     width: 100%;
 }
 .orderDescription {
-    width: 60%;
+    width:80%;
     min-width: 350px;
+    max-width: 600px;
 }
 .orderDescription label {
     color: #fff;
 }
 .MuiSelect-select:focus {
     background-color: transparent!important;
+}
+.formGroup {
+    width: 80%;
+    display: flex;
+}
+.favoriteBtn {
+    position: absolute;
+    z-index: 3000;
+    right: 40px;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.favoriteBtn button {
+    width: 250px;
+    height: 50px;
+    margin: 10px;
+    background: #fff;
+}
+.favoriteBtn button:hover,.favoriteBtn button:focus {
+    background: #fff;
+}
+.favorites {
+    background: #fff;
+    position: absolute;
+    right: 25px;
+    z-index: 3500;
+    width: 350px;
+    top: 10px;
+    padding: 15px;
+    border-radius: 5px;
+    transition: transform 0.3s ease-out;
+    height: 400px;
+}
+.favorites.open {
+    transform: translateX(0);
+    right:25px;
+    overflow-y: scroll;
+}
+.favorites.close {
+    transform: translateX(100%);
+    right: 0;
+    opacity: 1;
+}
+.favorites li {
+    border: 1px solid #e1e1e1;
+    padding: 10px;
+    text-align: right;
+    margin: 5px auto;
+    position: relative;
+    cursor: pointer;
+}
+.favorites > span {
+    cursor: pointer;
+    color: red;
+    width: 20px;
+    height: 20px;
+    display: block;
+    font-size: 16px;
+}
+.favorites li:hover {
+    background: #eee;
+}
+.favorites .delete {
+    height: 24px;
+    text-align: left;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.address {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.MuiDialogContentText-root {
+    text-align: right;
+    direction: rtl;
+}
+.MuiDialog-root .MuiDialogActions-root {
+    padding: 25px;
+}
+.MuiDialog-root button.dialogBtn {
+    margin-right: 10px;
+    height: 40px;
+    color: #fff;
+    border: 1px solid #329B96;
+    background: #329B96;
+}
+.MuiDialog-root button.dialogBtn:hover {
+    color: #329B96;
+    background: rgba(0, 0, 0, 0.04);
+}
+.MuiDialog-root .MuiTypography-h6 {
+    text-align: right;
+}
+.orderMapDescription {
+    position: absolute;
+    top: 80px;
+    right: 50px;
+    z-index: 3000;
+    width: 248px;
+}
+.orderMapDescription > div {
+    width: 250px;
+}
+.uploadInput {
+    border: 1px dashed #999;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    position: relative;
+}
+.inputfile {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 3000;
+    border: 1px dashed #E0E0E0;
+    top: 0;
+    cursor: pointer;
+}
+.carImg {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}
+.carItems {
+    text-align: right;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: row;
+}
+.carItems .carImg {
+    width: auto;
+    height: 50px;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+.carItems span {
+    margin-left: 20px;
+    padding-top: 10px;
+}
+.carItems button {
+    background: #329B96;
+    border: 0px;
+    color: #fff;
+    width: 185px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.userEditProfile input[type="text"]{
+    text-align: center;
+}
+.userEditProfile .MuiFilledInput-root {
+    height: 50px;
+}
+.MuiDialog-container input {
+    text-align: center;
+}
+.form-check {
+    padding-left: 10px !important;
+}
+.down {
+    position: absolute;
+    left: 25px;
+    top: 17px;
+    cursor: pointer;
+}
+.dayWrapper.currentMonth.today button {
+    border: 3px solid rgb(240,70,65) !important;
+}
+.calendarContainer .selected button{
+    background-color: rgb(240,70,65) !important;
+}
+.MuiSelect-filled.MuiSelect-filled {
+    padding-left: 0px !important;
+    text-align: center;
+}
+.mapboxgl-control-container {
+    display: none;
+}
+.datepicker-input {
+    text-align: center!important;
+}
+.userLocation {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    z-index: 100000;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+.agreement {
+    text-align: right;
+    font-size: 14px;
+}
+.agreement ul {
+    margin: 10px 20px 10px 5px;
+}
+.agreement li {
+    line-height: 2;
+    text-align: justify;
+    font-size: 15px;
+}
+.agreement h3 {
+    font-size: 22px;
+    text-align: right;
+    margin: 25px auto;
+}
+.absenseDialog p {
+    text-align: right !important;
+    line-height: 2;
+    font-size: 11pt;
+}
+.lows-check {
+    height: 75px;
+    margin-bottom: 10px;
+}
+.lows-check .MuiFormControlLabel-root {
+    margin: 0;
+}
+.lows-label {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.orderPlate.carPlate {
+    background: url("/images/registration plate.svg") top/contain no-repeat;
+    /* width: 100% !important; */
+    height: 90px;
+    padding-left: 10%;
+    display: flex;
+    flex-direction: row-reverse;
+    background-size: contain;
+    margin: 0 auto;
+    max-width: 450px;
+    margin-bottom: 15px;
+}
+.orderPlate.carPlate input, .orderPlate.carPlate select {
+    width: 8%;
+    height: 45px;
+    margin: 15px 4% 0 0;
+    text-align: center;
+    float: right;
+}
+.orderPlate.carPlate select {
+    width: 50px !important;
+}
+.inputFileLabel {
+     text-align: center;
+ }
+@media only screen and (max-width: 450px) {
+    .orderPlate.carPlate input, .orderPlate.carPlate select {
+        width: 10%;
+        margin: 9px 1% 0 0 !important;
+    }
+    .orderPlate.carPlate select {
+        width: 19% !important;
+    }
+}
+@media only screen and (max-width:400px) {
+    .orderPlate.carPlate input, .orderPlate.carPlate select {
+        height: 30px;
+    }
+}
+@media only screen and (max-width:300px) {
+    .orderPlate.carPlate input, .orderPlate.carPlate select {
+        height: 20px;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .servicesPrice {
+        width: 97%;
+        margin-top: .5rem;
+    }
+    .orderRow.row {
+        width: 98%;
+    }
+
+    .orderRow .MuiInputLabel-filled {
+        font-size: 12px !important;
+    }
+    .form-check {
+        width: 25%;
+        float: right;
+    }
+    .orderData {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 10px 3%;
+        justify-content: right;
+        align-items: center;
+    }
+    .orderPayment {
+        width: 90%;
+        margin: 30px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .orderPayment .formGroup {
+        width: 100%;
+    }
+    .payment {
+        align-items: center;
+        margin-top: 0;
+    }
+    .payment .MuiFormGroup-root {
+        flex-direction: column !important;
+    }
+}
+@media only screen and (max-width: 780px) {
+    .servicesPrice {
+        width: 95%;
+        margin-top: .5rem;
+    }
+    .orderRow > div {
+        margin: 10px 0;
+    }
+    .orderRow .formLabel {
+        text-align: center;
+    }
+    .orderRow .formLabel {
+        margin: 5px auto 20px;
+    }
+    .checkServices {
+        display: block !important;
+    }
+    .form-check {
+        width: 50%;
+        float: right;
+    }
+    .orderForm {
+        padding:5px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .servicesPrice {
+        width: 96%;
+        margin-top: .5rem;
+    }
+    .orderPayment .form-group input {
+        width: 90%;
+    }
+    .plushelp {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    .formGroup {
+        width: 100%;
+    }
+    .orderPayment .form-group label.form-label:first-child {
+        width: 220px;
+    }
+    .orderPayment .form-group label.form-label:last-child {
+        width: 100px;
+    }
+    .orderSummary,.orderDescription {
+        width: 100%;
+    }
+    .form-check {
+        width: 100% !important;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .orderPayment .form-group label.form-label:first-child {
+        width: 150px;
+    }
+    .orderPayment .form-group label.form-label:last-child {
+        width: 70px;
+    }
 }

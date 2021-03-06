@@ -13,10 +13,10 @@
     margin: 20px auto !important;
     color: #fff !important;
     font-size: 20px;
-    background: rgb(240,70,65);
+    background: rgb(240,70,65) !important;
 }
 .homeForm button.Mui-disabled{
-    background: #FAAAAA;
+    background: rgb(250,170,170) !important;
 }
 .homeForm input {
     padding: 10px;
@@ -26,6 +26,7 @@
     color: #A6A6A6;
     height: 40px;
     text-align: left;
+    opacity: 1 !important;
 }
 .homeForm .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,.homeForm .MuiFormLabel-root.Mui-focused {
     border-color: #999!important;
@@ -40,4 +41,30 @@
 }
 .homeForm .MuiFilledInput-underline::after {
     border-bottom: 3px solid #F04641 !important;
+}
+.homeFormBtn {
+    width: max-content;
+    height: 50px;
+    margin-top: 25px !important;
+}
+
+@media only screen and (max-width: 780px) {
+    .homeForm {
+        margin-top: 0 !important;
+        padding: 0 10px !important;
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .homeForm {
+        padding: 10px 0!important;
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .homeForm button {
+        width: 100%!important;
+    }
+    .homeForm .MuiFormControl-root.MuiTextField-root {
+        width: 100%!important;
+        margin: 5px auto;
+    }
 }

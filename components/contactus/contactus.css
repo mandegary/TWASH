@@ -1,0 +1,186 @@
+.contactus {
+    margin: 0 auto 2%;
+    padding-right: 0;
+    position: relative;
+    background: #fff;
+    padding-top: 30px;
+}
+.contactus-info {
+    min-height: 100px;
+    position: relative;
+    margin: 0;
+    flex-direction: row-reverse;
+}
+.contactus-info div {
+    border-left: 1px solid #ccc;
+    height: 120px;
+    padding-right: 4%;
+    background: #00878B;
+    margin-bottom: 10px;
+}
+.contactus-info div div {
+    border: none;
+    padding-top: 20px;
+    text-align: right;
+    direction: rtl;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+.contactus-info div div span{
+    font-size: 16px;
+    font-weight: normal;
+}
+.contactus-form {
+    min-height: auto;
+    background: #fff;
+    margin: 25px auto 0;
+    flex-direction: row-reverse;
+    max-width: 500px;
+}
+.formItem textarea {
+    text-align: center;
+}
+.contactus-form  form .row {
+    flex-direction: row-reverse;
+}
+.contactus-form img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.contactus-form .titr h5 {
+    font-size: 26px;
+    color: #212121;
+    font-weight: bold;
+    margin-top: -14px;
+    width: 100%;
+    padding: 0 15px;
+}
+.contactus-form .form-control {
+    background-color: #fff !important;
+    border: 1px solid #EEE !important;
+    height: 55px !important;
+    margin-top: 15px;
+}
+.contactus-form textarea.form-control {
+    height: 110px !important;
+}
+.contactus-form .titr {
+    margin: 8% auto;
+    width: max-content;
+}
+.contactus-form button {
+    height: 60px;
+    width: 100%;
+    margin-left: 0;
+    font-size: 18px;
+    border: none;
+}
+.contactus-form small {
+    color: #212121;
+    font-size: 14px;
+    margin-top: 20px;
+    direction: rtl;
+    text-align: justify;
+}
+.Contact-us {
+    padding: 0;
+}
+
+.Contact-us  .MuiFormControl-root {
+    width: 100%;
+}
+#demo-simple-select-outlined, #outlined-basic {
+    font-size: 14px !important;
+    font-family: IRANSansWeb !important;
+    color: #010101;
+    opacity: .5;
+}
+.formItem input {
+    max-width: 100% !important;
+    height: 35px;
+    text-align: center;
+}
+#outlined-basic-label, .MuiButtonBase-root-415, .MuiInputLabel-root-277 {
+    font-size: 14px !important;
+    font-family: YekanBakh-Regular !important;
+}
+.formItem {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+p.error {
+    margin: 10px auto;
+}
+.formItem {
+    position: relative;
+}
+.formItem button {
+    position: absolute;
+    left: 3px;
+    /* border-radius: 50% !important; */
+    width: 20px !important;
+    top: 3px;
+    padding: 0px !important;
+    height: 48px !important;
+}
+.formItem button span {
+    padding: 0px !important;
+    text-align: center;
+    font-family: IRANSansWeb !important;
+    font-size: 14px;
+    font-weight: bold;
+    color: #777;
+}
+.formItem .loaderr.loader--style7 {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+.contactus-form .MuiButtonBase-root {
+    height: 52px;
+    width: 157px;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    background: #f8f9fa;
+}
+.contactus-info {
+    width: 90%;
+    margin: 0 auto;
+}
+#outlined-basic-label{
+    font-family: IRANSansWeb !important;
+}
+.formItem .MuiFormControl-root {
+    width: 100%;
+}
+.contactus-form button {
+    height: 50px ;
+    background: rgb(240,70,65) ;
+}
+.MuiButton-containedSecondary:not(.MuiButton-contained.Mui-disabled) {
+    color: #fff !important;
+    background-color: rgb(240,70,65) !important;
+    border-radius: 5px;
+}
+.contactusBtn {
+    margin: 40px auto;
+    width: 92% !important;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.contactusBtn .MuiButtonBase-root {
+    width: 100%;
+    height: 50px;
+}
+.contactusBtn .MuiButton-contained.Mui-disabled {
+    color: rgba(0, 0, 0, 0.26);
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+}

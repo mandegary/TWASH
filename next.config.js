@@ -2,11 +2,13 @@ const withCSS = require('@zeit/next-css');
 const withFonts = require('next-fonts');
 const withImages = require('next-images')
 const withVideos = require('next-videos')
-
+//git push -u origin master
 module.exports = withVideos(withImages(withFonts(withCSS({
     env:{
-        url:"https://panel.rsga.ir/",
-        delayFetch:45000,
+        url:"https://api.tsapp.ir/api",
+        //url:"http://185.231.59.154/api",
+        delayFetch:100000,
+        loadingDotsColor:"rgba(240,70,65,1)",//#00878B
         i18n: {
             welcome: {
                 en: "Welcome",

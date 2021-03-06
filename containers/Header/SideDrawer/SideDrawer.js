@@ -17,7 +17,7 @@ const SideDrawer = (props) => {
                     <span className="toggler" onClick={props.closeDrawer}></span>
                     <Logo/>
                 </div>
-                <MenuItems sidedrawer="true"/>
+                <MenuItems sidedrawer="true" showCodeModal={props.showCodeModal}/>
             </div>
         </React.Fragment>
     )
