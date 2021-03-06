@@ -1,0 +1,66 @@
+.article a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    margin: 10px auto;
+    width: 95%;
+    background: #000;
+    padding: 0;
+    border-radius: 10px;
+}
+.article img {
+    width: 100%;
+    margin: 0px auto 10px;
+    border-radius: 5px 5px 0 0;
+}
+.article h3 {
+    color: #fff;
+}
+.article p {
+    color: #fff;
+    text-align: justify;
+    direction: rtl;
+    line-height: 2;
+    width: 90%;
+}
+.pagination li {
+    width: 35px;
+    height: 35px;
+    background: #eaeaea;
+    margin: 3px;
+    padding: 5px;
+    text-align: center;
+}
+.pagination li.active {
+    background: #008D9A 0% 0% no-repeat padding-box;
+}
+.pagination li.disabled, .pagination li.disabled a {
+    cursor: default;
+}
+.pagination li.active a{
+    color: #fff;
+    cursor: default;
+}
+.pagination li a{
+    color: #212121;
+    font-weight: bold;
+    font-size: 18px;
+}
+.pagination li a:hover{
+    text-decoration: none;
+}
+.no-data{
+    direction: rtl;
+    margin: 0 0 5%;
+}
+.pagination {
+    margin: 20px auto 2%;
+    width: 20%;
+}
+.articles {
+    padding-top: 25px;
+    width: 95%;
+    margin: 25px auto;
+}

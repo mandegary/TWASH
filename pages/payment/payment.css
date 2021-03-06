@@ -1,0 +1,31 @@
+.paymentStatus {
+    background: #fff;
+    height: 98%;
+    text-align: center;
+    padding-top: 5%;
+    direction: rtl;
+    line-height: 5;
+    margin: 0 auto;
+}
+.paymentStatus a {
+    background: rgb(240,70,65) !important;
+    margin: 0 auto;
+    height: 50px;
+    text-align: center;
+    line-height: 2;
+    padding: 10px 0;
+    color: #fff;
+    border-radius: 5px;
+    width: 300px;
+    display: block;
+    text-decoration: none;
+}
+.paymentStatus h3 {
+    margin-bottom: 40px;
+}
+.paymentStatus .refferal {
+    margin-top: 20px;
+}
+.paymentStatus .refferal div {
+    margin: 0px auto 0px;
+}

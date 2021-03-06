@@ -1,0 +1,71 @@
+
+.notFound img{
+    mix-blend-mode: darken;
+}
+.notFound {
+    justify-content: center;
+    background: #fff;
+}
+.notFound p {
+    width: 100%;
+    margin: 15px auto;
+}
+.notFound span {
+    width: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+}
+.notFound p span {
+    color: #4040BD;
+}
+.notFound p {
+    font-weight: bold;
+    direction: rtl;
+}
+.notFound a{
+    color: #004FA8!important;
+    font-size: 14px !important;
+}
+.notFound li{
+    font-size: 14px !important;
+}
+.commingsoonimg {
+    margin: 10px auto;
+    width: 100%;
+    border-radius: 50%;
+    opacity: .7;
+    height: auto;
+    float: none;
+    scale: 1;
+    max-height: 400px;
+    max-width: 400px;
+}
+.notfoundImg{
+    margin: 10px auto;
+    width: 100%;
+    border-radius: 50%;
+    opacity: .7;
+    height: auto;
+    float: none;
+    scale: 1;
+    max-height: 400px;
+    max-width: 600px;
+}
+.notFound .MenuItem a {
+    padding: 35px 10px 34px;
+}
+.notFound nav {
+    margin: 20px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.notFoundMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 30px;
+}

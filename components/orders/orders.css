@@ -1,0 +1,78 @@
+.orderSummary {
+    background: #A3D5D3;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: right;
+    line-height: 3;
+    min-width: 350px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+.orderSummary button {
+    float: left;
+    background: #BFBFBF;
+    color: #000;
+    height: 50px;
+}
+.ordersInfo {
+    background: #fff;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    min-height: 90vh;
+}
+.no-order {
+    background: #fff;
+    height: 90vh;
+    text-align: center;
+    padding-top: 5%;
+    direction: rtl;
+    line-height: 5;
+    margin: 0 auto;
+}
+.no-order a {
+    background: red;
+    margin: 0 auto;
+    height: 50px;
+    text-align: center;
+    line-height: 2;
+    padding: 10px 0;
+    color: #fff;
+    border-radius: 5px;
+    width: 300px;
+    display: block;
+}
+.no-order h3 {
+    margin-bottom: 40px;
+}
+.beforeAfter{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.beforeAfter div {
+    width: 48%;
+    height: 200px;
+    margin: 0 10px;
+    position: relative;
+}
+.beforeAfter span {
+    position: absolute;
+    bottom: 0;
+    background: #ccc;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 100000;
+    opacity: .5;
+    color: #000;
+    cursor: default;
+}
+.beforeAfter img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.beforeAfterBtn{
+    cursor: pointer;
+}

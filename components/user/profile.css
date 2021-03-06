@@ -1,0 +1,208 @@
+.userProfile {
+    background: #fff;
+    padding-top: 30px;
+}
+.userProfileTabs {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    margin: 0 auto;
+    max-width: 800px;
+    width: 95%;
+}
+.userProfileTabs .MuiAppBar-colorPrimary {
+    background-color: #008D9A !important;
+}
+.userEditProfile {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    align-items: center;
+}
+.userEditProfile.userCar{
+    width: 100%;
+}
+.userEditProfile > div {
+    margin: 10px 0;
+    width: 100%;
+}
+.userProfileBtn {
+    margin: 25px 0 !important;
+    width: 300px;
+    flex-direction: column;
+    height: 50px;
+}
+.userEditProfile .MuiFilledInput-root,.userEditProfile  .MuiSelect-select:focus {
+    background-color: #eee !important;
+}
+.favoritesList {
+    width: 95%;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.favoritesList ul {
+    width: 100%;
+}
+.MuiDialog-paperWidthSm {
+    min-width: 40% ;
+}
+.favoritesList.open {
+    transform: translateX(0);
+    right:25px;
+}
+.favoritesList.close {
+    transform: translateX(100%);
+    right: 0;
+    opacity: 1;
+}
+.favoritesList li {
+    border: 1px solid #e1e1e1;
+    padding: 10px;
+    text-align: right;
+    margin: 5px auto;
+    position: relative;
+    cursor: pointer;
+}
+.favoritesList > span {
+    cursor: pointer;
+    color: red;
+    width: 20px;
+    height: 20px;
+    display: block;
+    font-size: 16px;
+}
+.MuiDialog-root .MuiDialogActions-root {
+    justify-content: center!important;
+}
+.favoritesList li:hover {
+    background: #eee;
+}
+button.dialogBtn {
+    margin-right: 10px;
+    height: 40px;
+    color: #fff;
+    border: 1px solid #329B96;
+    background: #329B96;
+}
+button.dialogBtn:hover {
+    color: #329B96;
+    background: rgba(0, 0, 0, 0.04);
+}
+.favoritesList .delete {
+    height: 24px;
+    text-align: left;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+.address {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.uploadInput {
+    border: 1px dashed #999;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+    position: relative;
+}
+.inputfile {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 100000000;
+    border: 1px dashed #E0E0E0;
+    top: 0;
+    cursor: pointer;
+}
+.carImg {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}
+.userEditProfile input[type="text"]{
+    text-align: center;
+}
+.userEditProfile .MuiFilledInput-root:not(.MuiInputBase-multiline) {
+    height: 50px;
+}
+.MuiFilledInput-inputMultiline {
+    line-height: 2;
+}
+.newLocationActions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.userEditProfile #map {
+    height: 200px !important;
+}
+.userProfileBtn  {
+    height: 50px;
+    background: rgb(240,70,65) !important;
+}
+.userCar .carPlate {
+    background: url("/images/registration plate.svg") top/contain no-repeat;
+    /* width: 100% !important; */
+    height: 90px;
+    padding-left: 10%;
+    display: flex;
+    flex-direction: row-reverse;
+    background-size: contain;
+    padding-right: 11px;
+    margin: 0 auto;
+    max-width: 450px;
+}
+.userCar .carPlate input, .userCar .carPlate select {
+    width: 8%;
+    height: 45px;
+    margin: 15px 2% 0 ;
+    text-align: center;
+    float: right;
+}
+.inputFileLabel {
+    text-align: center;
+}
+@media only screen and (max-width: 450px) {
+    .userCar .carPlate input, .userCar .carPlate select {
+        width: 10%;
+        margin: 9px 1% 0 0 !important;
+    }
+    .userCar .carPlate select {
+        width: 19% !important;
+    }
+}
+@media only screen and (max-width:400px) {
+    .userCar .carPlate input, .userCar .carPlate select {
+        height: 30px;
+    }
+}
+@media only screen and (max-width:300px) {
+    .userCar .carPlate input, .userCar .carPlate select {
+        height: 20px;
+    }
+}
+.userCar .carPlate select {
+    width: 50px !important;
+}
+.inputFileLabel {
+    text-align: center;
+}
+@media only screen and (max-width: 450px) {
+    .orderPlate.carPlate input, .orderPlate.carPlate select {
+        width: 12%;
+        height: 30px;
+        margin: 9px 2% 0 0 !important;
+    }
+}

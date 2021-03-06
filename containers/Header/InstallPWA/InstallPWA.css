@@ -1,0 +1,21 @@
+.addPWAButton {
+    border-radius: 10px;
+    padding: 10px 25px;
+    width: 230px !important;
+    height: 75px !important;
+    border: none;
+    /*background: transparent linear-gradient(90deg, rgba(60, 185, 238,.2) 0%, rgba(26, 118, 220,.2) 100%) no-repeat scroll 0% 0% padding-box;*/
+    text-align: center;
+    color: #fff;
+    font-size: 15px !important;
+    font-family: IRANSansWeb !important;
+    cursor: pointer;
+    font-weight: bold;
+    /* bottom: 13px; */
+    border: 1px solid rgb(26, 118, 220);
+    /* left: 75px; */
+    z-index: 1000000;
+}
+.addPWAButton:hover {
+    background: transparent linear-gradient(122deg, #1A76DC 0%, #3CB9EE 100%) 0% 0% no-repeat padding-box !important;
+}

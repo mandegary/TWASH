@@ -1,0 +1,5 @@
+{
+  "platform": "node",
+  "app": "tsapp",
+  "port": 3000
+}

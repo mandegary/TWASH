@@ -1,0 +1,91 @@
+.careers {
+    background: #fff;
+}
+.careers-form.row {
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.titr h5 {
+    text-align: center;
+    margin: 30px auto;
+    font-weight: bold;
+}
+.titr span {
+    width: 100%;
+    text-align: center;
+    display: block;
+    direction: rtl;
+    background: #00878B;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    color: #fff;
+}
+.careerBtn {
+    margin: 40px auto;
+    width: 92% !important;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.careerBtn .MuiButtonBase-root{
+    width: 100%;
+    height: 50px;
+}
+#demo-simple-select-outlined, #outlined-basic {
+    font-size: 14px !important;
+    font-family: IRANSansWeb !important;
+    color: #010101;
+    opacity: .5;
+}
+.formItem input {
+    max-width: 100% !important;
+}
+#outlined-basic-label, .MuiButtonBase-root-415, .MuiInputLabel-root-277 {
+    font-size: 14px !important;
+    font-family: YekanBakh-Regular !important;
+}
+.formItem {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+p.error {
+    margin: 10px auto;
+}
+.formItem {
+    position: relative;
+}
+.formItem button {
+    position: absolute;
+    left: 3px;
+    /* border-radius: 50% !important; */
+    width: 20px !important;
+    top: 3px;
+    padding: 0px !important;
+    height: 48px !important;
+}
+.formItem button span {
+    padding: 0px !important;
+    text-align: center;
+    font-family: IRANSansWeb !important;
+    font-size: 14px;
+    font-weight: bold;
+    color: #777;
+}
+.formItem .loaderr.loader--style7 {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+#outlined-basic-label{
+    font-family: IRANSansWeb !important;
+}
+.formItem .MuiFormControl-root {
+    width: 100%;
+}
