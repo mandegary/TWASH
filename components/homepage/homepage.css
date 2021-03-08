@@ -2,7 +2,7 @@
     background: #F2F2F2;
 }
 .homeBg {
-    background: linear-gradient(92deg, rgba(194, 220, 227,0.85), rgba(118, 176, 191,0.7)), url(/static/images/carwash.jpg);
+    background: linear-gradient(92deg, rgba(194, 220, 227,0.85), rgba(118, 176, 191,0.7)), url(/images/carwash.jpg);
     height: 100vh;
     background-clip: content-box;
     width: 100%;
