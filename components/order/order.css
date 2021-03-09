@@ -246,7 +246,6 @@
     position: fixed;
     bottom: 20px;
     margin: 0 auto;
-    width: 100% !important;
     max-width: 100%;
 }
 .orderBtn.orderMapBtn.orderBtn button {
@@ -256,7 +255,6 @@
 button.Mui-disabled {
     background: #FAAAAA !important;
     color: #fff !important;
-    font-size: 16px !important;
 }
 /*ORDER INFO*/
 .orderData {
@@ -579,8 +577,8 @@ button.Mui-disabled {
 }
 .userLocation {
     position: absolute;
-    left: 20px;
-    top: 10px;
+    right: 25px;
+    bottom: 30px;
     z-index: 100000;
     cursor: pointer;
     width: 30px;
@@ -654,6 +652,9 @@ button.Mui-disabled {
     }
     .orderPlate.carPlate select {
         width: 19% !important;
+    }
+    .userLocation {
+        bottom: 80px;
     }
 }
 @media only screen and (max-width:400px) {
