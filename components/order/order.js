@@ -678,7 +678,7 @@ const Order = (props) => {
                         setNum6(cPlaque[6])
                         setNum7(cPlaque[7])
                     }
-
+                if(toggle)
                     setShowCarItems(true)
                     setOrderData({...orderData, selectedCar: 0, carModel: cModel})
                     if (services.length > 0)
