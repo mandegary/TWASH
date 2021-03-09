@@ -24,7 +24,7 @@ import NewLocationForm from "./newLocationMap"
 const theme = createMuiTheme({
     direction: 'rtl',
 });
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGVnYXJ5IiwiYSI6ImNrbHh1djFuNDB4dmsydm82bG5kYXhqaTgifQ.xCsvcrN041OMUoQtaiLE-g';
+mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGVnYXJ5IiwiYSI6ImNra3V4aHFuZjRkYjkycHF0YnA3eXVpd2kifQ.M1TpZFI8ZVRvjEHgy7uEsw';
 
 export default function FavoriteLocations() {
     const mapRef = React.createRef();

@@ -644,6 +644,9 @@ button.Mui-disabled {
 .inputFileLabel {
      text-align: center;
  }
+.MuiRadio-colorSecondary.Mui-checked {
+    color: rgb(240,70,65) !important;
+}
 @media only screen and (max-width: 450px) {
     .orderPlate.carPlate input, .orderPlate.carPlate select {
         width: 10%;

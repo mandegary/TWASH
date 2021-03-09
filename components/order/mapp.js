@@ -12,7 +12,7 @@ import delBtn from "../../assets/images/del.svg"
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core/styles";
 import Notiflix from "notiflix";
 
-mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGVnYXJ5IiwiYSI6ImNrbHh1djFuNDB4dmsydm82bG5kYXhqaTgifQ.xCsvcrN041OMUoQtaiLE-g';
+mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZGVnYXJ5IiwiYSI6ImNra3V4aHFuZjRkYjkycHF0YnA3eXVpd2kifQ.M1TpZFI8ZVRvjEHgy7uEsw';
 const theme = createMuiTheme({
     direction: 'rtl'
 });
@@ -39,7 +39,6 @@ const HomePageForm = (props) => {
         return Object.keys(obj).length === 0;
     }
     useEffect(() => {
-        console.log(props.mapData)
         if(!isEmpty(props.mapData)){
             setLng(props.mapData.lng)
             setLat(props.mapData.lat)
@@ -108,7 +107,7 @@ const HomePageForm = (props) => {
                     zoom: 14,
                     essential: false // this animation is considered essential with respect to prefers-reduced-motion
                 });
-                /*map.loadImage(
+                map.loadImage(
                     marker,
                     function (error, image) {
                         if (error) throw error;
@@ -141,7 +140,7 @@ const HomePageForm = (props) => {
                             }
                         });
                     }
-                );*/
+                );
                 setBtnDisabled(false)
             }
             else {
