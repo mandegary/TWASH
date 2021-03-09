@@ -44,6 +44,7 @@ const HomePageForm = (props) => {
             setLat(props.mapData.lat)
             setDescription(props.mapData.description)
             setOrderData(props.mapData)
+            setBtnDisabled(false)
         }
         else setOrderData({...orderData, description: ""})
         let map;
@@ -142,6 +143,31 @@ const HomePageForm = (props) => {
                     }
                 );
                 setBtnDisabled(false)
+                if ("geolocation" in navigator) {
+                    navigator.geolocation.getCurrentPosition(position => {
+                            setShowUserLocation(true)
+                        },
+                        function (error) {
+                            /*switch(error.code) {
+                                case error.PERMISSION_DENIED:
+                                    alert("User denied the request for Geolocation.")
+                                    break;
+                                case error.POSITION_UNAVAILABLE:
+                                    alert("Location information is unavailable.")
+                                    break;
+                                case error.TIMEOUT:
+                                    alert( "The request to get user location timed out.")
+                                    break;
+                                case error.UNKNOWN_ERROR:
+                                    alert("An unknown error occurred.")
+                                    break;
+                                default:
+                                    alert(error)
+
+                            }*/
+                        },{ enableHighAccuracy: true })
+                    ;
+                }
             }
             else {
                 if ("geolocation" in navigator) {
@@ -195,14 +221,14 @@ const HomePageForm = (props) => {
                                     });
                                 }
                             );
-
                             setLat(lat == 0 ? position.coords.latitude.toFixed(4) : lat)
                             setLng(lng == 0 ? position.coords.longitude.toFixed(4) : lng)
+
+
                             setShowUserLocation(true)
 
                         },
                         function (error) {
-
                             /*switch(error.code) {
                                 case error.PERMISSION_DENIED:
                                     alert("User denied the request for Geolocation.")
@@ -220,9 +246,10 @@ const HomePageForm = (props) => {
                                     alert(error)
 
                             }*/
-                        })
+                        },{ enableHighAccuracy: true })
                     ;
-                } else { /* geolocation IS NOT available, handle it */
+                }
+                else { /* geolocation IS NOT available, handle it */
                     map.loadImage(
                         marker,
                         function (error, image) {
@@ -462,9 +489,9 @@ const HomePageForm = (props) => {
                                     });
                                 }
                             );
-
-                            setLat(lat == 0 ? position.coords.latitude.toFixed(4) : lat)
-                            setLng(lng == 0 ? position.coords.longitude.toFixed(4) : lng)
+                            setLat(position.coords.latitude.toFixed(4))
+                            setLng(position.coords.longitude.toFixed(4))
+                            setBtnDisabled(false)
                         },
                         function (error) {
 

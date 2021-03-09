@@ -236,10 +236,10 @@ const Order = (props) => {
         min: momentJalaali().add(-1, 'days'),
         max: momentJalaali().add(14, 'days')
     };*/
-    let timesHolder = ["06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
-        "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
-        "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30",
-        "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "24:00"
+    let timesHolder = ["06:00", "07:00",  "08:00",  "09:00", "10:00",  "11:00",
+        "12:00", "13:00", "14:00", "15:00",
+        "16:00", "17:00", "18:00", "19:00",
+        "20:00", "21:00", "22:00", "23:00",  "24:00"
     ];
     const timesHandler = (newDate) => {
         let today = new Date();
@@ -323,7 +323,6 @@ const Order = (props) => {
         setTimeout(() => abortController.abort(), process.env.delayFetch)
 
         if (!isEmpty(props.orderData)) {
-            console.log(props.orderData)
             setOrderData(props.orderData)
             if (props.orderData.services.includes(1)) {
                 setRooShoyi(true)
@@ -668,7 +667,6 @@ const Order = (props) => {
                     setSelectedCarBrandTitle(carsHolder[i].model["brand"].name)
                     setSelectedCarModelTitle(carsHolder[i].model.name);
                     setCarTag(cPlaque)
-                    console.log(cPlaque)
                     if(cPlaque!="" && cPlaque!=null)
                     {
                         setNum0(cPlaque[0])
@@ -706,7 +704,6 @@ const Order = (props) => {
         setServices([])
         setServicesTitle([])
         setPrice("...")
-        console.log(e.target.value)
         if (e.target.value == "بله") {
             setToggle(true)
             setRooShoyi(false)
@@ -1059,8 +1056,6 @@ const Order = (props) => {
             var myobj = document.getElementById("NotiflixNotifyWrap");
             myobj.remove();
         }
-        console.log(file)
-        console.log(carTag)
         if (file != "" && carTag != "" && file != null && carTag != null) {
             setShowModal(false);
             if (!setEditCar) setToggle(true)
@@ -1072,8 +1067,6 @@ const Order = (props) => {
     };
 
     const calculatePrice = (selectedServices, model) => {
-        console.log(selectedServices)
-        console.log(model)
         if ((model != 0) && selectedServices.length > 0) {
             setLoadingPrice(true)
             let data = new FormData()
