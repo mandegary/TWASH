@@ -99,7 +99,7 @@
 }
 .formItem input {
     max-width: 100% !important;
-    height: 35px;
+    height: 20px;
     text-align: center;
 }
 #outlined-basic-label, .MuiButtonBase-root-415, .MuiInputLabel-root-277 {
@@ -179,8 +179,12 @@ p.error {
     height: 50px;
 }
 .contactusBtn .MuiButton-contained.Mui-disabled {
-    color: rgba(0, 0, 0, 0.26);
+    /*color: rgba(0, 0, 0, 0.26);*/
     box-shadow: none;
-    background-color: rgba(0, 0, 0, 0.12);
+    /*background-color: rgba(0, 0, 0, 0.12);*/
     border-radius: 5px;
+}
+button.Mui-disabled {
+    background: #FAAAAA !important;
+    color: #fff !important;
 }

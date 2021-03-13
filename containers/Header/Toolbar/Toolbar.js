@@ -91,10 +91,12 @@ const Toolbar = (props) => {
     });
     let url = process.env.url;
     //let isChrome = /chrome/.test( navigator.userAgent.toLowerCase());
-    let token="",code="";
+    let token="",code="" , lName="" , fName="" ;
     if (typeof window != "undefined") {
         token = JSON.parse(localStorage.getItem('accessToken'));
         code = JSON.parse(localStorage.getItem('refferalCode'));
+        fName = JSON.parse(localStorage.getItem('fName'));
+        lName = JSON.parse(localStorage.getItem('lName'));
     }
 
     useEffect(() => {
@@ -236,7 +238,13 @@ const Toolbar = (props) => {
                                     <div className="avatar userLnk">
                                         <Avatar src="/broken-image.jpg"/>
                                         <div className="userMenu">
-                                            <span>کاربر عزیز خوش آمدید.</span>
+                                            {
+                                                (fName!=null && lName!=null) && (fName!="" || lName!="") ?
+                                                    <span>{fName+ " " +lName} خوش آمدید.</span>
+                                                    :
+                                                    <span>کاربر عزیز خوش آمدید.</span>
+                                            }
+
                                             <span className="wallet">اعتبار من ({balance} تومان)</span>
                                             <Link href="/user">
                                                 <a href="/user">
@@ -258,10 +266,10 @@ const Toolbar = (props) => {
                             </React.Fragment>
                         }
                     </Col>
-                    <Col xl={9} lg={9} md={1} sm={1} xs={1} className="topMenu">
+                    <Col xl={8} lg={8} md={1} sm={1} xs={1} className="topMenu">
                         <MenuItems isHome={props.isHome} showMenu={props.showMenu} showCodeModal={showCodeModal}/>
                     </Col>
-                    <Col xl={2} lg={2} md={8} sm={8} xs={8}>
+                    <Col xl={3} lg={3} md={8} sm={8} xs={8}>
                         <Logo/>
                     </Col>
                     <Col xl={2} lg={2} md={2} sm={2} xs={2} className="drawer" onClick={DrawerHandler}>

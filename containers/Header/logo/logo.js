@@ -10,6 +10,7 @@ const Logo = (props)=>{
                 <a>
                     <img src={TLogo} alt="کارواش تی سپ" title="TWash"/>
                     <span>تی سپ</span>
+                    <span>خدمات کارواش خودرو در محل</span>
                 </a>
             </Link>
         </div>

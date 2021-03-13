@@ -42,6 +42,12 @@ const authReducer = (state,action)=>{
             localStorage.setItem('refferalCode',JSON.stringify(action.payload.refferalCode))
             break;
         }
+        case 'user':
+        {
+            localStorage.setItem('fName',JSON.stringify(action.payload.fName))
+            localStorage.setItem('lName',JSON.stringify(action.payload.lName))
+            break;
+        }
         default:
             return state;
     }

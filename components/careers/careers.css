@@ -9,6 +9,11 @@
     margin: 0 auto;
     padding-top: 20px;
 }
+.careers .formItem input {
+    max-width: 100% !important;
+    height: 35px;
+    text-align: center;
+}
 .titr h5 {
     text-align: center;
     margin: 30px auto;
@@ -88,4 +93,9 @@ p.error {
 }
 .formItem .MuiFormControl-root {
     width: 100%;
+}
+.MuiButton-containedSecondary:not(.MuiButton-contained.Mui-disabled) {
+    color: #fff !important;
+    background-color: rgb(240,70,65) !important;
+    border-radius: 5px;
 }

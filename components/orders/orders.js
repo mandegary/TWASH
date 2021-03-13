@@ -10,21 +10,24 @@ import {
     FormLabel,
     RadioGroup,
     FormControlLabel,
-    TextField
+    TextField, InputLabel, Select
 } from "@material-ui/core";
 import moment from "moment-jalaali";
 import StarRatings from 'react-star-ratings';
-import {verifyToken} from "../Helpers";
-import delBtn from "../../assets/images/del.svg";
+import {VerifyToken, verifyToken} from "../Helpers";
 import Notiflix from "notiflix";
 import {addCommas} from "persian-tools2";
 import Link from "next/link";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import cloudComputing from "../../assets/images/cloud-computing.png";
 import DialogActions from "@material-ui/core/DialogActions";
 import Dialog from "@material-ui/core/Dialog";
+import DatePicker from "react-datepicker2";
+import down from "../../assets/images/down.png";
+import axios from "axios";
+import NewLocationForm from "../user/newLocationMap";
+import delBtn from "../../assets/images/del.svg";
 
 const theme = createMuiTheme({
     direction: 'rtl'
@@ -34,9 +37,21 @@ const Orders = (props) => {
     const [ordersHolder, setOrdersHolder] = useState("");
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = React.useState(false);
+    const [showEditTimeModal, setShowEditTimeModal] = React.useState(false);
+    const [showEditAddressModal, setShowEditAddressModal] = React.useState(false);
     const [beforeImg, setBeforeImg] = useState("");
     const [afterImg, setAfterImg] = useState("");
-
+    const [time, setTime] = useState("");
+    const [timeEnd, setTimeEnd] = useState("");
+    const [date, setDate] = useState("");
+    const [timestamp, setTimestamp] = useState("");
+    const [times, setTimes] = useState([]);
+    const [locations, setLocations] = useState([]);
+    const [id, setId] = useState("");
+    const [enabledRange, setEnabledRange] = useState({
+        min: moment().add(-1, 'days'),
+        max: moment().add(14, 'days')
+    });
     let url = process.env.url;
     Notiflix.Notify.Init({
         width: '250px',
@@ -54,17 +69,88 @@ const Orders = (props) => {
 
     useEffect(() => {
         fetchOrders()
+        setTimes(timesHolder.map((time, index) =>
+            <MenuItem key={index} value={time}>{time}</MenuItem>
+        ))
+        let t = moment().add(0, 'days')
+        setDate(t, 'jYYYY/jM/jD')
+        if (document.getElementsByClassName("datepicker-input")[0] != undefined)
+            document.getElementsByClassName("datepicker-input")[0].setAttribute("readonly", "readonly");
+        timesHandler(t);
+        fetchLocations();
     }, [])
 
     let token = null;
     if (typeof window != "undefined")
         token = JSON.parse(localStorage.getItem('accessToken'));
 
-    let timesHolder = ["06:00", "07:00",  "08:00",  "09:00", "10:00",  "11:00",
+    let timesHolder = ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
         "12:00", "13:00", "14:00", "15:00",
         "16:00", "17:00", "18:00", "19:00",
-        "20:00", "21:00", "22:00", "23:00",  "24:00"
+        "20:00", "21:00", "22:00", "23:00", "24:00"
     ];
+    const timesHandler = (newDate) => {
+        let today = new Date();
+        let currentH = (today.getHours() + 1).toString()
+        if (currentH.length == 1) currentH = "0" + currentH
+        let currentM = today.getMinutes().toString()
+        if (currentM.length == 1) currentM = "0" + currentM
+        let current = currentH + ":" + currentM;
+        if (moment(today).jDate() == moment(newDate).jDate()
+            && moment(today).jMonth() == moment(newDate).jMonth()
+            && moment(today).jYear() == moment(newDate).jYear())
+            setTimes(timesHolder.map((time, index) =>
+                current < time ?
+                    <MenuItem key={index} value={time}>{time}</MenuItem> :
+                    null
+            ))
+        else
+            setTimes(timesHolder.map((time, index) =>
+                <MenuItem key={index} value={time}>{time}</MenuItem>
+            ))
+        /*if(today.getHours()==23)
+        {
+            setEnabledRange({...enabledRange,min:moment().add(1, 'days')})
+        }*/
+        setTime("")
+        setTimeEnd("")
+    }
+    const timeHandler = (event) => {
+        setTime(event.target.value);
+        let index = timesHolder.indexOf(event.target.value);
+        switch (event.target.value) {
+            case "23:00":
+                setTimeEnd("01:00")
+                break;
+            case "24:00":
+                setTimeEnd("02:00")
+                break;
+            default:
+                setTimeEnd(timesHolder[index + 2])
+        }
+    }
+
+    function getTimeStamp(input) {
+        var parts = input.trim().split(' ');
+        var date = parts[0].split('-');
+        var time = (parts[1] ? parts[1] : '00:00:00').split(':');
+
+        // NOTE:: Month: 0 = January - 11 = December.
+        var d = new Date(date[0], date[1] - 1, date[2], time[0], time[1], time[2]);
+        return d.getTime() / 1000;
+    }
+
+    const dateHandler = (value) => {
+        let _d = value.format('YYYY-M-D HH:mm:ss')
+        let _timestamp = getTimeStamp(_d)
+        //var date = new Date(timestamp*1000);
+
+        setDate(value);
+
+            timesHandler(value)
+        setTimestamp(_timestamp * 1000)
+
+    }
     const closeModal = () => {
         setShowModal(false);
     }
@@ -73,7 +159,102 @@ const Orders = (props) => {
         setAfterImg(next)
         setShowModal(true)
     }
+    const closeEditTimeModal = () => {
+        setShowEditTimeModal(false);
+    }
+    const closeEditAddressModal = () => {
+        setShowEditAddressModal(false);
+    }
+    const viewEditTimeModal = (_id , time , date) => {
+        setId(_id)
+        setShowEditTimeModal(true)
+    }
+    const viewEditAddressModal = (_id) => {
+        setId(_id)
+        setShowEditAddressModal(true)
+    }
+    const editTime = () => {
+        if(time=="")
+            Notiflix.Notify.Failure('لطفا زمان سفارش را انتخاب کنید.');
+            else{
+            if (document.getElementById("NotiflixNotifyWrap") != undefined) {
+                var myobj = document.getElementById("NotiflixNotifyWrap");
+                myobj.remove();
+            }
+            Notiflix.Loading.Dots();
+            let data = new FormData()
+            data.append('reserve_day', date/1000)
+            data.append('reserve_time', time)
+            axios.post(url + '/order/'+id+'/time', data, {
+                headers: {
+                    'Accept': 'application/json',
+                    'dataType': 'json',   //you may use jsonp for cross origin request
+                    'Content-Type': "application/json",
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': "Bearer " + token
+                }
+            })
+                .then((responseJson) => {
+                    if (responseJson.data.message == "سفارش با موفقیت آپدیت شد.") {
+                        Notiflix.Notify.Success('زمان سفارش با موفقیت آپدیت شد.');
+                        setShowEditTimeModal(false)
+                        fetchOrders()
+                    }
+                })
+                .catch((error) => {
+                    if (document.getElementById("NotiflixNotifyWrap") != undefined) {
+                        var myobj = document.getElementById("NotiflixNotifyWrap");
+                        myobj.remove();
+                    }
+                    if (document.getElementById("NotiflixLoadingWrap") != undefined) {
+                        var myobj = document.getElementById("NotiflixLoadingWrap");
+                        myobj.remove();
+                    }
+                })
+        }
 
+
+    }
+    const editAddress = (addressName,addressDescription,longitude,latitude,addressId) => {
+        setShowModal(false)
+        Notiflix.Loading.Dots();
+        let data = new FormData()
+        data.append('address_longitude', longitude)
+        data.append('address_latitude', latitude)
+        data.append('address_name', addressName) //orderData.absence
+        data.append('address_description', addressDescription)
+        if(addressId!="")
+            data.append('user_address_id', addressId)
+        axios.post(url + '/order/'+id+'/address', data, {
+            headers: {
+                'Accept': 'application/json',
+                'dataType': 'json',   //you may use jsonp for cross origin request
+                'Content-Type': "application/json",
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': "Bearer " + token
+            }
+        })
+            .then((responseJson) => {
+                if (responseJson.data.message == "آدرس با موفقیت آپدیت شد.") {
+                    if (document.getElementById("NotiflixNotifyWrap") != undefined) {
+                        var myobj = document.getElementById("NotiflixNotifyWrap");
+                        myobj.remove();
+                    }
+                    Notiflix.Notify.Success('مکان سفارش با موفقیت آپدیت شد.');
+                    setShowEditAddressModal(false);
+                    fetchOrders();
+                } else {
+                    if (document.getElementById("NotiflixNotifyWrap") != undefined) {
+                        var myobj = document.getElementById("NotiflixNotifyWrap");
+                        myobj.remove();
+                    }
+                    Notiflix.Notify.Failure('لطفا دوباره تلاش کنید!');
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
     const fetchOrders = () => {
         Notiflix.Loading.Dots();
         const abortController = new AbortController()
@@ -119,14 +300,26 @@ const Orders = (props) => {
                                                 service.title + " . "
                                             )*/
                                         }</div>
+
+                                        <div>هزینه : {addCommas(order.final)} تومان</div>
+
                                         <div>زمان شست و شو :
                                             مورخ {moment(order.reserved_day).locale('fa').format('jYYYY/jM/jD')} از ساعت {
                                                 [order.human_reserved_time.slice(0, 2), ":", order.human_reserved_time.slice(2)].join('')
                                             }
+                                            &nbsp;
                                             تا {
-                                                timesHolder[timesHolder.indexOf([order.human_reserved_time.slice(0, 2), ":", order.human_reserved_time.slice(2)].join('')) + 4]
+                                                order.human_reserved_time == "2300"?
+                                                    "01:00"
+                                                    :
+                                                    order.human_reserved_time == "2400"?
+                                                        "02:00"
+                                                        :
+                                                        timesHolder[timesHolder.indexOf([order.human_reserved_time.slice(0, 2), ":", order.human_reserved_time.slice(2)].join('')) + 2]
                                             }</div>
-                                        <div>هزینه : {addCommas(order.final)} تومان</div>
+                                        <div>محل شست و شو : {
+                                            order.user_address.description
+                                        }</div>
                                         <div>وضعیت درخواست : {
                                             order.human_status == "init" ? "جدید" :
                                                 order.human_status == "waiting_for_payment" ? "در انتظار پرداخت" :
@@ -142,7 +335,7 @@ const Orders = (props) => {
                                                                                         "-"
                                         }</div>
                                         {
-                                            order.images.before != null || order.images.after != null ?
+                                            !order.images.before != null || order.images.after != null ?
                                                 <div>
                                                     <Button className="beforeAfterBtn" variant="contained"
                                                             onClick={() => viewModal(order.images.before, order.images.after)}>مشاهده
@@ -150,8 +343,25 @@ const Orders = (props) => {
                                                 </div>
                                                 : null
                                         }
+                                        {
+                                            order.editable &&
+                                                <React.Fragment>
+                                                    <div>
+                                                        <Button className="editBtn" variant="contained"
+                                                                onClick={() => viewEditAddressModal(order.id)}>ویرایش مکان سفارش</Button>
+                                                    </div>
 
-                                        {/*<div>محل شست و شو : ...</div>*/}
+                                                    <div>
+                                                        <Button className="editBtn" variant="contained"
+                                                                onClick={() => viewEditTimeModal(order.id , order.human_reserved_time , order.reserved_day)}>ویرایش زمان سفارش</Button>
+                                                    </div>
+                                                </React.Fragment>
+
+                                        }
+
+
+
+
                                         {/*<div>میزان رضایت:<StarRatings
                                         rating={4}
                                         starDimension="20px"
@@ -165,6 +375,38 @@ const Orders = (props) => {
                         )
                         setLoading(false)
                     }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        // Cancel the request if it takes more than delayFetch seconds
+        setTimeout(() => abortController.abort(), process.env.delayFetch)
+    };
+    const fetchLocations = () => {
+        //Notiflix.Loading.Dots();
+        const abortController = new AbortController()
+        const promise = window
+            .fetch(url + '/user_address', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'dataType': 'jsonp',   //you may use jsonp for cross origin request
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': "Bearer " + token
+                },
+                method: 'GET',
+                mode: 'cors',
+                signal: abortController.signal
+            })
+            .then(res => res.json())
+            .then(responseJson => {
+                if (responseJson.message == "آدرس‌ها با موفقیت دریافت شد.") {
+                    setLocations(responseJson.user_addresses)
+                    /*if (document.getElementById("NotiflixLoadingWrap") != undefined) {
+                        var myobj = document.getElementById("NotiflixLoadingWrap");
+                        myobj.remove();
+                    }*/
+                }
             })
             .catch(err => {
                 console.log(err)
@@ -192,7 +434,7 @@ const Orders = (props) => {
                                 ordersHolder
                             }
                             <Dialog open={showModal} onClose={closeModal} aria-labelledby="form-dialog-title"
-                                    className="absenseDialog">
+                                    className="">
                                 <DialogTitle id="form-dialog-title">مشاهده تصاویر</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText>
@@ -207,6 +449,89 @@ const Orders = (props) => {
                                         تایید
                                     </Button>
                                 </DialogActions>
+                            </Dialog>
+                            <Dialog open={showEditTimeModal} onClose={closeEditTimeModal} aria-labelledby="form-dialog-title"
+                                    className="">
+                                <DialogTitle id="form-dialog-title">ویرایش زمان</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        <div  className="editTime">
+                                            <Row className="orderRow">
+
+                                                <Col xl={12} lg={12} md={12} sm={12} xs={12} className="form-item">
+                                                    <div>
+                                                        <img src={down} className="down"/>
+                                                    </div>
+                                                    <div>
+                                                        <DatePicker
+                                                            label="تاریخ کارواش"
+                                                            placeholder="تاریخ کارواش"
+                                                            isGregorian={false}
+                                                            timePicker={false}
+                                                            min={enabledRange.min}
+                                                            max={enabledRange.max}
+                                                            value={date}
+                                                            showTodayButton={false}
+                                                            inputFormat="YYYY-M-D"
+                                                            onChange={dateHandler}
+                                                        />
+                                                    </div>
+
+                                                </Col>
+                                            </Row>
+                                            <Row className="orderRow">
+                                                <Col xl={12} lg={12} md={12} sm={12} xs={12}>
+                                                    <FormControl variant="filled">
+                                                        <InputLabel id="demo-simple-select-filled-label">ساعت شروع</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-filled-label"
+                                                            id="demo-simple-select-filled"
+                                                            value={time}
+                                                            onChange={timeHandler}
+                                                            label="ساعت شروع">
+                                                            {times}
+                                                        </Select>
+                                                    </FormControl>
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col xl={12} lg={12} md={12} sm={12} xs={12}>
+                                                    {
+                                                        time != "" && timeEnd != "" &&
+                                                        <label className="servicesTime">خودرو شما در بازه زمانی {time} تا {timeEnd} شسته خواهد
+                                                            شد.</label>
+                                                    }
+
+                                                </Col>
+                                            </Row>
+                                        </div>
+                                    </DialogContentText>
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={editTime} color="primary" variant="fill" className="dialogBtn">
+                                        تایید
+                                    </Button>
+                                    <Button onClick={closeEditTimeModal} color="primary" variant="fill" className="dialogBtn">
+                                        لغو
+                                    </Button>
+                                </DialogActions>
+                            </Dialog>
+                            <Dialog open={showEditAddressModal} onClose={closeEditAddressModal} aria-labelledby="form-dialog-title"
+                                    className="">
+                                <DialogTitle id="form-dialog-title">ویرایش مکان</DialogTitle>
+                                <DialogContent>
+                                    <DialogContentText>
+                                        <NewLocationForm createLocation={editAddress} closeModal={closeEditAddressModal} edit={true} locations={locations}/>
+                                    </DialogContentText>
+                                </DialogContent>
+                                {/*<DialogActions>
+                                    <Button onClick={editAddress} color="primary" variant="fill" className="dialogBtn">
+                                        تایید
+                                    </Button>
+                                    <Button onClick={closeEditAddressModal} color="primary" variant="fill" className="dialogBtn">
+                                        لغو
+                                    </Button>
+                                </DialogActions>*/}
                             </Dialog>
                         </React.Fragment>
                     }

@@ -244,11 +244,17 @@
 }
 .orderBtn.orderMapBtn {
     position: fixed;
-    bottom: 20px;
+    bottom: 70px;
     margin: 0 auto;
     max-width: 100%;
 }
-.orderBtn.orderMapBtn.orderBtn button {
+.orderBtn.orderPrevBtn {
+    position: fixed;
+    bottom: 10px;
+    margin: 0 auto;
+    max-width: 100%;
+}
+.orderBtn button {
     width: 300px;
     font-size: 16px !important;
 }
@@ -570,19 +576,34 @@ button.Mui-disabled {
     text-align: center;
 }
 .mapboxgl-control-container {
-    display: none;
+    /*display: none;*/
 }
 .datepicker-input {
     text-align: center!important;
 }
 .userLocation {
     position: absolute;
-    right: 25px;
+    right: 50px;
     bottom: 30px;
     z-index: 100000;
     cursor: pointer;
     width: 30px;
     height: 30px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 5px;
+}
+.mapboxgl-ctrl-geocoder--input {
+    display: none;
+}
+.mapboxgl-control-container {
+    /* display: none; */
+    position: absolute;
+    left: 50px;
+    top: 0;
+}
+.mapboxgl-ctrl-geolocate {
+    display: none !important;
 }
 .agreement {
     text-align: right;
