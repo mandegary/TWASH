@@ -11,20 +11,14 @@
 .Logo span {
     font-size: 30px;
     position: relative;
-    /* height: 100px; */
+    height: 100px;
     color: #008D9A;
     font-weight: bold;
     display: block;
-    padding-top: 15px;
+    padding-top: 28px;
     text-align: center;
     text-decoration: none;
     font-family: YekanBakh !important;
-    float: right;
-    margin-right: 15px;
-}
-.Logo span:last-child {
-    font-size: 14px;
-    padding: 0;
 }
 .Logo a {
     text-decoration: none;

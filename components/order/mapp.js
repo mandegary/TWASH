@@ -62,7 +62,7 @@ const HomePageForm = (props) => {
             zoom: zoom,
             trackResize: true
         });
-        map.addControl(new mapboxgl.NavigationControl());
+
         var geocoder = new MapboxGeocoder({
             accessToken: mapboxgl.accessToken,
             language: 'fa-IR',
@@ -545,9 +545,6 @@ const HomePageForm = (props) => {
         }*/
 
     }
-    const prev = () => {
-        props.callback("editOrder", props.orderData)
-    }
     const descriptionHandler = (e) => {
         if (document.getElementById("NotiflixNotifyWrap") != undefined) {
             var myobj = document.getElementById("NotiflixNotifyWrap");
@@ -674,7 +671,7 @@ const HomePageForm = (props) => {
 
                     <div className="orderMapDescription" dir="rtl" style={{top: locations != "" ? "80px" : "20px"}}>
                         <TextField id="filled-basic" multiline value={description} onChange={descriptionHandler}
-                                   rows={3} label="آدرس دقیق و پلاک (اختیاری):" variant="filled"/>
+                                   rows={3} label="آدرس دقیق:" variant="filled"/>
                     </div>
                     <img title="مکان من" src={userLocation} className="userLocation" style={{display : showUserLocation?"block":"none"}}/>
                     <div style={{display: "none"}}
@@ -687,10 +684,6 @@ const HomePageForm = (props) => {
                         <Button className="" variant="contained" color="secondary"
                                 onClick={createLocation}
                                 disabled={btnDisabled}>ثبت محل خودرو</Button>
-                    </Row>
-                    <Row className="orderBtn orderPrevBtn">
-                        <Button className="" variant="contained" color="secondary"
-                                onClick={prev}>مرحله قبل</Button>
                     </Row>
                 </Container>
             </div>

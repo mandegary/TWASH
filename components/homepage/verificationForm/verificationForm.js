@@ -250,13 +250,6 @@ const VerificationForm = (props) => {
                                                 refferalCode: responseJson.user.referral_code
                                             }
                                     });
-                                    dispatch({
-                                        type: 'user', payload:
-                                            {
-                                                fName:responseJson.user.name,
-                                                lName:responseJson.user.last_name,
-                                            }
-                                    });
                                 }
                             })
                             .catch(err => {

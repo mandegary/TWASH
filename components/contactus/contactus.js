@@ -17,9 +17,9 @@ const ContactUs = (props) => {
     const errorRef = React.createRef();
     const [message, setMessage] = useState("");
     const [name, setName] = useState("");
-    const [address, setAddress] = useState("-");
-    const [tell, setTell] = useState("09381564444");
-    const [email, setEmail] = useState("-");
+    const [address, setAddress] = useState("");
+    const [tell, setTell] = useState("");
+    const [email, setEmail] = useState("");
     const [mobile, setMobile] = useState("");
     const [emailError, setEmailError] = useState(false);
     const [mobileError, setMobileError] = useState(false);
@@ -48,23 +48,23 @@ const ContactUs = (props) => {
     });
     const mobileHandler = (event) => {
         setMobile(event.target.value)
-        validate(name != ""  && message!="" && (event.target.value=="" || mobilePattern.test(event.target.value)));
-        setMobileError( !mobilePattern.test(event.target.value))
+        validate(name != "" && name.length>3 && email!="" && message!="" && mobilePattern.test(event.target.value) && event.target.value != ""&& emailPattern.test(event.target.value));
+        setMobileError(event.target.value=="" || !mobilePattern.test(event.target.value))
     }
     const emailHandler = (event) => {
         setEmail(event.target.value)
         setEmailError(event.target.value=="" || !emailPattern.test(event.target.value))
-        validate(name != "" && name.length>2 && mobile!="" && message!="" && event.target.value != "" && emailPattern.test(event.target.value)&& mobilePattern.test(mobile));
+        validate(name != "" && name.length>3 && mobile!="" && message!="" && event.target.value != "" && emailPattern.test(event.target.value)&& mobilePattern.test(mobile));
     }
     const nameHandler = (event) => {
         setName(event.target.value)
         setNameError(event.target.value =="")
-        validate(event.target.value != "" && message!="" && (mobile=="" ||mobilePattern.test(mobile)) );
+        validate(event.target.value != "" && event.target.value.length>3 && email!="" && message!="" && mobilePattern.test(mobile) && mobile != ""&& emailPattern.test(email));
     }
     const messageHandler = (event) => {
         setMessage(event.target.value)
         setMessageError(event.target.value =="")
-        validate(name != "" && event.target.value != "" && (mobile=="" ||mobilePattern.test(mobile))  );
+        validate(name != "" && name.length>3 && event.target.value != "" && email!="" && message!="" && mobilePattern.test(mobile) && mobile!="" && mobile != "" && emailPattern.test(email));
     }
     const validate = (result) => {
         if (result) {
@@ -143,7 +143,7 @@ const ContactUs = (props) => {
                                     <Row>
                                         <Col xl="12" lg="12" md="12" xs="12">
                                             <div className="formItem" dir="rtl">
-                                                <TextField id="outlined-basic" label="نام" variant="filled" required
+                                                <TextField id="outlined-basic" label="نام" variant="filled"
                                                            value={name} error={nameError}
                                                            onChange={nameHandler}/>
                                             </div>
@@ -157,20 +157,20 @@ const ContactUs = (props) => {
                                             </div>
                                         </Col>
                                     </Row>
-                                    {/*<Row>
+                                    <Row>
                                         <Col xl="12" lg="12" md="12" xs="12">
                                             <div className="formItem" dir="rtl">
                                                 <TextField id="outlined-basic" label="آدرس ایمیل" variant="filled" error={emailError}
                                                            value={email} onChange={emailHandler}/>
                                             </div>
                                         </Col>
-                                    </Row>*/}
+                                    </Row>
                                 </React.Fragment>
                                 <Row>
                                     <Col xl="12" lg="12" md="12" xs="12">
                                         <div dir="rtl" className="formItem">
                                             <FormControl>
-                                                <TextField id="outlined-multiline-flexible" label="متن پیام شما" error={messageError} required
+                                                <TextField id="outlined-multiline-flexible" label="متن پیام شما" error={messageError}
                                                            variant="filled" multiline rows={4} value={message}
                                                            onChange={messageHandler}/>
                                             </FormControl>

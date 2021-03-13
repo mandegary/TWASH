@@ -236,10 +236,10 @@ const Order = (props) => {
         min: momentJalaali().add(-1, 'days'),
         max: momentJalaali().add(14, 'days')
     };*/
-    let timesHolder = ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+    let timesHolder = ["06:00", "07:00",  "08:00",  "09:00", "10:00",  "11:00",
         "12:00", "13:00", "14:00", "15:00",
         "16:00", "17:00", "18:00", "19:00",
-        "20:00", "21:00", "22:00", "23:00", "24:00"
+        "20:00", "21:00", "22:00", "23:00",  "24:00"
     ];
     const timesHandler = (newDate) => {
         let today = new Date();
@@ -562,14 +562,6 @@ const Order = (props) => {
             lastikWax: false
         })
         /*resetToggleState()*/
-        setNum0("")
-        setNum1("")
-        setNum2("")
-        setNum3("")
-        setNum4("")
-        setNum5("")
-        setNum6("")
-        setNum7("")
     }
     const carBrandHandler = (e, value) => {
         if (value == null) {
@@ -675,7 +667,8 @@ const Order = (props) => {
                     setSelectedCarBrandTitle(carsHolder[i].model["brand"].name)
                     setSelectedCarModelTitle(carsHolder[i].model.name);
                     setCarTag(cPlaque)
-                    if (cPlaque != "" && cPlaque != null) {
+                    if(cPlaque!="" && cPlaque!=null)
+                    {
                         setNum0(cPlaque[0])
                         setNum1(cPlaque[1])
                         setNum2(cPlaque[2])
@@ -685,25 +678,8 @@ const Order = (props) => {
                         setNum6(cPlaque[6])
                         setNum7(cPlaque[7])
                     }
-                else {
-                        setNum0("")
-                        setNum1("")
-                        setNum2("")
-                        setNum3("")
-                        setNum4("")
-                        setNum5("")
-                        setNum6("")
-                        setNum7("")
-                    }
-
-                    if (toggle && cPlaque != "" && cPlaque != null && cFile != "" && cFile != null)
-                        setShowCarItems(true)
-                    else if (cPlaque != "" && cPlaque != null && cFile != "" && cFile != null)
-                        setShowCarItems(true)
-                    else {
-                        setShowCarItems(false)
-                        setShowModal(true)
-                    }
+                if(toggle)
+                    setShowCarItems(true)
                     setOrderData({...orderData, selectedCar: 0, carModel: cModel})
                     if (services.length > 0)
                         calculatePrice(services, cModel)
@@ -965,14 +941,20 @@ const Order = (props) => {
         setTime(event.target.value);
         let index = timesHolder.indexOf(event.target.value);
         switch (event.target.value) {
+            case "22:30":
+                setTimeEnd("00:30")
+                break;
             case "23:00":
                 setTimeEnd("01:00")
+                break;
+            case "23:30":
+                setTimeEnd("01:30")
                 break;
             case "24:00":
                 setTimeEnd("02:00")
                 break;
             default:
-                setTimeEnd(timesHolder[index + 2])
+                setTimeEnd(timesHolder[index + 4])
 
         }
         setOrderData({...orderData, time: event.target.value, endTime: timesHolder[index + 1], absence: toggle ? 1 : 0})
@@ -1050,10 +1032,6 @@ const Order = (props) => {
             lastikWax: false
         })
         setShowCarItems(false)
-        if (document.getElementById("NotiflixNotifyWrap") != undefined) {
-            var myobj = document.getElementById("NotiflixNotifyWrap");
-            myobj.remove();
-        }
     };
     const carTagHandler = (e) => {
         setCarTag(e.target.value);
@@ -1260,11 +1238,10 @@ const Order = (props) => {
                                     <button onClick={showModalEdit}>ویرایش مدارک خودرو</button>
                                 </Col>
                                 :
-                                /*toggle && selectedCar != 0
+                                toggle && selectedCar != 0
                                 || toggle && carModel != 0 ?
                                     <button onClick={showModalEdit}>آپلود مدارک خودرو</button>
-                                    :*/
-                                null
+                                    : null
                         }
 
                     </Row>
@@ -1403,63 +1380,63 @@ const Order = (props) => {
                     <MuiThemeProvider theme={theme}>
                         <div dir="rtl">
                             <div className="carPlate orderPlate">
-                                <input type="tel" inputMode="number" maxLength={1} value={num0} id="0"
-                                       onChange={numHandler}
-                                       pattern="[0-9]*" onKeyDown={numHandler}/>
-                                <input type="tel" inputMode="number" maxLength={1} value={num1} id="1"
-                                       onChange={numHandler}
-                                       pattern="[0-9]*" onKeyDown={numHandler}/>
-                                <select value={num2} id="2" onChange={numHandler} onKeyDown={numHandler}>
-                                    <option value="ا"> الف</option>
-                                    <option value="ب"> ب</option>
-                                    <option value="پ"> پ</option>
-                                    <option value="ت"> ت</option>
-                                    <option value="ث"> ث</option>
-                                    <option value="ج"> ج</option>
-                                    {/*<option value="�"> �</option>*/}
-                                    <option value="ح"> ح</option>
-                                    <option value="خ"> خ</option>
-                                    <option value="د"> د</option>
-                                    <option value="ذ"> ذ</option>
-                                    <option value="ر"> ر</option>
-                                    <option value="ز"> ز</option>
-                                    <option value="س"> س</option>
-                                    <option value="ش"> ش</option>
-                                    <option value="ص"> ص</option>
-                                    <option value="ض"> ض</option>
-                                    <option value="ط"> ط</option>
-                                    <option value="ظ"> ظ</option>
-                                    <option value="ع"> ع</option>
-                                    <option value="غ"> غ</option>
-                                    <option value="ف"> ف</option>
-                                    <option value="ق"> ق</option>
-                                    <option value="ک"> ک</option>
-                                    <option value="گ"> گ</option>
-                                    <option value="ل"> ل</option>
-                                    <option value="م"> م</option>
-                                    <option value="ن"> ن</option>
-                                    <option value="و"> و</option>
-                                    <option value="هـ"> هـ</option>
-                                    <option value="ی"> ی</option>
-                                    <option value="D"> D</option>
-                                    <option value="S"> S</option>
-                                </select>
-                                <input type="tel" inputMode="number" maxLength={1} value={num3} id="3"
-                                       onChange={numHandler}
-                                       pattern="[0-9]*" onKeyDown={numHandler}/>
-                                <input type="tel" inputMode="number" maxLength={1} value={num4} id="4"
-                                       onChange={numHandler}
-                                       pattern="[0-9]*" onKeyDown={numHandler}/>
-                                <input type="tel" inputMode="number" maxLength={1} value={num5} id="5"
-                                       onChange={numHandler}
-                                       pattern="[0-9]*" onKeyDown={numHandler}/>
-                                <input type="tel" inputMode="number" maxLength={1} value={num6} id="6"
-                                       onChange={numHandler}
-                                       pattern="[0-9]*" onKeyDown={numHandler}/>
-                                <input type="tel" inputMode="number" maxLength={1} value={num7} id="7"
-                                       onChange={numHandler}
-                                       pattern="[0-9]*" onKeyDown={numHandler}/>
-                            </div>
+                                    <input type="tel" inputMode="number" maxLength={1} value={num0} id="0"
+                                           onChange={numHandler}
+                                           pattern="[0-9]*" onKeyDown={numHandler}/>
+                                    <input type="tel" inputMode="number" maxLength={1} value={num1} id="1"
+                                           onChange={numHandler}
+                                           pattern="[0-9]*" onKeyDown={numHandler}/>
+                                    <select value={num2} id="2" onChange={numHandler} onKeyDown={numHandler}>
+                                        <option value="ا"> الف</option>
+                                        <option value="ب"> ب</option>
+                                        <option value="پ"> پ</option>
+                                        <option value="ت"> ت</option>
+                                        <option value="ث"> ث</option>
+                                        <option value="ج"> ج</option>
+                                        {/*<option value="�"> �</option>*/}
+                                        <option value="ح"> ح</option>
+                                        <option value="خ"> خ</option>
+                                        <option value="د"> د</option>
+                                        <option value="ذ"> ذ</option>
+                                        <option value="ر"> ر</option>
+                                        <option value="ز"> ز</option>
+                                        <option value="س"> س</option>
+                                        <option value="ش"> ش</option>
+                                        <option value="ص"> ص</option>
+                                        <option value="ض"> ض</option>
+                                        <option value="ط"> ط</option>
+                                        <option value="ظ"> ظ</option>
+                                        <option value="ع"> ع</option>
+                                        <option value="غ"> غ</option>
+                                        <option value="ف"> ف</option>
+                                        <option value="ق"> ق</option>
+                                        <option value="ک"> ک</option>
+                                        <option value="گ"> گ</option>
+                                        <option value="ل"> ل</option>
+                                        <option value="م"> م</option>
+                                        <option value="ن"> ن</option>
+                                        <option value="و"> و</option>
+                                        <option value="هـ"> هـ</option>
+                                        <option value="ی"> ی</option>
+                                        <option value="D"> D</option>
+                                        <option value="S"> S</option>
+                                    </select>
+                                    <input type="tel" inputMode="number" maxLength={1} value={num3} id="3"
+                                           onChange={numHandler}
+                                           pattern="[0-9]*" onKeyDown={numHandler}/>
+                                    <input type="tel" inputMode="number" maxLength={1} value={num4} id="4"
+                                           onChange={numHandler}
+                                           pattern="[0-9]*" onKeyDown={numHandler}/>
+                                    <input type="tel" inputMode="number" maxLength={1} value={num5} id="5"
+                                           onChange={numHandler}
+                                           pattern="[0-9]*" onKeyDown={numHandler}/>
+                                    <input type="tel" inputMode="number" maxLength={1} value={num6} id="6"
+                                           onChange={numHandler}
+                                           pattern="[0-9]*" onKeyDown={numHandler}/>
+                                    <input type="tel" inputMode="number" maxLength={1} value={num7} id="7"
+                                           onChange={numHandler}
+                                           pattern="[0-9]*" onKeyDown={numHandler}/>
+                                </div>
                             {/*<TextField
                                 autoFocus
                                 margin="dense"
@@ -1472,22 +1449,22 @@ const Order = (props) => {
                                 fullWidth
                             />*/}
                             <div className="uploadInput">
-                                <input
-                                    type="file"
-                                    accept="image/*"
-                                    className="inputfile"
-                                    id="inputGroupFile01"
-                                    aria-describedby="inputGroupFileAddon01"
-                                    onClick={(e) => e.target.value = ''}//به خاطر مشکل آپلود در کروم
-                                    onChange={imageHandler}
-                                />
-                                <span className="inputFileLabel">
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        className="inputfile"
+                                        id="inputGroupFile01"
+                                        aria-describedby="inputGroupFileAddon01"
+                                        onClick={(e) => e.target.value = ''}//به خاطر مشکل آپلود در کروم
+                                        onChange={imageHandler}
+                                    />
+                                    <span className="inputFileLabel">
                         <img src={cloudComputing}/>
                         <label htmlFor="file">آپلود تصویر کارت ماشین
                         </label>
                     </span>
-                                <img src={file} className="carImg"/>
-                            </div>
+                                    <img src={file} className="carImg"/>
+                                </div>
                         </div>
                     </MuiThemeProvider>
                 </DialogContent>

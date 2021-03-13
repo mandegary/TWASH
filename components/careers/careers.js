@@ -50,32 +50,32 @@ const Careers = (props) => {
     const nameHandler = (event) => {
         setName(event.target.value)
         setNameError(event.target.value =="")
-        validate(event.target.value !="" && family !="" && mobile!="" && mobilePattern.test(mobile) /*&& emailPattern.test(email) && email!=""*/ && subject!="" );
+        validate(event.target.value !="" && family !="" && mobile!="" && mobilePattern.test(mobile) && emailPattern.test(email) && email!="" && subject!="" && description!="");
     }
     const familyHandler = (event) => {
         setFamily(event.target.value)
         setFamilyError(event.target.value =="")
-        validate(name !="" && event.target.value !="" && mobile!=""  && subject!="" && mobilePattern.test(mobile) /*&& email!="" && emailPattern.test(email)*/);
+        validate(name !="" && event.target.value !="" && mobile!="" && email!="" && subject!="" && description!=""&& mobilePattern.test(mobile) && emailPattern.test(email));
     }
     const mobileHandler = (event) => {
         setMobile(event.target.value)
         setMobileError(event.target.value=="" || !mobilePattern.test(event.target.value))
-        validate(name !="" && family !="" && event.target.value!="" && mobilePattern.test(event.target.value) /*&& email!=""&& emailPattern.test(email)*/ && subject!="" );
+        validate(name !="" && family !="" && event.target.value!="" && mobilePattern.test(event.target.value) && email!=""&& emailPattern.test(email) && subject!="" && description!="");
     }
     const emailHandler = (event) => {
         setEmail(event.target.value)
         setEmailError(event.target.value=="" || !emailPattern.test(event.target.value))
-        validate(name !="" && family !="" && mobile!="" && event.target.value!="" && emailPattern.test(event.target.value)&& mobilePattern.test(mobile) && subject!="" );
+        validate(name !="" && family !="" && mobile!="" && event.target.value!="" && emailPattern.test(event.target.value)&& mobilePattern.test(mobile) && subject!="" && description!="");
     }
     const subjectHandler = (event) => {
         setSubject(event.target.value)
         setSubjectError(event.target.value =="")
-        validate(name !="" && family !="" && mobile!="" && event.target.value!="" &&  mobilePattern.test(mobile)  /* && email!="" && emailPattern.test(email)*/ );
+        validate(name !="" && family !="" && mobile!="" && email!="" && event.target.value!="" && description!=""&& mobilePattern.test(mobile) && emailPattern.test(email));
     }
     const descriptionHandler = (event) => {
         setDescription(event.target.value)
         setDescriptionError(event.target.value =="")
-        validate(name !="" && family !="" && mobile!=""  && subject!="" && mobilePattern.test(mobile) /*&& emailPattern.test(email)&& email!=""*/);
+        validate(name !="" && family !="" && mobile!="" && email!="" && subject!="" && event.target.value!=""&& mobilePattern.test(mobile) && emailPattern.test(email));
     }
     const validate = (result) => {
         if (result) {
@@ -138,28 +138,28 @@ const Careers = (props) => {
                                     <Row>
                                         <Col xl="6" lg="6" md="6" xs="12">
                                             <div className="formItem" dir="rtl">
-                                                <TextField id="outlined-basic" label="نام خانوادگی" variant="filled" required
+                                                <TextField id="outlined-basic" label="نام خانوادگی" variant="filled"
                                                            error={familyError} value={family} onChange={familyHandler}/>
                                             </div>
                                         </Col>
                                         <Col xl="6" lg="6" md="6" xs="12">
                                             <div className="formItem" dir="rtl">
-                                                <TextField id="outlined-basic" label="نام" variant="filled" required
+                                                <TextField id="outlined-basic" label="نام" variant="filled"
                                                            value={name} error={nameError}
                                                            onChange={nameHandler}/>
                                             </div>
                                         </Col>
                                     </Row>
                                     <Row>
-                                        {/*<Col xl="6" lg="6" md="6" xs="12">
+                                        <Col xl="6" lg="6" md="6" xs="12">
                                             <div className="formItem" dir="rtl">
                                                 <TextField id="outlined-basic" label="آدرس ایمیل" variant="filled"
                                                            error={emailError} value={email} onChange={emailHandler}/>
                                             </div>
-                                        </Col>*/}
-                                        <Col xl="12" lg="122" md="12" xs="12">
+                                        </Col>
+                                        <Col xl="6" lg="6" md="6" xs="12">
                                             <div className="formItem" dir="rtl">
-                                                <TextField id="outlined-basic" label="شماره تماس" variant="filled" error={mobileError} required
+                                                <TextField id="outlined-basic" label="شماره تماس" variant="filled" error={mobileError}
                                                            inputProps={{maxLength: 11}} value={mobile} onChange={mobileHandler}/>
                                             </div>
                                         </Col>
@@ -168,7 +168,7 @@ const Careers = (props) => {
                                 <Row>
                                     <Col xl="12" lg="12" md="12" xs="12">
                                         <div className="formItem" dir="rtl">
-                                            <TextField id="outlined-basic" label="مهارت" variant="filled" required
+                                            <TextField id="outlined-basic" label="مهارت" variant="filled"
                                                        value={subject} onChange={subjectHandler} error={subjectError}/>
                                         </div>
                                     </Col>
