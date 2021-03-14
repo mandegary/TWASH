@@ -244,7 +244,7 @@
 }
 .orderBtn.orderMapBtn {
     position: fixed;
-    bottom: 70px;
+    bottom: 20px;
     margin: 0 auto;
     max-width: 100%;
 }
@@ -582,7 +582,7 @@ button.Mui-disabled {
     text-align: center!important;
 }
 .userLocation {
-    position: absolute;
+    position: fixed;
     right: 50px;
     bottom: 30px;
     z-index: 100000;
@@ -597,10 +597,21 @@ button.Mui-disabled {
     display: none;
 }
 .mapboxgl-control-container {
-    /* display: none; */
     position: absolute;
-    left: 50px;
-    top: 0;
+    bottom: 165px;
+    right: 25px;
+}
+.mapboxgl-ctrl-top-right div:last-child {
+    display: none;
+}
+.mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+    display: none;
+}
+.mapboxgl-ctrl-bottom-right {
+    display: none;
+}
+.mapboxgl-ctrl-bottom-left {
+    display: none;
 }
 .mapboxgl-ctrl-geolocate {
     display: none !important;
@@ -666,6 +677,14 @@ button.Mui-disabled {
 .MuiRadio-colorSecondary.Mui-checked {
     color: rgb(240,70,65) !important;
 }
+.backBtn.row {
+    position: absolute;
+    top: 10px;
+    left: 35px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
 @media only screen and (max-width: 450px) {
     .orderPlate.carPlate input, .orderPlate.carPlate select {
         width: 10%;
@@ -675,7 +694,10 @@ button.Mui-disabled {
         width: 19% !important;
     }
     .userLocation {
-        bottom: 80px;
+        bottom: 75px;
+    }
+    .mapboxgl-control-container {
+        bottom: 210px;
     }
 }
 @media only screen and (max-width:400px) {
@@ -793,5 +815,31 @@ button.Mui-disabled {
     }
     .orderPayment .form-group label.form-label:last-child {
         width: 70px;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .orderMapDescription {
+        right: 25px !important;
+        width: 80% !important;
+        top: 100px !important;
+    }
+    .favoriteBtn {
+        right: 25px !important;
+        width: 80% !important;
+        top: 40px !important;
+    }
+    .favoriteBtn button {
+        width: 100% !important;
+        right: 0;
+        margin: 0;
+    }
+    .orderMapDescription > div {
+        width: 100%!important;
+    }
+    .orderMapDescription textarea {
+        padding: 15px 0;
+    }
+    .favorites {
+        width: 80%;
     }
 }

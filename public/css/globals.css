@@ -78,3 +78,13 @@ ul,li{
 input[type="number"] {
   -moz-appearance: textfield;
 }
+@media only screen and (max-width: 900px) {
+  .MuiDialog-paperScrollPaper {
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .MuiDialog-paperScrollPaper {
+    width: 80%;
+  }
+}

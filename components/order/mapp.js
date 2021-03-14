@@ -5,6 +5,7 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import marker from "../../assets/images/mark.png"
 import userLocation from "../../assets/images/mylocation.png"
+import back from "../../assets/images/back.png"
 import {Container, Col, Form, Row} from "react-bootstrap";
 import {Button, TextField} from "@material-ui/core";
 import {withRouter, NextRouter, useRouter} from 'next/router'
@@ -29,6 +30,7 @@ const HomePageForm = (props) => {
     const [orderData, setOrderData] = useState({});
     const [locations, setLocations] = useState("");
     const [description, setDescription] = useState("");
+    const [userAddressName, setUserAddressName] = useState("");
     const [userAddress, setUserAddress] = useState(0);
 
     let url = process.env.url;
@@ -297,6 +299,9 @@ const HomePageForm = (props) => {
             setLng(lng.toFixed(4))
 
             setZoom(map.getZoom().toFixed(2))
+            if (map.hasImage('markerIcon')) {
+                map.removeImage('markerIcon');
+            }
             var mpLayer = map.getLayer("point");
             if (typeof mpLayer != 'undefined') {
                 map.removeLayer("point");
@@ -304,9 +309,6 @@ const HomePageForm = (props) => {
             var mpSource = map.getSource("point");
             if (typeof mpSource != 'undefined') {
                 map.removeSource("point");
-            }
-            if (map.hasImage('markerIcon')) {
-                map.removeImage('markerIcon');
             }
             map.loadImage(
                 marker,
@@ -367,6 +369,7 @@ const HomePageForm = (props) => {
                 let lat = e.target.getAttribute("lat");
                 let lng = e.target.getAttribute("lng");
                 let id = e.target.getAttribute("id");
+                let addressName = e.target.getAttribute("name");
                 let address = e.target.getAttribute("description");
                 //document.getE('fly').addEventListener('click', function () {
                 // Fly to a random location by offsetting the point -74.50, 40
@@ -424,6 +427,7 @@ const HomePageForm = (props) => {
                 setLat(lat)
                 setLng(lng)
                 setUserAddress(id)
+                setUserAddressName(addressName);
                 setDescription(address)
                 setOrderData({...orderData, lng: lng, lat: lat, description: address, userAddress: id})
                 setFavoriteLocationsClass("favorites close")
@@ -521,7 +525,11 @@ const HomePageForm = (props) => {
 
     }, [])
     const createLocation = () => {
-        props.callback("map", {...orderData, lng: lng, lat: lat, description: description})
+        if(props.edit)
+        {
+            props.callback(userAddressName,description,lng,lat,userAddress)
+        }
+        else props.callback("map", {...orderData, lng: lng, lat: lat, description: description})
         //if(description==""){
             /*let _url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + [lng, lat] + '.json?access_token=pk.eyJ1IjoibWFuZGVnYXJ5IiwiYSI6ImNrOWx0OG82azAwaHUza252em12a3o2NXQifQ.y5-IWYHLAXW5KH5chssYGg';
             fetch(_url, {
@@ -688,10 +696,14 @@ const HomePageForm = (props) => {
                                 onClick={createLocation}
                                 disabled={btnDisabled}>ثبت محل خودرو</Button>
                     </Row>
-                    <Row className="orderBtn orderPrevBtn">
-                        <Button className="" variant="contained" color="secondary"
-                                onClick={prev}>مرحله قبل</Button>
-                    </Row>
+                    {
+                        !props.edit && <Row className="backBtn">
+                            <img src={back} onClick={prev}/>
+                            {/*<Button className="" variant="contained" color="secondary"
+                                    onClick={prev}>مرحله قبل</Button>*/}
+                        </Row>
+                    }
+
                 </Container>
             </div>
 

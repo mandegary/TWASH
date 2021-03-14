@@ -26,7 +26,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DatePicker from "react-datepicker2";
 import down from "../../assets/images/down.png";
 import axios from "axios";
-import NewLocationForm from "../user/newLocationMap";
+/*import NewLocationForm from "../user/newLocationMap";*/
+import NewLocationForm from "../order/mapp";
 import delBtn from "../../assets/images/del.svg";
 
 const theme = createMuiTheme({
@@ -335,29 +336,34 @@ const Orders = (props) => {
                                                                                         "-"
                                         }</div>
                                         {
-                                            !order.images.before != null || order.images.after != null ?
+                                            <div className="btns">
+                                            {
+                                                !order.images.before != null || order.images.after != null ?
                                                 <div>
                                                     <Button className="beforeAfterBtn" variant="contained"
                                                             onClick={() => viewModal(order.images.before, order.images.after)}>مشاهده
                                                         تصاویر</Button>
                                                 </div>
                                                 : null
-                                        }
-                                        {
-                                            order.editable &&
-                                                <React.Fragment>
-                                                    <div>
-                                                        <Button className="editBtn" variant="contained"
-                                                                onClick={() => viewEditAddressModal(order.id)}>ویرایش مکان سفارش</Button>
-                                                    </div>
+                                            }
+                                                {
+                                                    order.editable &&
+                                                    <React.Fragment>
+                                                        <div>
+                                                            <Button className="editBtn" variant="contained"
+                                                                    onClick={() => viewEditAddressModal(order.id)}>ویرایش مکان سفارش</Button>
+                                                        </div>
 
-                                                    <div>
-                                                        <Button className="editBtn" variant="contained"
-                                                                onClick={() => viewEditTimeModal(order.id , order.human_reserved_time , order.reserved_day)}>ویرایش زمان سفارش</Button>
-                                                    </div>
-                                                </React.Fragment>
+                                                        <div>
+                                                            <Button className="editBtn" variant="contained"
+                                                                    onClick={() => viewEditTimeModal(order.id , order.human_reserved_time , order.reserved_day)}>ویرایش زمان سفارش</Button>
+                                                        </div>
+                                                    </React.Fragment>
 
+                                                }
+                                            </div>
                                         }
+
 
 
 
@@ -439,8 +445,14 @@ const Orders = (props) => {
                                 <DialogContent>
                                     <DialogContentText>
                                         <div className="beforeAfter">
-                                            <div><img src={beforeImg}/><span>تصویر قبل</span></div>
-                                            <div><img src={afterImg}/><span>تصویر بعد</span></div>
+                                            <Row>
+                                                <Col xl={6} lg={6} md={6} sm={12} xs={12}>
+                                                    <div><img src={beforeImg}/><span>تصویر قبل</span></div>
+                                                </Col>
+                                                <Col xl={6} lg={6} md={6} sm={12} xs={12}>
+                                                    <div><img src={afterImg}/><span>تصویر بعد</span></div>
+                                                </Col>
+                                            </Row>
                                         </div>
                                     </DialogContentText>
                                 </DialogContent>
@@ -521,7 +533,7 @@ const Orders = (props) => {
                                 <DialogTitle id="form-dialog-title">ویرایش مکان</DialogTitle>
                                 <DialogContent>
                                     <DialogContentText>
-                                        <NewLocationForm createLocation={editAddress} closeModal={closeEditAddressModal} edit={true} locations={locations}/>
+                                        <NewLocationForm orderData={[]} mapData={[]} edit={true} callback={editAddress}/>
                                     </DialogContentText>
                                 </DialogContent>
                                 {/*<DialogActions>

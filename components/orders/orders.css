@@ -9,11 +9,12 @@
     margin: 20px auto;
 }
 .orderSummary button {
-    float: left;
+    /* float: left; */
     background: #BFBFBF;
     color: #000;
     height: 50px;
     margin: 20px 10px 5px;
+    width: 155px;
 }
 .userEditProfile .mapContainer .userLocation {
     right: 10px;
@@ -64,9 +65,9 @@
     align-items: center;
 }
 .beforeAfter div {
-    width: 48%;
+    width: 100%;
     height: 200px;
-    margin: 0 10px;
+    margin: 10px auto;
     position: relative;
 }
 .beforeAfter span {
@@ -80,6 +81,8 @@
     opacity: .5;
     color: #000;
     cursor: default;
+    height: 35px;
+    padding: 5px 0;
 }
 .beforeAfter img {
     width: 100%;
@@ -142,4 +145,71 @@
 .editItems span.newItemTitle {
     margin: 20px 0 0;
     display: block;
+}
+.btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.MuiDialogContent-root .orderBtn.orderMapBtn {
+    /* max-width: 32%; */
+    z-index: 100000;
+    position: relative;
+    margin: 0 auto;
+    bottom: 60px;
+}
+.MuiDialogContent-root .userLocation {
+    right: 50px;
+    bottom: 125px;
+    position: absolute;
+}
+.orderMapDescription div {
+    background: #BFBFBF !important;
+}
+.MuiDialogContent-root .mapboxgl-control-container {
+    bottom: 210px;
+}
+@media only screen and (max-width: 700px) {
+    .btns {
+        flex-direction: column;
+    }
+    .orderSummary button {
+        width: 180px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .orderSummary {
+        width: 100%;
+        min-width: 100%;
+    }
+    .MuiDialogContent-root .orderBtn button {
+        width: 90% !important;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .MuiDialogContent-root .orderMapDescription {
+        right: 25px !important;
+        width: 80% !important;
+        top: 80px !important;
+    }
+    .MuiDialogContent-root .favoriteBtn {
+        right: 25px !important;
+        width: 80% !important;
+        top: 10px !important;
+    }
+    .favoriteBtn button {
+        width: 100% !important;
+        right: 0;
+        margin: 0;
+    }
+    .MuiDialogContent-root .orderMapDescription > div {
+        width: 100%!important;
+    }
+    .MuiDialogContent-root .orderMapDescription textarea {
+        padding: 15px 0;
+    }
+    .favorites {
+        width: 80%;
+    }
 }

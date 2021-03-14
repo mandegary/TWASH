@@ -25,6 +25,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import cloudComputing from "../../assets/images/cloud-computing.png";
 import DialogActions from "@material-ui/core/DialogActions";
 import Dialog from "@material-ui/core/Dialog";
+import axios from "axios";
 
 const theme = createMuiTheme({
     direction: 'rtl'
@@ -32,10 +33,11 @@ const theme = createMuiTheme({
 
 const Order = (props) => {
     let ordersCount = 0
-    let balance;
+    let balance,token;
     if (typeof window != "undefined") {
         balance = JSON.parse(localStorage.getItem('balance'));
         ordersCount = JSON.parse(localStorage.getItem('orders'));
+        token = JSON.parse(localStorage.getItem('accessToken'));
     }
     const [errorMessage, setErrorMessage] = useState("");
     const [btnDisabled, setBtnDisabled] = useState(true);
@@ -44,8 +46,12 @@ const Order = (props) => {
     const [orderData, setOrderData] = useState([]);
     const [showModal, setShowModal] = React.useState(false);
     const [accept, setAccept] = useState(ordersCount>0?true : false );
-
+    const [totalPrice, setTotalPrice] = useState("");
+    const [price, setPrice] = useState("");
+    let url = process.env.url;
     useEffect(() => {
+        if(props.orderData.price=="...")
+            calculatePrice(props.orderData.services, props.orderData.carModel)
     }, [])
 
     const acceptMeHandler = (event) => {
@@ -66,6 +72,32 @@ const Order = (props) => {
             setBtnDisabled(false)
         } else setBtnDisabled(true)
     }
+    const calculatePrice = (selectedServices, model) => {
+        //setBtnDisabled(true)
+        if ((model != 0) && selectedServices.length > 0) {
+            let data = new FormData()
+            data.append('model_id', model)
+            data.append('services', JSON.stringify(selectedServices))
+
+            axios.post(url + '/prices/guess', data, {
+                headers: {
+                    'Accept': 'application/json',
+                    'dataType': 'json',   //you may use jsonp for cross origin request
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': "Bearer " + token
+                }
+            })
+                .then((responseJson) => {
+                    if (responseJson.data.message == "هزینه‌ها با موفقیت دریافت شد.") {
+                        setTotalPrice(responseJson.data.prices.price);
+                        setPrice(parseInt(responseJson.data.prices.price)-balance)
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+    };
     const closeModal = () => {
         setShowModal(false);
     }
@@ -106,7 +138,7 @@ const Order = (props) => {
                             <div className="orderPayment">
                                 <Form.Group controlId="formBasicText">
                                         <Form.Label>مبلغ خدمات:</Form.Label>
-                                        <Form.Control type="text" placeholder="" value={addCommas(props.orderData.price)}/>
+                                        <Form.Control type="text" placeholder="" value={props.orderData.price == "..." ? addCommas(totalPrice) : addCommas(props.orderData.price)}/>
                                         <Form.Label>تومان</Form.Label>
                                 </Form.Group>
                                 <Form.Group controlId="formBasicText">
@@ -120,7 +152,7 @@ const Order = (props) => {
                                 </Form.Group>
                                 <Form.Group controlId="formBasicText">
                                         <Form.Label>مبلغ قابل پرداخت:</Form.Label>
-                                        <Form.Control type="text" placeholder="" value={addCommas(props.orderData.price-balance)}/>
+                                        <Form.Control type="text" placeholder="" value={props.orderData.price == "..." ? addCommas(price)  : addCommas(props.orderData.price-balance)}/>
                                         <Form.Label>تومان</Form.Label>
                                 </Form.Group>
                                 <div className="payment">

@@ -700,9 +700,12 @@ const Order = (props) => {
                         setShowCarItems(true)
                     else if (cPlaque != "" && cPlaque != null && cFile != "" && cFile != null)
                         setShowCarItems(true)
-                    else {
+                    else if (toggle)  {
                         setShowCarItems(false)
                         setShowModal(true)
+                    }
+                    else {
+                        setShowCarItems(false)
                     }
                     setOrderData({...orderData, selectedCar: 0, carModel: cModel})
                     if (services.length > 0)
@@ -803,7 +806,6 @@ const Order = (props) => {
         })
 
     }
-
     function removeItemOnce(arr, value) {
         var index = arr.indexOf(value);
         if (index > -1) {
@@ -811,7 +813,6 @@ const Order = (props) => {
         }
         return arr;
     }
-
     const servicesHandler = (event) => {
         let _services = {...state, [event.target.name]: event.target.checked}
         let _selectedServices = [];
@@ -979,7 +980,6 @@ const Order = (props) => {
         let result = ((carBrand != 0 && carModel != 0) || selectedCar != 0) && date != "" && event.target.value != "" && services.length > 0 && isTooOrRooSelected;
         validate(result);
     }
-
     function getTimeStamp(input) {
         var parts = input.trim().split(' ');
         var date = parts[0].split('-');
@@ -989,7 +989,6 @@ const Order = (props) => {
         var d = new Date(date[0], date[1] - 1, date[2], time[0], time[1], time[2]);
         return d.getTime() / 1000;
     }
-
     const dateHandler = (value) => {
         let _d = value.format('YYYY-M-D HH:mm:ss')
         let _timestamp = getTimeStamp(_d)
@@ -1089,6 +1088,8 @@ const Order = (props) => {
     };
 
     const calculatePrice = (selectedServices, model) => {
+        setPrice("...")
+        //setBtnDisabled(true)
         if ((model != 0) && selectedServices.length > 0) {
             setLoadingPrice(true)
             let data = new FormData()
@@ -1108,12 +1109,15 @@ const Order = (props) => {
                         setPrice(responseJson.data.prices.price)
                         setOrderData({...orderData, price: responseJson.data.prices.price})
                         setLoadingPrice(false)
+                        /*let result = ((carBrand != 0 && carModel != 0) || selectedCar != 0) && date != "" && time != "" && services.length > 0 && isTooOrRooSelected;
+                        validate(result);*/
+                        /*alert(result)*/
                     }
                 })
                 .catch((error) => {
                     console.log(error)
                 })
-        } else setPrice("...")
+        }
     };
     const imageHandler = async (event) => {
         //fileObj1.push(event.target.files)
