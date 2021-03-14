@@ -26,22 +26,6 @@
 .userEditProfile > div {
     margin: 10px 0;
     width: 100%;
-    position: relative;
-}
-.userEditProfile .mapContainer {
-    position: relative;
-}
-.userEditProfile .mapContainer .userLocation {
-    right: 10px;
-    bottom: 10px;
-    position: absolute;
-    z-index: 100000;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    background: #fff;
-    border-radius: 50%;
-    padding: 5px;
 }
 .userProfileBtn {
     margin: 25px 0 !important;

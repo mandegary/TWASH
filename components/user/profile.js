@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./profile.css"
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import {Button, TextField} from "@material-ui/core";
@@ -6,7 +6,6 @@ import axios from "axios";
 import {verifyToken} from "../../components/Helpers";
 import Notiflix from "notiflix";
 import delBtn from "../../assets/images/del.svg";
-import {AuthContext} from "../../context/Auth/authContext";
 
 const theme = createMuiTheme({
     direction: 'rtl',
@@ -16,7 +15,6 @@ export default function Profile() {
     const [family, setFamily] = useState("");
     const [email, setEmail] = useState("");
     const [btnDisabled, setBtnDisabled] = useState(false);
-    const {dispatch} = useContext(AuthContext);
     Notiflix.Notify.Init({ width:'350px',useIcon:false, fontSize:'14px',fontFamily:"IRANSansWeb", position:"center-top",closeButton:true , rtl: true,cssAnimationStyle: 'from-top' });
     Notiflix.Loading.Init({
         svgColor: process.env.loadingDotsColor
@@ -104,21 +102,13 @@ export default function Profile() {
             }
         })
             .then((responseJson) => {
-                if (responseJson.data.message == "کاربر با موفقیت ویرایش شد.") {
-                    dispatch({
-                        type: 'user', payload:
-                            {
-                                fName:responseJson.data.user.name,
-                                lName:responseJson.data.user.last_name,
-                            }
-                    });
+                if (verifyToken(responseJson.data)) {
                     if (document.getElementById("NotiflixLoadingWrap") != undefined)
                     {
                         var myobj = document.getElementById("NotiflixLoadingWrap");
                         myobj.remove();
                     }
                     Notiflix.Notify.Success("مشخصات کاربر با موفقیت به روزرسانی شد.");
-
                 }
             })
             .catch((error) => {
