@@ -7,18 +7,23 @@
     float: right;
     border-radius: 10px;
     margin-top: 5px;
+    margin-left: 10px;
 }
 .Logo span {
     font-size: 30px;
     position: relative;
-    height: 100px;
     color: #008D9A;
     font-weight: bold;
     display: block;
-    padding-top: 28px;
     text-align: center;
     text-decoration: none;
     font-family: YekanBakh !important;
+    padding-top: 10px;
+    text-align: right;
+    /* padding-right: 27px; */
+}
+.Logo span.logoTxt {
+    font-size: 16px;
 }
 .Logo a {
     text-decoration: none;

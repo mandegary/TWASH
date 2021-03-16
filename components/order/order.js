@@ -389,8 +389,11 @@ const Order = (props) => {
         } else {
             let t = momentJalaali().add(0, 'days')
             setDate(t, 'jYYYY/jM/jD')
-            if (document.getElementsByClassName("datepicker-input")[0] != undefined)
-                document.getElementsByClassName("datepicker-input")[0].setAttribute("readonly", "readonly");
+            const interval = setInterval(() => {
+                if (document.getElementsByClassName("datepicker-input")[0] != undefined)
+                    document.getElementsByClassName("datepicker-input")[0].setAttribute("readonly", "readonly");
+            }, 1000);
+            return () => clearInterval(interval);
             timesHandler(t);
         }
     }, [])
@@ -658,6 +661,8 @@ const Order = (props) => {
         setCarTag("")
         setSelectedCar(0)
         setSelectedCarTitle("")
+        setCarTag("");
+        setFile("");
         if (value == null) {
             setFile("")
             setCarTag("")
@@ -753,7 +758,8 @@ const Order = (props) => {
                 lastikWax: false
             })
             //if(selectedCar==0)
-            setShowModal(true)
+            if(carTag=="" || file == "" | carTag==null || file == null)
+                setShowModal(true)
         } else if (e.target.value == "خیر") {
             setShowCarItems(false)
             setToggle(false)

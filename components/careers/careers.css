@@ -89,3 +89,7 @@ p.error {
 .formItem .MuiFormControl-root {
     width: 100%;
 }
+button.Mui-disabled {
+    background: #FAAAAA !important;
+    color: #fff !important;
+}

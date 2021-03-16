@@ -46,30 +46,7 @@ const MenuItems = (props) => {
                     </ul>*/
                     :
                     <ul className="MenuItems">
-                        <li className="MenuItem">
-                            <Link href="/careers" activeClassName="active">
-                                <a className={router.asPath == "" ? "active" : ""}>
-                                    فرصت های شغلی
-                                </a>
-                            </Link>
-                        </li>
-                        <li className="MenuItem">
-                            <Link href="/contactus" activeClassName="active">
-                                <a className={router.asPath == "" ? "active" : ""}>
-                                    تماس با ما
-                                </a>
-                            </Link>
-                        </li>
-                        {token != undefined ?
-                            <li className="MenuItem">
-                                <Link href="/orders" activeClassName="active">
-                                    <a className={router.asPath == "" ? "active" : ""}>
-                                        پیگیری سفارش ها
-                                    </a>
-                                </Link>
-                            </li>
-                            : null
-                        }
+
                         {token != undefined ?
                             <li className="MenuItem">
                                 <Link href="/order" activeClassName="active">
@@ -82,12 +59,37 @@ const MenuItems = (props) => {
                         }
                         {token != undefined ?
                             <li className="MenuItem">
-                                    <a href="javascript:void(0)" onClick={props.showCodeModal}>
-                                        معرفی به دوستان
+                                <Link href="/orders" activeClassName="active">
+                                    <a className={router.asPath == "" ? "active" : ""}>
+                                        پیگیری سفارش ها
                                     </a>
+                                </Link>
                             </li>
                             : null
                         }
+                        <li className="MenuItem">
+                            <Link href="/careers" activeClassName="active">
+                                <a className={router.asPath == "" ? "active" : ""}>
+                                    فرصت های شغلی
+                                </a>
+                            </Link>
+                        </li>
+                        {token != undefined ?
+                            <li className="MenuItem">
+                                <a href="javascript:void(0)" onClick={props.showCodeModal}>
+                                    معرفی به دوستان
+                                </a>
+                            </li>
+                            : null
+                        }
+                        <li className="MenuItem">
+                            <Link href="/contactus" activeClassName="active">
+                                <a className={router.asPath == "" ? "active" : ""}>
+                                    تماس با ما
+                                </a>
+                            </Link>
+                        </li>
+
                         {/*<li className="MenuItem">
                             <Link href="" activeClassName="active">
                                 <a className={router.asPath == "" ? "active" : ""}>

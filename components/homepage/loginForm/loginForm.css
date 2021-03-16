@@ -27,6 +27,7 @@
     height: 40px;
     text-align: left;
     opacity: 1 !important;
+    direction: ltr;
 }
 .homeForm .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,.homeForm .MuiFormLabel-root.Mui-focused {
     border-color: #999!important;

@@ -91,10 +91,14 @@ const Toolbar = (props) => {
     });
     let url = process.env.url;
     //let isChrome = /chrome/.test( navigator.userAgent.toLowerCase());
-    let token="",code="";
+    let token = "", code = "", name, family;
     if (typeof window != "undefined") {
         token = JSON.parse(localStorage.getItem('accessToken'));
         code = JSON.parse(localStorage.getItem('refferalCode'));
+        if (JSON.parse(localStorage.getItem('name')) != undefined)
+            name = JSON.parse(localStorage.getItem('name'));
+        if (JSON.parse(localStorage.getItem('family')) != undefined)
+            family = JSON.parse(localStorage.getItem('family'));
     }
 
     useEffect(() => {
@@ -102,7 +106,7 @@ const Toolbar = (props) => {
             var myobj = document.getElementById("NotiflixNotifyWrap");
             myobj.remove();
         }
-        if(token!="" && token!=null) {
+        if (token != "" && token != null) {
             const abortController = new AbortController()
             const promise = window
                 .fetch(url + '/auth/balance', {
@@ -128,8 +132,8 @@ const Toolbar = (props) => {
                             type: 'balance', payload:
                                 {
                                     token: token,
-                                    balance:responseJson.balance,
-                                    orders:responseJson.orders
+                                    balance: responseJson.balance,
+                                    orders: responseJson.orders
                                 }
                         });
                         if (document.getElementById("NotiflixLoadingWrap") != undefined) {
@@ -203,7 +207,7 @@ const Toolbar = (props) => {
             })
             .then(res => res.json())
             .then(responseJson => {
-                if(responseJson.message=="خروج با موفقیت انجام شد."){
+                if (responseJson.message == "خروج با موفقیت انجام شد.") {
                     if (document.getElementById("NotiflixLoadingWrap") != undefined) {
                         var myobj = document.getElementById("NotiflixLoadingWrap");
                         myobj.remove();
@@ -227,16 +231,24 @@ const Toolbar = (props) => {
                         {
                             <React.Fragment>
                                 {
-                                    props.isHome?
+                                    props.isHome ?
                                         <InstallPWA/>
-                                        :null
+                                        : null
                                 }
 
                                 {token ?
                                     <div className="avatar userLnk">
                                         <Avatar src="/broken-image.jpg"/>
                                         <div className="userMenu">
-                                            <span>کاربر عزیز خوش آمدید.</span>
+                                            {
+                                                name != null && family != null ?
+                                                    <span>{
+                                                        name + " "+family
+                                                    } خوش آمدید.</span>
+                                                    :
+                                                    <span>کاربر عزیز خوش آمدید.</span>
+                                            }
+
                                             <span className="wallet">اعتبار من ({balance} تومان)</span>
                                             <Link href="/user">
                                                 <a href="/user">
@@ -258,10 +270,10 @@ const Toolbar = (props) => {
                             </React.Fragment>
                         }
                     </Col>
-                    <Col xl={9} lg={9} md={1} sm={1} xs={1} className="topMenu">
+                    <Col xl={8} lg={8} md={1} sm={1} xs={1} className="topMenu">
                         <MenuItems isHome={props.isHome} showMenu={props.showMenu} showCodeModal={showCodeModal}/>
                     </Col>
-                    <Col xl={2} lg={2} md={8} sm={8} xs={8}>
+                    <Col xl={3} lg={3} md={8} sm={8} xs={8}>
                         <Logo/>
                     </Col>
                     <Col xl={2} lg={2} md={2} sm={2} xs={2} className="drawer" onClick={DrawerHandler}>
@@ -287,7 +299,7 @@ const Toolbar = (props) => {
                                 title={title}
                                 className="Demo__some-network__share-button"
                             >
-                                <TelegramIcon size={32} round />
+                                <TelegramIcon size={32} round/>
                             </TelegramShareButton>
                             <WhatsappShareButton
                                 url={code}
@@ -295,14 +307,14 @@ const Toolbar = (props) => {
                                 separator=" :: "
                                 className="Demo__some-network__share-button"
                             >
-                                <WhatsappIcon size={32} round />
+                                <WhatsappIcon size={32} round/>
                             </WhatsappShareButton>
                             <TwitterShareButton
                                 url={code}
                                 title={title}
                                 className="Demo__some-network__share-button"
                             >
-                                <TwitterIcon size={32} round />
+                                <TwitterIcon size={32} round/>
                             </TwitterShareButton>
                             <EmailShareButton
                                 url={code}
@@ -310,14 +322,14 @@ const Toolbar = (props) => {
                                 body="body"
                                 className="Demo__some-network__share-button"
                             >
-                                <EmailIcon size={32} round />
+                                <EmailIcon size={32} round/>
                             </EmailShareButton>
                             <FacebookShareButton
                                 url={code}
                                 quote={title}
                                 className="Demo__some-network__share-button"
                             >
-                                <FacebookIcon size={32} round />
+                                <FacebookIcon size={32} round/>
                             </FacebookShareButton>
 
                         </div>

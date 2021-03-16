@@ -597,7 +597,7 @@ button.Mui-disabled {
     display: none;
 }
 .mapboxgl-control-container {
-    position: absolute;
+    position: fixed;
     bottom: 165px;
     right: 25px;
 }

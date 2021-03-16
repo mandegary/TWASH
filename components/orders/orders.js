@@ -75,8 +75,12 @@ const Orders = (props) => {
         ))
         let t = moment().add(0, 'days')
         setDate(t, 'jYYYY/jM/jD')
-        if (document.getElementsByClassName("datepicker-input")[0] != undefined)
-            document.getElementsByClassName("datepicker-input")[0].setAttribute("readonly", "readonly");
+        const interval = setInterval(() => {
+            if (document.getElementsByClassName("datepicker-input")[0] != undefined)
+                document.getElementsByClassName("datepicker-input")[0].setAttribute("readonly", "readonly");
+        }, 1000);
+        return () => clearInterval(interval);
+
         timesHandler(t);
         fetchLocations();
     }, [])
@@ -363,10 +367,6 @@ const Orders = (props) => {
                                                 }
                                             </div>
                                         }
-
-
-
-
 
                                         {/*<div>میزان رضایت:<StarRatings
                                         rating={4}

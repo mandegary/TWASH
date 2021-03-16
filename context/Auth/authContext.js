@@ -20,6 +20,11 @@ const authReducer = (state,action)=>{
             localStorage.setItem('accessToken',JSON.stringify(action.payload.token))
             return{authenticated:true}
         }
+        case 'user':{
+            localStorage.setItem('name',JSON.stringify(action.payload.fName))
+            localStorage.setItem('family',JSON.stringify(action.payload.lName))
+            return{authenticated:true}
+        }
         case 'logout':
         {
             localStorage.removeItem('user');

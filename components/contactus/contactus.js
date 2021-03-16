@@ -18,7 +18,7 @@ const ContactUs = (props) => {
     const [message, setMessage] = useState("");
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
-    const [tell, setTell] = useState("");
+    const [tell, setTell] = useState("09381564444");
     const [email, setEmail] = useState("");
     const [mobile, setMobile] = useState("");
     const [emailError, setEmailError] = useState(false);
@@ -48,23 +48,23 @@ const ContactUs = (props) => {
     });
     const mobileHandler = (event) => {
         setMobile(event.target.value)
-        validate(name != "" && name.length>3 && email!="" && message!="" && mobilePattern.test(event.target.value) && event.target.value != ""&& emailPattern.test(event.target.value));
+        validate(name != ""  && message!="" && mobilePattern.test(event.target.value) && event.target.value != ""/*&& emailPattern.test(event.target.value)&& email!=""*/);
         setMobileError(event.target.value=="" || !mobilePattern.test(event.target.value))
     }
     const emailHandler = (event) => {
         setEmail(event.target.value)
         setEmailError(event.target.value=="" || !emailPattern.test(event.target.value))
-        validate(name != "" && name.length>3 && mobile!="" && message!="" && event.target.value != "" && emailPattern.test(event.target.value)&& mobilePattern.test(mobile));
+        validate(name != ""  && mobile!="" && message!="" && event.target.value != "" && emailPattern.test(event.target.value)&& mobilePattern.test(mobile));
     }
     const nameHandler = (event) => {
         setName(event.target.value)
         setNameError(event.target.value =="")
-        validate(event.target.value != "" && event.target.value.length>3 && email!="" && message!="" && mobilePattern.test(mobile) && mobile != ""&& emailPattern.test(email));
+        validate(event.target.value != ""  && message!="" && mobilePattern.test(mobile) && mobile != "" /*&& emailPattern.test(email)&& email!=""*/);
     }
     const messageHandler = (event) => {
         setMessage(event.target.value)
         setMessageError(event.target.value =="")
-        validate(name != "" && name.length>3 && event.target.value != "" && email!="" && message!="" && mobilePattern.test(mobile) && mobile!="" && mobile != "" && emailPattern.test(email));
+        validate(name != "" && event.target.value != "" && message!="" && mobilePattern.test(mobile) && mobile!="" && mobile != ""  /*&& email!="" && emailPattern.test(email)*/);
     }
     const validate = (result) => {
         if (result) {
@@ -75,7 +75,7 @@ const ContactUs = (props) => {
         Notiflix.Loading.Dots();
         let data = new FormData()
         data.append('name', name)
-        data.append('email', email)
+        //data.append('email', email)
         data.append('phone', mobile)
         data.append('message', message)
 
@@ -111,25 +111,25 @@ const ContactUs = (props) => {
             <div className="contactus">
                 <Container>
                     <Row className="contactus-info">
-                        <Col xl="4" lg="4" md="12" xs="12">
+                        {/*<Col xl="4" lg="4" md="12" xs="12">
                             <div>
                                 <b>آدرس:</b>
                                 <br/>
                                 <span>{address}</span>
                             </div>
-                        </Col>
-                        <Col xl="4" lg="4" md="12" xs="12">
-                            <div>
-                                <b>آدرس ایمیل:</b>
-                                <br/>
-                                <span>{email}</span>
-                            </div>
-                        </Col>
-                        <Col xl="4" lg="4" md="12" xs="12">
+                        </Col>*/}
+                        <Col xl="6" lg="6" md="12" xs="12">
                             <div>
                                 <b>تلفن تماس:</b>
                                 <br/>
                                 <span>{tell}</span>
+                            </div>
+                        </Col>
+                        <Col xl="6" lg="6" md="12" xs="12">
+                            <div>
+                                <b>آدرس ایمیل:</b>
+                                <br/>
+                                <span>{email}</span>
                             </div>
                         </Col>
                     </Row>
@@ -143,7 +143,7 @@ const ContactUs = (props) => {
                                     <Row>
                                         <Col xl="12" lg="12" md="12" xs="12">
                                             <div className="formItem" dir="rtl">
-                                                <TextField id="outlined-basic" label="نام" variant="filled"
+                                                <TextField id="outlined-basic" label="نام و نام خانوادگی" variant="filled"
                                                            value={name} error={nameError}
                                                            onChange={nameHandler}/>
                                             </div>
@@ -157,14 +157,14 @@ const ContactUs = (props) => {
                                             </div>
                                         </Col>
                                     </Row>
-                                    <Row>
+                                    {/*<Row>
                                         <Col xl="12" lg="12" md="12" xs="12">
                                             <div className="formItem" dir="rtl">
                                                 <TextField id="outlined-basic" label="آدرس ایمیل" variant="filled" error={emailError}
                                                            value={email} onChange={emailHandler}/>
                                             </div>
                                         </Col>
-                                    </Row>
+                                    </Row>*/}
                                 </React.Fragment>
                                 <Row>
                                     <Col xl="12" lg="12" md="12" xs="12">
