@@ -236,14 +236,14 @@ const Order = (props) => {
         min: momentJalaali().add(-1, 'days'),
         max: momentJalaali().add(14, 'days')
     };*/
-    let timesHolder = ["06:00", "07:00", "08:00", "09:00", "10:00", "11:00",
+    let timesHolder = ["08:00", "09:00", "10:00", "11:00",
         "12:00", "13:00", "14:00", "15:00",
         "16:00", "17:00", "18:00", "19:00",
-        "20:00", "21:00", "22:00", "23:00", "24:00"
+        "20:00", "21:00", "22:00"
     ];
     const timesHandler = (newDate) => {
         let today = new Date();
-        let currentH = (today.getHours() + 1).toString()
+        let currentH = (today.getHours() +3).toString()
         if (currentH.length == 1) currentH = "0" + currentH
         let currentM = today.getMinutes().toString()
         if (currentM.length == 1) currentM = "0" + currentM
@@ -972,11 +972,11 @@ const Order = (props) => {
         setTime(event.target.value);
         let index = timesHolder.indexOf(event.target.value);
         switch (event.target.value) {
-            case "23:00":
-                setTimeEnd("01:00")
+            case "21:00":
+                setTimeEnd("23:00")
                 break;
-            case "24:00":
-                setTimeEnd("02:00")
+            case "22:00":
+                setTimeEnd("24:00")
                 break;
             default:
                 setTimeEnd(timesHolder[index + 2])
