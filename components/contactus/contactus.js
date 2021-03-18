@@ -17,8 +17,8 @@ const ContactUs = (props) => {
     const errorRef = React.createRef();
     const [message, setMessage] = useState("");
     const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [tell, setTell] = useState("09381564444");
+    const [address, setAddress] = useState("تهران ، جنب ایستگاه متروی شریف ، منطقه فن آوری شریف ، دفتر سامانه خدمات کارواش در محل ، تی سپ");
+    const [tell, setTell] = useState("۰۹۳۸۱۵۶۴۴۴۴");
     const [email, setEmail] = useState("");
     const [mobile, setMobile] = useState("");
     const [emailError, setEmailError] = useState(false);
@@ -111,13 +111,13 @@ const ContactUs = (props) => {
             <div className="contactus">
                 <Container>
                     <Row className="contactus-info">
-                        {/*<Col xl="4" lg="4" md="12" xs="12">
+                        <Col xl="6" lg="6" md="12" xs="12">
                             <div>
                                 <b>آدرس:</b>
                                 <br/>
                                 <span>{address}</span>
                             </div>
-                        </Col>*/}
+                        </Col>
                         <Col xl="6" lg="6" md="12" xs="12">
                             <div>
                                 <b>تلفن تماس:</b>
@@ -125,13 +125,13 @@ const ContactUs = (props) => {
                                 <span>{tell}</span>
                             </div>
                         </Col>
-                        <Col xl="6" lg="6" md="12" xs="12">
+                        {/*<Col xl="6" lg="6" md="12" xs="12">
                             <div>
                                 <b>آدرس ایمیل:</b>
                                 <br/>
                                 <span>{email}</span>
                             </div>
-                        </Col>
+                        </Col>*/}
                     </Row>
                     <Row className=" contactus-form">
                         <Col xl="12" lg="12" md="12" xs="12">
