@@ -13,7 +13,6 @@
 }
 .contactus-info div {
     border-left: 1px solid #ccc;
-    height: 120px;
     padding-right: 4%;
     background: #00878B;
     margin-bottom: 10px;
@@ -187,4 +186,22 @@ p.error {
 button.Mui-disabled {
     background: #FAAAAA !important;
     color: #fff !important;
+}
+span.instagram {
+    background: url("/images/instagram.png") right 2px no-repeat;
+    padding-right: 30px;
+}
+span.twitter {
+    background: url("/images/twitter.png") right 2px no-repeat;
+    padding-right: 30px;
+}
+.twitter , .instagram {
+    width: 100%;
+    float: right;
+    height: 35px;
+    direction: ltr;
+}
+.contactus-info div div a:hover{
+    color: #fff;
+    font-weight: bold;
 }

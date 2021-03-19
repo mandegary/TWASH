@@ -111,27 +111,32 @@ const ContactUs = (props) => {
             <div className="contactus">
                 <Container>
                     <Row className="contactus-info">
-                        <Col xl="6" lg="6" md="12" xs="12">
+                        <Col xl="6" lg="6" md="6" xs="12">
                             <div>
                                 <b>آدرس:</b>
                                 <br/>
                                 <span>{address}</span>
                             </div>
                         </Col>
-                        <Col xl="6" lg="6" md="12" xs="12">
+                        <Col xl="3" lg="3" md="3" xs="12">
                             <div>
                                 <b>تلفن تماس:</b>
                                 <br/>
                                 <span>{tell}</span>
                             </div>
                         </Col>
-                        {/*<Col xl="6" lg="6" md="12" xs="12">
+                        <Col xl="3" lg="3" md="3" xs="12">
                             <div>
-                                <b>آدرس ایمیل:</b>
-                                <br/>
-                                <span>{email}</span>
+                                <a href="https://instagram.com/tsapp.ir?igshid=1ke8qwwdh6ho3"
+                                   target="_blank">
+                                    <span className="instagram">@tsapp</span>
+                                </a>
+                                <a href="https://twitter.com/tsapp_ir/"
+                                   target="_blank">
+                                    <span className="twitter">@tsapp_ir</span>
+                                </a>
                             </div>
-                        </Col>*/}
+                        </Col>
                     </Row>
                     <Row className=" contactus-form">
                         <Col xl="12" lg="12" md="12" xs="12">
