@@ -80,6 +80,7 @@ const Order = (props) => {
     const [date, setDate] = useState("");
     const [timestamp, setTimestamp] = useState("");
     const [times, setTimes] = useState([]);
+    const [datesArray, setDatesArray] = useState([]);
     const [carTag, setCarTag] = useState("");
     const [showModal, setShowModal] = React.useState(false);
     const [orderData, setOrderData] = useState([]);
@@ -268,7 +269,12 @@ const Order = (props) => {
         setTimeEnd("")
     }
     useEffect(() => {
-
+        let dateArray = [];
+        for(let i=0;i<10;i++)
+            dateArray.push(momentJalaali().add(i, 'days'))
+        setDatesArray(dateArray.map((date, index) =>
+                <MenuItem key={index} value={date.format('YYYY-M-D')}>{date.format('jYYYY-jM-jD')}</MenuItem>
+        ))
         fetchCarModels("")
         fetchCars()
         const abortController = new AbortController()
@@ -350,8 +356,8 @@ const Order = (props) => {
                 lastikWax: props.orderData.services.includes(5) ? true : false
             })
             //calculatePrice(props.orderData.services, props.orderData.carModel)
-
-            setDate(momentJalaali(props.orderData.date), 'jYYYY/jM/jD')
+            setDate(momentJalaali(props.orderData.date).format('YYYY-M-D'))
+            setTimestamp(props.orderData.date)
             setOrderData({...orderData, date: props.orderData.date});
             setTimes(timesHolder.map((time, index) =>
                 <MenuItem key={index} value={time}>{time}</MenuItem>
@@ -386,14 +392,17 @@ const Order = (props) => {
                 setDashboardWax(false)
                 setDashboardWaxClass("false disabled")
             }
-        } else {
+        }
+        else {
             let t = momentJalaali().add(0, 'days')
-            setDate(t, 'jYYYY/jM/jD')
-            const interval = setInterval(() => {
+            setDate(t.format('YYYY-M-D'))
+            let _timestamp = getTimeStamp(t.format('YYYY-M-D'))
+            setTimestamp(_timestamp * 1000)
+            /*const interval = setInterval(() => {
                 if (document.getElementsByClassName("datepicker-input")[0] != undefined)
                     document.getElementsByClassName("datepicker-input")[0].setAttribute("readonly", "readonly");
             }, 1000);
-            return () => clearInterval(interval);
+            return () => clearInterval(interval);*/
             timesHandler(t);
         }
     }, [])
@@ -999,7 +1008,6 @@ const Order = (props) => {
         let _d = value.format('YYYY-M-D HH:mm:ss')
         let _timestamp = getTimeStamp(_d)
         //var date = new Date(timestamp*1000);
-
         setDate(value);
         if (isEmpty(props.orderData))
             timesHandler(value)
@@ -1007,6 +1015,19 @@ const Order = (props) => {
         setOrderData({...orderData, date: _timestamp * 1000})
         let result = ((carBrand != 0 && carModel != 0) || selectedCar != 0) && value != "" && time != "" && services.length > 0 && isTooOrRooSelected;
         validate(result);
+    }
+    const datesHandler = (e) => {
+        setTime("")
+        let value= e.target.value;
+        let _d = value
+        let _timestamp = getTimeStamp(_d)
+        //var date = new Date(timestamp*1000);
+        setDate(value);
+        if (isEmpty(props.orderData))
+            timesHandler(value)
+        setTimestamp(_timestamp * 1000)
+        setOrderData({...orderData, date: _timestamp * 1000})
+        validate(false);
     }
     const createOrder = () => {
         let _orderData = {
@@ -1022,7 +1043,8 @@ const Order = (props) => {
             carBrand: carBrand,
             brandTitle: selectedCar > 0 ? selectedCarBrandTitle : carBrandTitle,
             selectedCar: selectedCar,
-            date: isEmpty(props.orderData) ? timestamp : props.orderData.date == timestamp ? props.orderData.date : timestamp
+            date: timestamp
+
         }
 
         props.callback("order", _orderData)
@@ -1334,7 +1356,7 @@ const Order = (props) => {
                         <Col xl={2} lg={2} md={2} sm={12} xs={12}>
                             <label className="formLabel">انتخاب زمان</label>
                         </Col>
-                        <Col xl={3} lg={3} md={3} sm={12} xs={12} className="form-item">
+                        {/*<Col xl={3} lg={3} md={3} sm={12} xs={12} className="form-item">
                             <div>
                                 <img src={down} className="down"/>
                             </div>
@@ -1353,8 +1375,20 @@ const Order = (props) => {
                                 />
                             </div>
 
+                        </Col>*/}
+                        <Col xl={3} lg={3} md={3} sm={12} xs={12}>
+                            <FormControl variant="filled">
+                                <InputLabel id="demo-simple-select-filled-label">تاریخ کارواش</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-filled-label"
+                                    id="demo-simple-select-filled"
+                                    value={date}
+                                    onChange={datesHandler}
+                                    label="تاریخ کارواش">
+                                    {datesArray}
+                                </Select>
+                            </FormControl>
                         </Col>
-
                         <Col xl={3} lg={3} md={3} sm={12} xs={12}>
                             <FormControl variant="filled">
                                 <InputLabel id="demo-simple-select-filled-label">ساعت شروع</InputLabel>
