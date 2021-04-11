@@ -188,12 +188,14 @@ button.Mui-disabled {
     color: #fff !important;
 }
 span.instagram {
-    background: url("/images/instagram.png") right 2px no-repeat;
-    padding-right: 30px;
+    /*background: url("/images/instagram.png") right 2px no-repeat;*/
+    padding-right: 15px;
+    width: 80%;
 }
 span.twitter {
-    background: url("/images/twitter.png") right 2px no-repeat;
-    padding-right: 30px;
+    /*background: url("/images/twitter.png") right 2px no-repeat;*/
+    padding-right: 15px;
+    width: 80%;
 }
 .twitter , .instagram {
     width: 100%;
@@ -204,4 +206,12 @@ span.twitter {
 .contactus-info div div a:hover{
     color: #fff;
     font-weight: bold;
+}
+.contactus-info div div a img {
+    float: right;
+    margin-top: 3px;
+}
+.contactus-info div div a {
+    display: inline-block;
+    width: 100%;
 }

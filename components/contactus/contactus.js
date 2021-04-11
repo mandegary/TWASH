@@ -9,7 +9,8 @@ import Button from "@material-ui/core/Button";
 import contactUsImg from "../../public/images/carwash.jpg"
 import Notiflix from "notiflix";
 import axios from "axios";
-
+import twitterIcon from "../../assets/images/twitter.png";
+import instagramIcon from "../../assets/images/instagram.png";
 const theme = createMuiTheme({
     direction: 'rtl',
 });
@@ -129,10 +130,12 @@ const ContactUs = (props) => {
                             <div>
                                 <a href="https://instagram.com/tsapp.ir?igshid=1ke8qwwdh6ho3"
                                    target="_blank">
+                                    <img src={instagramIcon}/>
                                     <span className="instagram">@tsapp</span>
                                 </a>
                                 <a href="https://twitter.com/tsapp_ir/"
                                    target="_blank">
+                                    <img src={twitterIcon}/>
                                     <span className="twitter">@tsapp_ir</span>
                                 </a>
                             </div>

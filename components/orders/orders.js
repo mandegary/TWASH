@@ -44,11 +44,13 @@ const Orders = (props) => {
     const [afterImg, setAfterImg] = useState("");
     const [time, setTime] = useState("");
     const [timeEnd, setTimeEnd] = useState("");
+    const [datee, setDatee] = useState("");
     const [date, setDate] = useState("");
     const [timestamp, setTimestamp] = useState("");
     const [times, setTimes] = useState([]);
     const [locations, setLocations] = useState([]);
     const [id, setId] = useState("");
+    const [datesArray, setDatesArray] = useState([]);
     const [enabledRange, setEnabledRange] = useState({
         min: moment().add(-1, 'days'),
         max: moment().add(14, 'days')
@@ -70,11 +72,17 @@ const Orders = (props) => {
 
     useEffect(() => {
         fetchOrders()
+        let dateArray = [];
+        for(let i=0;i<10;i++)
+            dateArray.push(moment().add(i, 'days'))
+        setDatesArray(dateArray.map((date, index) =>
+            <MenuItem key={index} value={date.format('YYYY-M-D')}>{date.format('jYYYY-jM-jD')}</MenuItem>
+        ))
         setTimes(timesHolder.map((time, index) =>
             <MenuItem key={index} value={time}>{time}</MenuItem>
         ))
         let t = moment().add(0, 'days')
-        setDate(t, 'jYYYY/jM/jD')
+        setDate(t.format('YYYY-M-D'))
         const interval = setInterval(() => {
             if (document.getElementsByClassName("datepicker-input")[0] != undefined)
                 document.getElementsByClassName("datepicker-input")[0].setAttribute("readonly", "readonly");
@@ -146,15 +154,22 @@ const Orders = (props) => {
     }
 
     const dateHandler = (value) => {
+        console.log(value)
         let _d = value.format('YYYY-M-D HH:mm:ss')
         let _timestamp = getTimeStamp(_d)
         //var date = new Date(timestamp*1000);
-
-        setDate(value);
-
-            timesHandler(value)
+        setDatee(value);
+        timesHandler(value)
         setTimestamp(_timestamp * 1000)
-
+        console.log(_timestamp * 1000)
+    }
+    const datesHandler = (e) => {
+        let value= e.target.value;
+        let _d = value
+        let _timestamp = getTimeStamp(_d)
+        setDate(value);
+        timesHandler(value)
+        setTimestamp(_timestamp)
     }
     const closeModal = () => {
         setShowModal(false);
@@ -188,7 +203,7 @@ const Orders = (props) => {
             }
             Notiflix.Loading.Dots();
             let data = new FormData()
-            data.append('reserve_day', date/1000)
+            data.append('reserve_day', timestamp)
             data.append('reserve_time', time)
             axios.post(url + '/order/'+id+'/time', data, {
                 headers: {
@@ -351,7 +366,7 @@ const Orders = (props) => {
                                                 : null
                                             }
                                                 {
-                                                    order.editable &&
+                                                    order.editable  &&
                                                     <React.Fragment>
                                                         <div>
                                                             <Button className="editBtn" variant="contained"
@@ -469,8 +484,20 @@ const Orders = (props) => {
                                     <DialogContentText>
                                         <div  className="editTime">
                                             <Row className="orderRow">
-
                                                 <Col xl={12} lg={12} md={12} sm={12} xs={12} className="form-item">
+                                                    <FormControl variant="filled">
+                                                        <InputLabel id="demo-simple-select-filled-label">تاریخ کارواش</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-filled-label"
+                                                            id="demo-simple-select-filled"
+                                                            value={date}
+                                                            onChange={datesHandler}
+                                                            label="تاریخ کارواش">
+                                                            {datesArray}
+                                                        </Select>
+                                                    </FormControl>
+                                                </Col>
+                                                {/*<Col xl={12} lg={12} md={12} sm={12} xs={12} className="form-item">
                                                     <div>
                                                         <img src={down} className="down"/>
                                                     </div>
@@ -482,14 +509,14 @@ const Orders = (props) => {
                                                             timePicker={false}
                                                             min={enabledRange.min}
                                                             max={enabledRange.max}
-                                                            value={date}
+                                                            value={datee}
                                                             showTodayButton={false}
                                                             inputFormat="YYYY-M-D"
                                                             onChange={dateHandler}
                                                         />
                                                     </div>
 
-                                                </Col>
+                                                </Col>*/}
                                             </Row>
                                             <Row className="orderRow">
                                                 <Col xl={12} lg={12} md={12} sm={12} xs={12}>
