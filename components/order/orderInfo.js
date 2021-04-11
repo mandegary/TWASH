@@ -48,6 +48,9 @@ const Order = (props) => {
     const [accept, setAccept] = useState(ordersCount>0?true : false );
     const [totalPrice, setTotalPrice] = useState("");
     const [price, setPrice] = useState("");
+    moment.loadPersian({
+        dialect:"persian-modern"
+    });
     let url = process.env.url;
     useEffect(() => {
         if(props.orderData.price=="...")
@@ -117,8 +120,8 @@ const Order = (props) => {
                                 <div>خدمات انتخاب شده : {
                                     props.orderData.servicesTitle.join(" - ")
                                 }</div>
-                                <div>زمان شست و شو : مورخ
-                                    {moment(props.orderData.date).format('jYYYY/jM/jD')}
+                                <div>زمان شست و شو :
+                                    {moment(props.orderData.date).format('dddd jD jMMMM jYYYY')}
                                     از
                                     ساعت {props.orderData.time} تا {props.orderData.endTime}</div>
                                 <div>

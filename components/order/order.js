@@ -117,6 +117,9 @@ const Order = (props) => {
         min: momentJalaali().add(-1, 'days'),
         max: momentJalaali().add(14, 'days')
     });
+    momentJalaali.loadPersian({
+        dialect:"persian-modern"
+    });
     Notiflix.Notify.Init({
         width: '250px',
         useIcon: false,
@@ -273,7 +276,7 @@ const Order = (props) => {
         for(let i=0;i<10;i++)
             dateArray.push(momentJalaali().add(i, 'days'))
         setDatesArray(dateArray.map((date, index) =>
-                <MenuItem key={index} value={date.format('YYYY-M-D')}>{date.format('jYYYY-jM-jD')}</MenuItem>
+                <MenuItem key={index} value={date.format('YYYY-M-D')}>{date.format('dddd jD jMMMM jYYYY')}</MenuItem>
         ))
         fetchCarModels("")
         fetchCars()

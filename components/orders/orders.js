@@ -55,6 +55,9 @@ const Orders = (props) => {
         min: moment().add(-1, 'days'),
         max: moment().add(14, 'days')
     });
+    moment.loadPersian({
+        dialect:"persian-modern"
+    });
     let url = process.env.url;
     Notiflix.Notify.Init({
         width: '250px',
@@ -76,7 +79,7 @@ const Orders = (props) => {
         for(let i=0;i<10;i++)
             dateArray.push(moment().add(i, 'days'))
         setDatesArray(dateArray.map((date, index) =>
-            <MenuItem key={index} value={date.format('YYYY-M-D')}>{date.format('jYYYY-jM-jD')}</MenuItem>
+            <MenuItem key={index} value={date.format('YYYY-M-D')}>{date.format('dddd jD jMMMM jYYYY')}</MenuItem>
         ))
         setTimes(timesHolder.map((time, index) =>
             <MenuItem key={index} value={time}>{time}</MenuItem>
@@ -324,17 +327,16 @@ const Orders = (props) => {
                                         <div>هزینه : {addCommas(order.final)} تومان</div>
 
                                         <div>زمان شست و شو :
-                                            مورخ {moment(order.reserved_day).locale('fa').format('jYYYY/jM/jD')} از ساعت {
+                                             {moment(order.reserved_day).locale('fa').format('dddd jD jMMMM jYYYY')} از ساعت {
                                                 [order.human_reserved_time.slice(0, 2), ":", order.human_reserved_time.slice(2)].join('')
                                             }
                                             &nbsp;
-                                            تا {
-                                                order.human_reserved_time == "2300"?
-                                                    "01:00"
+                                            تا {order.human_reserved_time == "2100"?
+                                                "23:00"
+                                                :
+                                                order.human_reserved_time == "2200"?
+                                                    "24:00"
                                                     :
-                                                    order.human_reserved_time == "2400"?
-                                                        "02:00"
-                                                        :
                                                         timesHolder[timesHolder.indexOf([order.human_reserved_time.slice(0, 2), ":", order.human_reserved_time.slice(2)].join('')) + 2]
                                             }</div>
                                         <div>محل شست و شو : {
