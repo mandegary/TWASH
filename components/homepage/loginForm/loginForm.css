@@ -3,31 +3,39 @@
     flex-direction: column;
     margin-top: 45px;
     padding: 45px;
+    float: right;
 }
-.homeForm .MuiFormControl-root.MuiTextField-root {
+/*.homeForm .MuiFormControl-root.MuiTextField-root {
     width: 70%;
     margin: 5px auto;
-}
+}*/
 .homeForm button{
     width: 70%;
     margin: 20px auto !important;
     color: #fff !important;
     font-size: 20px;
-    background: rgb(240,70,65) !important;
+    background: #109ea2 !important;
 }
-.homeForm button.Mui-disabled{
-    background: rgb(250,170,170) !important;
+.homeForm button.Mui-disabled {
+    background: #36a2a0 !important;
+    opacity: .5;
 }
-.homeForm input {
+.homeForm .form-group input {
     padding: 10px;
-    background: #fff;
+    background: #faaaaa;
     border: none;
     border-radius: 5px;
-    color: #A6A6A6;
-    height: 40px;
+    color: #fff;
     text-align: left;
     opacity: 1 !important;
     direction: ltr;
+    height: 60px;
+    margin: 10px 0;
+    border-radius: 20px;
+}
+.homeForm label {
+    margin-top: 20px;
+    color: #fff;
 }
 .homeForm .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,.homeForm .MuiFormLabel-root.Mui-focused {
     border-color: #999!important;
@@ -48,7 +56,9 @@
     height: 50px;
     margin-top: 25px !important;
 }
-
+.w-80{
+    width: 80% !important;
+}
 @media only screen and (max-width: 780px) {
     .homeForm {
         margin-top: 0 !important;

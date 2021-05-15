@@ -1,3 +1,6 @@
+.homeMain{
+    font-size: 18px;
+}
 .main{
     background: #F2F2F2;
 }
@@ -38,6 +41,14 @@
     color: #fff;
     background-color: rgb(240,70,65) !important;
 }
+#header.homeHead {
+    background: #008d9a;
+    color: #fff;
+}
+#header.homeHead li.MenuItem a:hover {
+    border-bottom: 3px solid #fff;
+    color: #fff;
+}
 @media only screen and (max-width: 780px) {
     .homeDiv {
         flex-direction: column-reverse!important;
@@ -47,7 +58,155 @@
         top: 5%!important;
         margin: 0 auto!important;
     }
+    .top-design{
+        max-height: 300px;
+    }
+    .w-sm-100{
+        width: 100% !important;
+    }
+    .advantagesTxtCntr {
+        top: 0 !important;
+    }
+    .advantagesTxtCntr > div {
+        min-height: 300px;
+        height: auto;
+        width: 100% !important;
+        margin-bottom: 20px;
+    }
+    .text-center>img{
+        width: 80%;
+        top: -70px !important;
+    }
 }
+
+.top-design {
+    background: url("/images/top design.png") no-repeat;
+    height: 518px;
+    width: 100%;
+    margin-top: -145px;
+}
+.advantagesTxt ul li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.advantagesTxt ul li p {
+    max-width: 60%;
+    text-align: right;
+    float: right;
+    color: #02868b;
+    margin: 10px;
+    direction: rtl;
+}
+.advantagesTxt  p {
+    direction: rtl;
+}
+.advantagesTxtCntr {
+    top: -150px;
+    position: relative;
+    display: inline-table;
+}
+.advantagesTxtCntr > div{
+    height: 300px;
+    box-shadow: 2px 3px 7px 5px #ccc;
+}
+.teamtop{
+    background : #a3d5d5
+}
+.teamItems {
+    margin-top: -50px;
+    position: relative;
+    z-index: -1;
+}
+.teamItems p {
+    box-shadow: 2px 3px 7px 5px #ccc;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 125px;
+    margin-top: -135px;
+    padding-bottom: 100px;
+    line-height: 2;
+    direction: rtl;
+    text-align: justify;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.team ul li {
+    padding-bottom: 10px;
+}
+.team ul li div {
+    background: url("/images/teamtop.png") no-repeat;
+    color: #02868b;
+    width: 90%;
+    height: 184px;
+    display: inline-block;
+    text-align: center;
+    padding-top: 90px;
+    direction: rtl;
+    font-size: 20px;
+    font-weight: bold;
+    background-size: contain;
+    background-position: center center;
+}
+.brd {
+    height: 8px;
+    background: red;
+    margin: 0 auto;
+    border-radius: 50px;
+    box-shadow: 3px 4px 10px 2px #888;
+    z-index: 10000;
+    position: relative;
+}
+.brdPink{
+    height: 30px;
+    background: pink;
+    margin: 0;
+    border-radius: 50px;
+    width: 40%;
+}
+.surpriseTxt{
+    line-height: 2;
+}
+.surpriseTxt h6{
+    color:#02868b;
+    font-size: 24pt;
+}
+.surpriseTxt p {
+    font-size: 18px;
+    direction: rtl;
+    color: #000;
+}
+.comments > div {
+    min-height: 270px;
+    border-radius: 20px;
+}
+.comments p{
+    direction: rtl;
+}
+.comments span{
+    color:#02868b;
+}
+footer {
+    background: url("/images/top design.png") no-repeat;
+    height: 518px;
+    width: 100%;
+    padding-top: 150px;
+}
+.text-center{
+    color: #fff;
+    font-size:18px
+}
+.text-center span{
+    font-size: 22px;
+}
+.text-center div img {
+    width: 61px;
+    height: 61px;
+    margin-left: 10px;
+    margin-top: -25px;
+}
+
 @media only screen and (max-width: 600px) {
     .homeBg {
         min-height: 600px !important;
@@ -55,4 +214,10 @@
     .homeDiv {
         top: 20px;
     }
+}
+
+@media only screen and (min-width: 1600px) {
+.car{
+    margin-top: -160px;
+}
 }

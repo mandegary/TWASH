@@ -89,6 +89,7 @@ const Toolbar = (props) => {
     Notiflix.Loading.Init({
         svgColor: process.env.loadingDotsColor
     });
+    let _class="header "+props.class;
     let url = process.env.url;
     //let isChrome = /chrome/.test( navigator.userAgent.toLowerCase());
     let token = "", code = "", name, family;
@@ -224,7 +225,7 @@ const Toolbar = (props) => {
         setTimeout(() => abortController.abort(), process.env.delayFetch)
     }
     return (
-        <header className="header" id="header" ref={startRef}>
+        <header className={_class} id="header" ref={startRef}>
             <Container>
                 <Row>
                     <Col xl={1} lg={1} md={2} sm={2} xs={2}>

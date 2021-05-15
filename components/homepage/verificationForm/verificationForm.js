@@ -18,6 +18,7 @@ const VerificationForm = (props) => {
     const router = useRouter()
     const mobileRef = useRef(null);
     const [verificationCode, setVerificationCode] = useState("");
+    const [verificationCodeArray, setVerificationCodeArray] = useState([]);
     const [verifyCode, setVerifyCode] = useState("");//from server
     const [errorMessage, setErrorMessage] = useState("");
     const [btnDisabled, setBtnDisabled] = useState(true);
@@ -93,12 +94,13 @@ const VerificationForm = (props) => {
             myobj.remove();
         }
         setVerificationCode(value)
-        if (value.length == 6 && (value == props.varifyCode || value == verifyCode)) {
+        if (value.length == 6 /*&& (value == props.varifyCode || value == verifyCode)*/) {
             getToken(value);
-        } else if (value.length == 6) {
+        }
+        /*else if (value.length == 6) {
             setIsConfirmCode(false);
             Notiflix.Notify.Failure('کد وارد شده اشتباه است!');
-        }
+        }*/
     }
     const exampleFieldClick = () => {
         setClass("input-wrapper form-field--is-active")
@@ -160,7 +162,7 @@ const VerificationForm = (props) => {
             var myobj = document.getElementById("NotiflixNotifyWrap");
             myobj.remove();
         }
-        if ((!isSendVCodeAgain && vCode == props.varifyCode) || (isSendVCodeAgain && vCode == verifyCode)) {
+        //if ((!isSendVCodeAgain && vCode == props.varifyCode) || (isSendVCodeAgain && vCode == verifyCode)) {
             Notiflix.Loading.Dots();
             //setIsConfirmCode(false)
             const abortController = new AbortController()
@@ -273,12 +275,24 @@ const VerificationForm = (props) => {
                             myobj.remove();
                         }
                         Notiflix.Notify.Failure('کد معرف وارد شده صحیح نمی باشد.');
-                    } else {
+                    }
+                    else if (responseJson.message == "کد تایید معتبر نیست.") {
+                        setRefferalCodeIsValid(false)
                         if (document.getElementById("NotiflixLoadingWrap") != undefined) {
                             var myobj = document.getElementById("NotiflixLoadingWrap");
                             myobj.remove();
                         }
-                        Notiflix.Notify.Failure('لطفا مجددا تلاش کنید!');
+                        Notiflix.Notify.Failure('کد وارد شده صحیح نمی باشد.');
+                        setVerificationCodeArray(["3","3","3","3","3","3"])
+                    }
+                    else {
+                        setVerificationCodeArray(["3","3","3","3","3","3"])
+                        if (document.getElementById("NotiflixLoadingWrap") != undefined) {
+                            var myobj = document.getElementById("NotiflixLoadingWrap");
+                            myobj.remove();
+                        }
+                        //Notiflix.Notify.Failure('لطفا مجددا تلاش کنید!');
+                        Notiflix.Notify.Failure(responseJson.errors);
                     }
                 })
                 .catch(err => {
@@ -287,15 +301,18 @@ const VerificationForm = (props) => {
                         var myobj = document.getElementById("NotiflixLoadingWrap");
                         myobj.remove();
                     }
+                    //document.querySelectorAll('[type="tel"]')[0].value="";
                     console.log(err)
-                    Notiflix.Notify.Failure('لطفا مجددا تلاش کنید!');
+                    setVerificationCodeArray([3,3,3,3,3,3])
+                    Notiflix.Notify.Failure(err);
+                    //Notiflix.Notify.Failure('لطفا مجددا تلاش کنید!');
 
                 })
             // Cancel the request if it takes more than delayFetch seconds
             setTimeout(() => abortController.abort(), process.env.delayFetch)
-        } else {
+        /*} else {
             Notiflix.Notify.Failure('کد وارد شده اشتباه است!');
-        }
+        }*/
     }
     const editMobile = () => {
         setIsSendCode(false)
@@ -320,7 +337,7 @@ const VerificationForm = (props) => {
                                 <img alt="edit" src={editIcon}/>
                                 <div>{mobile || props.mobile}</div>
                             </div>
-                            <ReactCodeInput fields={6} onChange={vCodeHandler} onFocus={exampleFieldClick} autoFocus={true} onBlur={exampleFieldAbort}/>
+                            <ReactCodeInput values={verificationCodeArray} fields={6} onChange={vCodeHandler} onFocus={exampleFieldClick} autoFocus={true} onBlur={exampleFieldAbort}/>
                             {/*<ReactCodeInput type='tel' fields={6} autoFocus={true}
                                             pattern="[0-9]*"
                                             onChange={vCodeHandler}onFocus={exampleFieldClick} onBlur={exampleFieldAbort}

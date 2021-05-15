@@ -46,7 +46,7 @@ export default function CreateOrder() {
         if(orderData.cardImg!=undefined) data.append('car_card_image', orderData.cardImg)
         data.append('absence', orderData.absence)
         data.append('services', JSON.stringify(orderData.services))
-        data.append('reserve_day', orderData.date/1000)
+        data.append('reserve_day', orderData.date)
         data.append('reserve_time', orderData.time)
         data.append('address_longitude', mapData.lng)
         data.append('address_latitude', mapData.lat)

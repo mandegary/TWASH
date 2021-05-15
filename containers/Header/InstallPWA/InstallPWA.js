@@ -31,7 +31,7 @@ const InstallPWA = () => {
     return (
         <Button className="downloadBtn" variant="contained" color="secondary"
                 title="افزودن به صفحه اصلی" onClick={onClick}>
-            دانلود اپلیکیشن تی واش
+            دانلود اپلیکیشن تیسپ
         </Button>
     );
 };
