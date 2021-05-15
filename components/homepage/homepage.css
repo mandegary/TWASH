@@ -58,9 +58,9 @@
         top: 5%!important;
         margin: 0 auto!important;
     }
-    .top-design{
+    /*.top-design{
         max-height: 300px;
-    }
+    }*/
     .w-sm-100{
         width: 100% !important;
     }
@@ -75,10 +75,21 @@
     }
     .text-center>img{
         width: 80%;
-        top: -70px !important;
+        top: -55px !important;
+    }
+    .footerItem {
+        width: 100% !important;
+        background: #ef4d49;
+        top: 35px;
+        position: relative;
+    }
+    .footerItem>img {
+        max-width: 200px;
     }
 }
-
+.footerItem {
+    color:#fff
+}
 .top-design {
     background: url("/images/top design.png") no-repeat;
     height: 518px;
@@ -194,8 +205,8 @@ footer {
     padding-top: 150px;
 }
 .text-center{
-    color: #fff;
-    font-size:18px
+    /*color: #fff;
+    font-size:18px*/
 }
 .text-center span{
     font-size: 22px;

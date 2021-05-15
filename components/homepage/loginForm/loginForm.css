@@ -9,16 +9,16 @@
     width: 70%;
     margin: 5px auto;
 }*/
-.homeForm button{
-    width: 70%;
-    margin: 20px auto !important;
+.homeForm button.MuiButton-containedSecondary:not(.MuiButton-contained.Mui-disabled) {
     color: #fff !important;
     font-size: 20px;
     background: #109ea2 !important;
+    box-shadow: none !important;
 }
 .homeForm button.Mui-disabled {
     background: #36a2a0 !important;
-    opacity: .5;
+    opacity: .7;
+    font-size: 20px;
 }
 .homeForm .form-group input {
     padding: 10px;
@@ -61,19 +61,16 @@
 }
 @media only screen and (max-width: 780px) {
     .homeForm {
-        margin-top: 0 !important;
         padding: 0 10px !important;
     }
-}
-@media only screen and (max-width: 1000px) {
-    .homeForm {
-        padding: 10px 0!important;
+    .homeForm label {
+        margin-top: 0;
+    }
+    .w-sm-75{
+        width: 75% !important;
     }
 }
 @media only screen and (max-width: 1200px) {
-    .homeForm button {
-        width: 100%!important;
-    }
     .homeForm .MuiFormControl-root.MuiTextField-root {
         width: 100%!important;
         margin: 5px auto;
