@@ -67,6 +67,7 @@ const Order = (props) => {
     const [carModelTitle, setCarModelTitle] = useState("");
     const [carBrands, setCarBrands] = useState([]);
     const [carModels, setCarModels] = useState([]);
+    const [carModelsHolder, setCarModelsHolder] = useState([]);
     const [carBrand, setCarBrand] = useState(0);
     const [carModel, setCarModel] = useState(0);
     const [selectedCar, setSelectedCar] = useState(0);
@@ -78,6 +79,7 @@ const Order = (props) => {
     const [time, setTime] = useState("");
     const [timeEnd, setTimeEnd] = useState("");
     const [date, setDate] = useState("");
+    const [day, setDay] = useState("");
     const [timestamp, setTimestamp] = useState("");
     const [times, setTimes] = useState([]);
     const [datesArray, setDatesArray] = useState([]);
@@ -89,6 +91,8 @@ const Order = (props) => {
     const [price, setPrice] = useState("...");
     const [cars, setCars] = useState([]);
     const [carsHolder, setCarsHolder] = useState([]);
+    const [datesHolder, setDatesHolder] = useState([]);
+    const [dateTimesHolder, setDateTimesHolder] = useState({});
     const [rooShoyi, setRooShoyi] = useState(false);
     const [rooShoyiClass, setRooShoyiClass] = useState("false");
     const [rooShoyiTooShooyi, setRooShoyiTooShooyi] = useState(false);
@@ -245,6 +249,45 @@ const Order = (props) => {
         "16:00", "17:00", "18:00", "19:00",
         "20:00", "21:00", "22:00"
     ];
+
+    function  minutesToHours (value) {
+        var hours = Math.floor(value / 60);
+        var minutes = value % 60;
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        let _h=hours + ":" + minutes;
+        switch (_h) {
+            case "24:30":
+                _h="00:30"
+                break;
+            case "25:00":
+                _h="01:00"
+                break;
+            case "25:30":
+                _h="01:30"
+                break;
+            case "26:00":
+                _h="02:00"
+                break;
+
+        }
+        return _h;
+
+    }
+    function hoursToMinutes (value) {
+        var time = value.split(":").map(Number);
+        var minutes = 0;
+        if (time.length == 2) {
+            minutes = time[0] * 60 + time[1];
+        }
+
+        if (time.length == 1) {
+            minutes = time[0] * 60;
+        }
+        return minutes;
+    }
+
     const timesHandler = (newDate) => {
         let today = new Date();
         let currentH = (today.getHours() +3).toString()
@@ -280,6 +323,7 @@ const Order = (props) => {
         ))
         fetchCarModels("")
         fetchCars()
+        fetchTimes()
         const abortController = new AbortController()
         const promise = window
             .fetch(url + '/cars/brands', {
@@ -360,12 +404,17 @@ const Order = (props) => {
             })
             //calculatePrice(props.orderData.services, props.orderData.carModel)
             setDate(momentJalaali(props.orderData.date).format('YYYY-M-D'))
-            setTimestamp(props.orderData.date)
+
             setOrderData({...orderData, date: props.orderData.date});
             setTimes(timesHolder.map((time, index) =>
                 <MenuItem key={index} value={time}>{time}</MenuItem>
             ))
             validate(true)
+            console.log(props.orderData.date)
+            console.log(props.orderData.day)
+            console.log(props.orderData.time)
+            setDate(props.orderData.day)
+            setTimestamp(props.orderData.date)
             setTime(props.orderData.time)
             setTimeEnd(props.orderData.endTime)
             calculatePrice(props.orderData.services, props.orderData.carModel)
@@ -398,15 +447,15 @@ const Order = (props) => {
         }
         else {
             let t = momentJalaali().add(0, 'days')
-            setDate(t.format('YYYY-M-D'))
-            let _timestamp = getTimeStamp(t.format('YYYY-M-D'))
-            setTimestamp(_timestamp * 1000)
+            //setDate(t.format('YYYY-M-D'))
+            //let _timestamp = getTimeStamp(t.format('YYYY-M-D'))
+            //setTimestamp(_timestamp * 1000)
             /*const interval = setInterval(() => {
                 if (document.getElementsByClassName("datepicker-input")[0] != undefined)
                     document.getElementsByClassName("datepicker-input")[0].setAttribute("readonly", "readonly");
             }, 1000);
             return () => clearInterval(interval);*/
-            timesHandler(t);
+            //timesHandler(t);
         }
     }, [])
 
@@ -419,6 +468,41 @@ const Order = (props) => {
     if (typeof window != "undefined") {
         token = JSON.parse(localStorage.getItem('accessToken'));
         ordersCount = JSON.parse(localStorage.getItem('orders'));
+    }
+    function fetchTimes(){
+        const abortController = new AbortController()
+        const promise = window
+            .fetch(url + '/order/times', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'dataType': 'jsonp',   //you may use jsonp for cross origin request
+                    'Access-Control-Allow-Origin': '*',
+                },
+                method: 'GET',
+                mode: 'cors',
+                signal: abortController.signal
+            })
+            .then(res => res.json())
+            .then(responseJson => {
+                setDateTimesHolder(responseJson.times);
+                let x = Object.keys(responseJson.times);
+                    setDatesHolder(x.map((date, index) =>
+                        <MenuItem key={index} value={date}>{date}</MenuItem>
+                    ))
+
+                /*setDateTimesHolder(responseJson.times);
+                let x = Object.values(responseJson.times);
+                console.log(Object.values(responseJson.times))
+                setDatesHolder(x.map((date, index) =>
+                    <MenuItem key={index} value={date.timestamp}>{date.timeTxt}</MenuItem>
+                ))*/
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        // Cancel the request if it takes more than delayFetch seconds
+        setTimeout(() => abortController.abort(), process.env.delayFetch)
     }
     const fetchCars = () => {
         const abortController = new AbortController()
@@ -487,6 +571,20 @@ const Order = (props) => {
             setBtnDisabled(false)
         } else setBtnDisabled(true)
     }
+    const getCarModels = (id) => {
+        if(id!=""){
+            setCarModels(carModelsHolder.filter((item) => {
+                let flag = false;
+                if (item["brand_id"] == id) {
+                    flag = true;
+                }
+                return flag;
+            }))
+        }
+        else setCarModels(carModelsHolder)
+
+    }
+
     const fetchCarModels = (id) => {
         let q = "";
         if (id == "")
@@ -509,6 +607,7 @@ const Order = (props) => {
             .then(responseJson => {
                 if (responseJson.message == "مدل‌ها با موفقیت دریافت شد.") {
                     setCarModels(responseJson.models)
+                    setCarModelsHolder(responseJson.models)
                     if (!isEmpty(props.orderData)) {
                         if (props.orderData.selectedCar > 0) {
                             setCarBrand(0)
@@ -594,7 +693,8 @@ const Order = (props) => {
             setCarModelTitle("")
             setCarBrand(0)
             setCarBrandTitle("")
-            fetchCarModels("")
+            //fetchCarModels("")
+            getCarModels("")
             reset();
         } else {
             let cBrand = 0
@@ -602,7 +702,8 @@ const Order = (props) => {
                 if (carBrands[i].name == value) {
                     cBrand = carBrands[i].id
                     setCarBrandTitle(carBrands[i].name)
-                    fetchCarModels(cBrand)
+                    getCarModels(cBrand)
+                    //fetchCarModels(cBrand)
                     setCarBrand(cBrand)
                     setCarModelTitle("")
                     setCarModel(0);
@@ -981,19 +1082,12 @@ const Order = (props) => {
         validate(result);
     };
     const timeHandler = (event) => {
+        console.log(event);
         setTime(event.target.value);
         let index = timesHolder.indexOf(event.target.value);
-        switch (event.target.value) {
-            case "21:00":
-                setTimeEnd("23:00")
-                break;
-            case "22:00":
-                setTimeEnd("24:00")
-                break;
-            default:
-                setTimeEnd(timesHolder[index + 2])
-
-        }
+        let _m = hoursToMinutes (event.target.value)
+        _m = _m +120
+        setTimeEnd(minutesToHours (_m))
         setOrderData({...orderData, time: event.target.value, endTime: timesHolder[index + 1], absence: toggle ? 1 : 0})
         let result = ((carBrand != 0 && carModel != 0) || selectedCar != 0) && date != "" && event.target.value != "" && services.length > 0 && isTooOrRooSelected;
         validate(result);
@@ -1032,6 +1126,35 @@ const Order = (props) => {
         setOrderData({...orderData, date: _timestamp * 1000})
         validate(false);
     }
+    const datesHandle = (e) => {
+        let x = dateTimesHolder[e.target.value]
+        let _keys = Object.keys(x.times)
+        let _values = Object.values(x)
+        //console.log(e.target.value)
+        let t=[]
+        for(let i=0;i<_keys.length;i++)
+            t.push(<MenuItem key={i} value={_keys[i]} name={_keys[i]}>{_keys[i]}</MenuItem>)
+        setTimes(t);
+        console.log(e.target.value);
+        setDay(e.target.value);
+        setDate(e.target.value);
+        if(x.timestamp!=undefined) setTimestamp(x.timestamp)
+        console.log(x.timestamp)
+        /*setTimes(_keys.map((time, index) =>
+            <MenuItem key={index} value={time}>{time}</MenuItem>
+        ))*/
+        /*setTime("")
+        let value= e.target.value;
+        let _d = value
+        let _timestamp = getTimeStamp(_d)
+        //var date = new Date(timestamp*1000);
+        setDate(value);
+        if (isEmpty(props.orderData))
+            timesHandler(value)
+        setTimestamp(_timestamp * 1000)
+        setOrderData({...orderData, date: _timestamp * 1000})
+        validate(false);*/
+    }
     const createOrder = () => {
         let _orderData = {
             ...orderData,
@@ -1046,7 +1169,8 @@ const Order = (props) => {
             carBrand: carBrand,
             brandTitle: selectedCar > 0 ? selectedCarBrandTitle : carBrandTitle,
             selectedCar: selectedCar,
-            date: timestamp
+            date: timestamp,
+            day:day
 
         }
 
@@ -1386,9 +1510,10 @@ const Order = (props) => {
                                     labelId="demo-simple-select-filled-label"
                                     id="demo-simple-select-filled"
                                     value={date}
-                                    onChange={datesHandler}
+                                    onChange={datesHandle}
                                     label="تاریخ کارواش">
-                                    {datesArray}
+                                    {/*{datesArray}*/}
+                                    {datesHolder}
                                 </Select>
                             </FormControl>
                         </Col>

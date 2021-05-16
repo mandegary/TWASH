@@ -358,6 +358,15 @@ const Orders = (props) => {
                                         }</div>
                                         {
                                             <div className="btns">
+                                                {/*{
+                                                    !order.payment_done && order.payment.payment_method ?
+                                                        <div>
+                                                            <Button className="beforeAfterBtn" variant="contained">
+                                                                پرداخت
+                                                                </Button>
+                                                        </div>
+                                                        : null
+                                                }*/}
                                             {
                                                 order.images.before != null || order.images.after != null ?
                                                 <div>

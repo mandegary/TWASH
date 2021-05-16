@@ -121,12 +121,12 @@ const Order = (props) => {
                                     props.orderData.servicesTitle.join(" - ")
                                 }</div>
                                 <div>زمان شست و شو :
-                                    {moment(props.orderData.date).format('dddd jD jMMMM jYYYY')}
+                                    &nbsp;{props.orderData.day}&nbsp;
                                     از
                                     ساعت {props.orderData.time} تا {props.orderData.endTime}</div>
                                 <div>
                                     محل شست و شو :
-                                    {props.mapData.description}
+                                    &nbsp;{props.mapData.description}&nbsp;
                                 </div>
 
                                 <Button className="" variant="contained"
@@ -165,7 +165,8 @@ const Order = (props) => {
                                             <FormLabel component="legend">روش پرداخت:</FormLabel>
                                             {!props.orderData.absence ?
                                                 <FormControlLabel value="cash" control={<Radio/>} label="نقدی"/> :
-                                                null}
+                                                null
+                                            }
                                             <FormControlLabel value="online" control={<Radio/>} label="آنلاین"/>
                                         </RadioGroup>
                                     </FormControl>
