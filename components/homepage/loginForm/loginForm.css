@@ -61,7 +61,7 @@
 }
 @media only screen and (max-width: 780px) {
     .homeForm {
-        padding: 0 10px !important;
+        padding: 25px 10px 0!important;
     }
     .homeForm label {
         margin-top: 0;

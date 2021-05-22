@@ -73,9 +73,10 @@
         width: 100% !important;
         margin-bottom: 20px;
     }
-    .text-center>img{
+    .advantagesTxtCntr>img{
         width: 80%;
         top: -55px !important;
+        height: auto !important;
     }
     .footerItem {
         width: 100% !important;
@@ -230,7 +231,7 @@ footer img:not(.flogo) {
     max-width: 40px;
 }
 .vh-100{
-    height: 100vh !important;
+    min-height: 100vh !important;
 }
 @media only screen and (max-width: 780px) {
     .vh-100,.teamItems ,.teamtop ,.advantagesTxt ul li{
@@ -242,8 +243,9 @@ footer img:not(.flogo) {
         height: auto !important;
         padding-bottom: 20px;
     }
-    .car{
+    .car {
         margin-top: 0 !important;
+        margin-bottom: 50px;
     }
     .advantagesTxt ul li img {
         max-height: 50px;
@@ -268,7 +270,7 @@ footer img:not(.flogo) {
         height: 30vh !important;
     }
 .top-design{
-    height: 65vh !important;
+    height: auto !important;
 }
 }
 @media only screen and (max-width: 600px) {

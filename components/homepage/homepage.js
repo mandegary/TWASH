@@ -154,8 +154,7 @@ const HomePage = (props) => {
                                 </div>
                             </div>
                             <img src={red} className="img-fluid" style={{height:"20%",minHeight: "50px"}}/>
-                            <div className="vh-100 d-md-flex flex-md-row pr-5 pl-5 w-100 advantagesTxt d-flex flex-column justify-content-center">
-
+                            <div style={{minHeight:"100vh"}} className=" d-md-flex flex-md-row pr-5 pl-5 w-100 advantagesTxt d-flex flex-column justify-content-center">
                                 <ul className="order-md-0 order-1 vh-100 w-25 text-center w-sm-100">
                                     <li></li>
                                     <li onClick={(e)=>advantageTxtHandler(e,"صرفه جویی و مدیریت زمان","شما این امکان را دارید که سفارش خود را برای همین امروز و یا روزهای آینده (حداکثر دو هفته بعد) و در محل مورد نظر خود ثبت کنید. هنگامی که در منزل در حال استراحت هستید یا در محل کار مشغول فعالیت های روزانه، خودرویتان شسته خواهد شد و شما از صرف زمان در انجام فعالیت های دلخواه خود، لذت خواهید برد.")}>
@@ -176,11 +175,9 @@ const HomePage = (props) => {
                                     </li>
                                 </ul>
                                 <div style={{marginTop: "-50px"}} className="order-md-1 order-0 vh-100 advantagesTxtCntr d-flex flex-column justify-content-center text-center w-50 w-sm-100">
-                                    <img src={advantagesTop} className="img-fluid"
-                                         style={{height: "20vh", width: "auto", margin: "0 auto"}}/>
-                                    <img src={carwash} className="img-fluid"
-                                         style={{height: "40vh", width: "auto", margin: "-1% auto 0"}}/>
-                                    <div className="border w-75 mr-auto ml-auto mt-1 p-1" style={{height: "max-content"}}>
+                                    <img src={advantagesTop} className="img-fluid" style={{height: "30vh", width: "auto", margin: "0 auto"}}/>
+                                    <img src={carwash} className="img-fluid" style={{height: "30vh", width: "auto", margin: "-1% auto 0"}}/>
+                                    <div className="border w-75 mr-auto ml-auto mt-1 p-1 mb-5" style={{height: "max-content"}}>
                                         <p className="text-center" style={{color: "#02868b"}}>{advantageTitle}</p>
                                         <p className="text-justify">{advantageTxt}</p>
                                     </div>
