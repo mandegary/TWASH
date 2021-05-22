@@ -3,7 +3,8 @@ import "./order.css"
 import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-import marker from "../../assets/images/mark.png"
+import marker1 from "../../assets/images/mark.png"
+import marker from "../../assets/images/location.svg"
 import userLocation from "../../assets/images/mylocation.png"
 import back from "../../assets/images/back.png"
 import {Container, Col, Form, Row} from "react-bootstrap";
@@ -80,14 +81,54 @@ const HomePageForm = (props) => {
                 trackUserLocation: true
             })
         );
+        // Create a default Marker and add it to the map.
+        /*var marker = new mapboxgl.Marker()
+            .setLngLat([lng,lat])
+            .addTo(map);*/
         map.resize();
+        let mapMarkers = []
+
         map.on('move', (ev) => {
-            map.off('render')
+            mapMarkers.forEach((marker) => marker.remove())
+            mapMarkers = []
+            // create a HTML element for each feature
+            var el = document.createElement('div');
+            el.className = 'markerIcon';
+
+            var marker = new mapboxgl.Marker(el)
+                .setLngLat([map.getCenter().lng, map.getCenter().lat])
+                .addTo(map);
+            mapMarkers.push(marker)
+
+            setLat(map.getCenter().lat)
+            setLng(map.getCenter().lng)
+            //console.log([map.getCenter().lng, map.getCenter().lat])
+            //map.off('render')
             const {lng, lat} = map.getCenter();
-            setZoom(map.getZoom().toFixed(2))
-        });
-        map.on('load', function () {
-            map.resize();
+            /*var mpSource = map.getSource("point");
+            if (typeof mpSource != 'undefined') {
+                //console.log(2)
+                map.getSource('point').setData(
+                    {
+                        'type': 'FeatureCollection',
+                        'features': [
+                            {
+                                'type': 'Feature',
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [map.getCenter().lng, map.getCenter().lat]
+                                }
+                            }
+                        ]
+                    }
+                );
+            }*/
+           /* setZoom(map.getZoom().toFixed(2))
+            setLat(map.getCenter().lat)
+            setLng(map.getCenter().lng)
+            if (map.hasImage('markerIcon')) {
+                map.removeImage('markerIcon');
+            }
             var mpLayer = map.getLayer("point");
             if (typeof mpLayer != 'undefined') {
                 map.removeLayer("point");
@@ -96,10 +137,142 @@ const HomePageForm = (props) => {
             if (typeof mpSource != 'undefined') {
                 map.removeSource("point");
             }
+            map.loadImage(
+                marker,
+                function (error, image) {
+                    if (error) console.log(error);
+                    map.addImage('markerIcon', image);
+                    map.addSource('point', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': [
+                                {
+                                    'type': 'Feature',
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [map.getCenter().lng, map.getCenter().lat]
+                                    }
+                                }
+                            ]
+                        }
+                    });
 
+                    // map.removeLayer('points');
+                    map.addLayer({
+                        'id': 'point',
+                        'type': 'symbol',
+                        'source': 'point',
+                        'layout': {
+                            'icon-image': 'markerIcon',
+                            'icon-size': 1
+                        }
+                    });
+                }
+            );*/
+        });
+        map.on('moveend', (ev) => {
+            setLat(map.getCenter().lat)
+            setLng(map.getCenter().lng)
+            let _url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/' + [map.getCenter().lng, map.getCenter().lat] + '.json?access_token=pk.eyJ1IjoibWFuZGVnYXJ5IiwiYSI6ImNrOWx0OG82azAwaHUza252em12a3o2NXQifQ.y5-IWYHLAXW5KH5chssYGg';
+            fetch(_url, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                }
+            })
+                .then((response) => response.json())
+                .then((responseJson) => {
+                    setDescription(responseJson.features[0].text)
+                    //setOrderData({...orderData, description: responseJson.features[0].text})
+                    setOrderData({...orderData, lng: map.getCenter().lng, lat: map.getCenter().lat, description: responseJson.features[0].text})
+
+                })
+
+            setBtnDisabled(false)
+            /*var mpSource = map.getSource("point");
+            if (typeof mpSource != 'undefined') {
+                map.getSource('point').setData(
+                    {
+                        'type': 'FeatureCollection',
+                        'features': [
+                            {
+                                'type': 'Feature',
+                                'geometry': {
+                                    'type': 'Point',
+                                    'coordinates': [map.getCenter().lng, map.getCenter().lat]
+                                }
+                            }
+                        ]
+                    }
+                );
+            }*/
+
+
+            //console.log(map.getCenter())
+            //console.log(ev.lngLat)
+            //const {lngCenter, latCenter} = map.getCenter();
+            /*if (map.hasImage('markerIcon')) {
+                map.removeImage('markerIcon');
+            }
+            var mpLayer = map.getLayer("point");
+            if (typeof mpLayer != 'undefined') {
+                map.removeLayer("point");
+            }
+            var mpSource = map.getSource("point");
+            if (typeof mpSource != 'undefined') {
+                map.removeSource("point");
+            }
+            map.loadImage(
+                marker,
+                function (error, image) {
+                    if (error) console.log(error);
+                    map.addImage('markerIcon', image);
+                    map.addSource('point', {
+                        'type': 'geojson',
+                        'data': {
+                            'type': 'FeatureCollection',
+                            'features': [
+                                {
+                                    'type': 'Feature',
+                                    'geometry': {
+                                        'type': 'Point',
+                                        'coordinates': [map.getCenter().lng, map.getCenter().lat]
+                                    }
+                                }
+                            ]
+                        }
+                    });
+
+                    // map.removeLayer('points');
+                    map.addLayer({
+                        'id': 'point',
+                        'type': 'symbol',
+                        'source': 'point',
+                        'layout': {
+                            'icon-image': 'markerIcon',
+                            'icon-size': 1
+                        }
+                    });
+                }
+            );*/
+
+        });
+        map.on('load', function () {
+            map.resize();
+            var mpLayer = map.getLayer("point");
+            if (typeof mpLayer != 'undefined') {
+                map.removeLayer("point");
+            }
             if (map.hasImage('markerIcon')) {
                 map.removeImage('markerIcon');
             }
+            var mpSource = map.getSource("point");
+            if (typeof mpSource != 'undefined') {
+                map.removeSource("point");
+            }
+
+
             if(!isEmpty(props.mapData)){
                 map.flyTo({
                     center: [
@@ -183,13 +356,18 @@ const HomePageForm = (props) => {
                                 zoom: 14,
                                 essential: false // this animation is considered essential with respect to prefers-reduced-motion
                             });
-                            var mpLayer = map.getLayer("point");
+                            /*var mpLayer = map.getLayer("point");
                             if (typeof mpLayer != 'undefined') {
                                 map.removeLayer("point");
                             }
                             if (map.hasImage('markerIcon')) {
                                 map.removeImage('markerIcon');
                             }
+                            var mpSource = map.getSource("point");
+                            if (typeof mpSource != 'undefined') {
+                                map.removeSource("point");
+                            }
+
                             map.loadImage(
                                 marker,
                                 function (error, image) {
@@ -222,7 +400,7 @@ const HomePageForm = (props) => {
                                         }
                                     });
                                 }
-                            );
+                            );*/
                             setLat(lat == 0 ? position.coords.latitude.toFixed(4) : lat)
                             setLng(lng == 0 ? position.coords.longitude.toFixed(4) : lng)
 
@@ -252,7 +430,7 @@ const HomePageForm = (props) => {
                     ;
                 }
                 else { /* geolocation IS NOT available, handle it */
-                    map.loadImage(
+                    /*map.loadImage(
                         marker,
                         function (error, image) {
                             //if (error) throw error;
@@ -284,7 +462,7 @@ const HomePageForm = (props) => {
                                 }
                             });
                         }
-                    );
+                    );*/
             }
         }
 
@@ -292,7 +470,7 @@ const HomePageForm = (props) => {
         map.on('render', function () {
             //map.resize();
         })
-        map.on('click', (ev) => {
+        /*map.on('click', (ev) => {
 
             const {lng, lat} = ev.lngLat;
             setLat(lat.toFixed(4))
@@ -362,7 +540,7 @@ const HomePageForm = (props) => {
 
             //this.props.setLocation(lng, lat);
             map.resize();
-        });
+        });*/
 
         window.addEventListener('click', function (e) {
             if (e.target.className != "delete" && (e.target.className == "favoriteLocation" || e.target.parentElement.className == "favoriteLocation")) {
@@ -382,7 +560,7 @@ const HomePageForm = (props) => {
                     zoom: 14,
                     essential: false // this animation is considered essential with respect to prefers-reduced-motion
                 });
-                var mpLayer = map.getLayer("point");
+                /*var mpLayer = map.getLayer("point");
                 if (typeof mpLayer != 'undefined') {
                     map.removeLayer("point");
                 }
@@ -422,7 +600,7 @@ const HomePageForm = (props) => {
                             }
                         });
                     }
-                );
+                );*/
                 //});
                 setLat(lat)
                 setLng(lng)
@@ -449,7 +627,7 @@ const HomePageForm = (props) => {
                                 zoom: 14,
                                 essential: false // this animation is considered essential with respect to prefers-reduced-motion
                             });
-                            map.loadImage(
+                            /*map.loadImage(
                                 marker,
                                 function (error, image) {
                                     var mpLayer = map.getLayer("point");
@@ -492,7 +670,7 @@ const HomePageForm = (props) => {
                                         }
                                     });
                                 }
-                            );
+                            );*/
                             setLat(position.coords.latitude.toFixed(4))
                             setLng(position.coords.longitude.toFixed(4))
                             setBtnDisabled(false)

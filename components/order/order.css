@@ -685,6 +685,16 @@ button.Mui-disabled {
     border-radius: 50%;
     cursor: pointer;
 }
+.markerIcon {
+    background-image: url('/images/mark.png');
+    /* background-size: cover; */
+    width: 20px;
+    height: 31px;
+    /* border-radius: 50%; */
+    cursor: pointer;
+    background-repeat: no-repeat;
+}
+
 @media only screen and (max-width: 450px) {
     .orderPlate.carPlate input, .orderPlate.carPlate select {
         width: 10%;

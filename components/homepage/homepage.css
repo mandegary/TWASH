@@ -92,15 +92,14 @@
 }
 .top-design {
     background: url("/images/top design.png") no-repeat;
-    height: 518px;
     width: 100%;
-    margin-top: -145px;
 }
 .advantagesTxt ul li {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 20vh;
 }
 .advantagesTxt ul li p {
     max-width: 60%;
@@ -109,18 +108,23 @@
     color: #02868b;
     margin: 10px;
     direction: rtl;
+    font-size: 16px;
 }
 .advantagesTxt  p {
     direction: rtl;
 }
 .advantagesTxtCntr {
-    top: -150px;
+    /*top: -150px;*/
     position: relative;
     display: inline-table;
 }
 .advantagesTxtCntr > div{
     height: 300px;
     box-shadow: 2px 3px 7px 5px #ccc;
+}
+.advantagesTxt ul li img {
+    height: 80%;
+    min-height: 40px;
 }
 .teamtop{
     background : #a3d5d5
@@ -136,13 +140,15 @@
     text-align: center;
     padding-top: 125px;
     margin-top: -135px;
-    padding-bottom: 100px;
+    padding-bottom: 20px;
     line-height: 2;
     direction: rtl;
     text-align: justify;
     padding-right: 20px;
     padding-left: 20px;
+    height:auto;
 }
+
 .team ul li {
     padding-bottom: 10px;
 }
@@ -189,7 +195,7 @@
     color: #000;
 }
 .comments > div {
-    min-height: 270px;
+    min-height: 220px;
     border-radius: 20px;
 }
 .comments p{
@@ -213,11 +219,35 @@ footer {
 }
 .text-center div img {
     width: 61px;
-    height: 61px;
     margin-left: 10px;
     margin-top: -25px;
 }
-
+footer img:not(.flogo) {
+    max-width: 40px;
+}
+.vh-100{
+    height: 100vh !important;
+}
+@media only screen and (max-width: 780px) {
+    .vh-100,.teamItems ,.teamtop ,.advantagesTxt ul li{
+        height: auto !important;
+    }
+    .top-design {
+        background: url("/images/top design.png") no-repeat;
+        width: 100%;
+        height: auto !important;
+        padding-bottom: 20px;
+    }
+    .car{
+        margin-top: 0 !important;
+    }
+    .advantagesTxt ul li img {
+        max-height: 50px;
+    }
+    .advantagesTxt {
+        padding: 0;
+    }
+}
 @media only screen and (max-width: 600px) {
     .homeBg {
         min-height: 600px !important;
@@ -231,4 +261,7 @@ footer {
 .car{
     margin-top: -160px;
 }
+    footer img:not(.flogo) {
+        max-width: 100%;
+    }
 }
