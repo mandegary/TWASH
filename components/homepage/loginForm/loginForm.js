@@ -65,7 +65,7 @@ const HomePageForm = (props) => {
         <MuiThemeProvider theme={theme}>
             <div className="homeForm w-100 w-sm-75  d-flex flex-row align-items-center justify-content-center justify-content-md-start h-100" dir="rtl">
                 {token == null ?
-                    <div className="homeForm d-flex flex-column flex-md-row align-items-center justify-content-center">
+                    <div className="homeForm d-flex flex-column flex-md-row align-items-end justify-content-center">
 
                             <Form.Group as={Row} controlId="formPlaintextMobile" className=" mb-0 ml-0 ml-md-3 text-right">
                                 <Form.Label column lg="4" md="4" sm="2" >
@@ -82,7 +82,7 @@ const HomePageForm = (props) => {
                                                   maxLength="6" inputMode="numeric" onChange={referralCodeHandler} onKeyDown={handleKeyDown}/>
                                 </Col>
                             </Form.Group>
-                            <Button type="submit" className="homeFormBtn w-50" variant="contained" color="secondary"
+                            <Button type="submit" className="homeFormBtn w-25 w-sm-100" variant="contained" color="secondary"
                                     onClick={() => props.formAction(mobile, referralCode)}
                                     disabled={btnDisabled}>
                                 دریافت کد
