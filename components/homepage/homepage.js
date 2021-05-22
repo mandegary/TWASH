@@ -142,7 +142,7 @@ const HomePage = (props) => {
                                 <div className="w-100 car" style={{height: "40vh", marginTop: "-10vh"}}>
                                     <img src={car} className="ml-5 img-fluid h-100"/>
                                 </div>
-                                <div className="top-design d-flex justify-content-center align-items-center h-md-50"
+                                <div className="top-design d-flex justify-content-center align-items-end align-items-md-center h-md-50"
                                      style={{height: "50vh", marginTop: "-10vh"}}>
                                     <Form formAction={sendCode}/>
                                 </div>

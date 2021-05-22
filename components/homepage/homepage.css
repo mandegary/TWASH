@@ -129,6 +129,9 @@
 .teamtop{
     background : #a3d5d5
 }
+.teamtop img{
+    object-fit: contain;
+}
 .teamItems {
     margin-top: -50px;
     position: relative;
@@ -247,6 +250,10 @@ footer img:not(.flogo) {
     .advantagesTxt {
         padding: 0;
     }
+    .top-design {
+        min-height: 250px;
+        margin-top: -20vh !important;
+    }
 }
 @media only screen and (max-width: 600px) {
     .homeBg {
@@ -255,6 +262,10 @@ footer img:not(.flogo) {
     .homeDiv {
         top: 20px;
     }
+    .car img {
+        max-height: 200px;
+    }
+
 }
 
 @media only screen and (min-width: 1600px) {

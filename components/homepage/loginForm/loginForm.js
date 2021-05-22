@@ -102,7 +102,7 @@ const HomePageForm = (props) => {
                             کد</Button>*/}
                     </div>
                     :
-                        <Button className="homeFormBtn w-25 w-sm-75" variant="contained" color="secondary" onClick={createOrder}>
+                        <Button className="homeFormBtn w-25 w-sm-100" variant="contained" color="secondary" onClick={createOrder}>
                             ثبت سفارش
                         </Button>
                 }
