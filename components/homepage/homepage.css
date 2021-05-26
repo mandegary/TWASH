@@ -1,5 +1,5 @@
 .homeMain{
-    font-size: 18px;
+    font-size: 16px;
 }
 .main{
     background: #F2F2F2;
@@ -94,6 +94,7 @@
 .top-design {
     background: url("/images/top design.png") no-repeat;
     width: 100%;
+    background-size: cover;
 }
 .advantagesTxt ul li {
     display: flex;
@@ -214,6 +215,7 @@ footer {
     height: 518px;
     width: 100%;
     padding-top: 150px;
+    background-size: cover;
 }
 .text-center{
     /*color: #fff;
@@ -231,9 +233,22 @@ footer img:not(.flogo) {
     max-width: 40px;
 }
 .vh-100{
-    min-height: 100vh !important;
+    height: 100vh !important;
 }
-@media only screen and (max-width: 780px) {
+.advantagesTxt{
+    margin-top: -150px;
+}
+.flogo {
+    max-height: 150px !important;
+}
+@media only screen and (max-width: 992px) {
+    /*.vh-100{
+        min-height: 100vh !important;
+    }*/
+
+    .advantagesTxt{
+        margin-top: -50px;
+    }
     .vh-100,.teamItems ,.teamtop ,.advantagesTxt ul li{
         height: auto !important;
     }
@@ -272,6 +287,9 @@ footer img:not(.flogo) {
 .top-design{
     height: auto !important;
 }
+    .advantagesTxt ul li p{
+        text-align: center;
+    }
 }
 @media only screen and (max-width: 600px) {
     .homeBg {

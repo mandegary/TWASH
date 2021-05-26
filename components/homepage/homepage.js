@@ -141,20 +141,21 @@ const HomePage = (props) => {
                         <main className="homeMain">
                             <div className="vh-100 position-relative">
                                 <div className="mt-3 d-flex flex-column justify-content-center align-items-center logoMiddle"
-                                     style={{height: "30vh"}}>
+                                     style={{height: "20vh"}}>
                                     <img src={logo} className="mb-2 img-fluid " style={{height: "80%"}}/>
                                     <img src={subject} className="img-fluid" style={{height: "20%"}}/>
                                 </div>
-                                <div className="w-100 car" style={{height: "40vh", marginTop: "-10vh"}}>
+                                <div className="w-100 car" style={{height: "30vh", marginTop: "-10vh"}}>
                                     <img src={car} className="ml-5 img-fluid h-100"/>
                                 </div>
                                 <div className="top-design d-flex justify-content-center align-items-end align-items-md-center h-md-50"
-                                     style={{height: "50vh", marginTop: "-10vh"}}>
+                                     style={{height: "40vh", marginTop: "-10vh"}}>
                                     <Form formAction={sendCode}/>
                                 </div>
+                                <img src={red} className="img-fluid w-100" style={{height:"10vh",minHeight: "50px"}}/>
                             </div>
-                            <img src={red} className="img-fluid" style={{height:"20%",minHeight: "50px"}}/>
-                            <div style={{minHeight:"100vh"}} className=" d-md-flex flex-md-row pr-5 pl-5 w-100 advantagesTxt d-flex flex-column justify-content-center">
+
+                            <div className="vh-100 d-md-flex flex-md-row pr-5 pl-5 w-100 advantagesTxt d-flex flex-column justify-content-center">
                                 <ul className="order-md-0 order-1 vh-100 w-25 text-center w-sm-100">
                                     <li></li>
                                     <li onClick={(e)=>advantageTxtHandler(e,"صرفه جویی و مدیریت زمان","شما این امکان را دارید که سفارش خود را برای همین امروز و یا روزهای آینده (حداکثر دو هفته بعد) و در محل مورد نظر خود ثبت کنید. هنگامی که در منزل در حال استراحت هستید یا در محل کار مشغول فعالیت های روزانه، خودرویتان شسته خواهد شد و شما از صرف زمان در انجام فعالیت های دلخواه خود، لذت خواهید برد.")}>
@@ -174,12 +175,12 @@ const HomePage = (props) => {
                                         <p>تیم کارواشمن مجرب</p>
                                     </li>
                                 </ul>
-                                <div style={{marginTop: "-50px"}} className="order-md-1 order-0 vh-100 advantagesTxtCntr d-flex flex-column justify-content-center text-center w-50 w-sm-100">
-                                    <img src={advantagesTop} className="img-fluid" style={{height: "30vh", width: "auto", margin: "0 auto"}}/>
-                                    <img src={carwash} className="img-fluid" style={{height: "30vh", width: "auto", margin: "-1% auto 0"}}/>
+                                <div className="order-md-1 order-0 vh-100 advantagesTxtCntr d-flex flex-column justify-content-center text-center w-50 w-sm-100">
+                                    <img src={advantagesTop} className="img-fluid" style={{height: "20vh", width: "auto", margin: "0 auto"}}/>
+                                    <img src={carwash} className="img-fluid" style={{height: "20vh", width: "auto", margin: "-1% auto 0"}}/>
                                     <div className="border w-75 mr-auto ml-auto mt-1 p-1 mb-5" style={{height: "max-content"}}>
                                         <p className="text-center" style={{color: "#02868b"}}>{advantageTitle}</p>
-                                        <p className="text-justify">{advantageTxt}</p>
+                                        <p className="text-justify p-3" style={{fontSize:"16px"}}>{advantageTxt}</p>
                                     </div>
                                 </div>
                                 <ul className="order-md-2 order-2 vh-100 w-25 text-center w-sm-100">
@@ -231,7 +232,7 @@ const HomePage = (props) => {
                                 </ul>
                             </div>
 
-                            <div className="vh-100">
+                            <div className="">
 
                                 <div className="surprise d-flex flex-row align-items-end justify-content-between">
                                     <div className="brdPink"
