@@ -17,6 +17,7 @@ a {
   user-select: none;*/
 }
 ul,li{
+  margin: 0;
   list-style: none;
 }
 .container {

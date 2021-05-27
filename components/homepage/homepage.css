@@ -68,10 +68,9 @@
         top: 0 !important;
     }
     .advantagesTxtCntr > div {
-        min-height: 300px;
-        height: auto;
-        width: 100% !important;
-        margin-bottom: 20px;
+        /* height: 300px; */
+        box-shadow: 2px 3px 7px 5px #ccc;
+        overflow-y: auto;
     }
     .advantagesTxtCntr>img{
         width: 80%;
@@ -121,9 +120,10 @@
     position: relative;
     display: inline-table;
 }
-.advantagesTxtCntr > div{
+.advantagesTxtCntr > div {
     height: 300px;
     box-shadow: 2px 3px 7px 5px #ccc;
+    overflow: auto;
 }
 .advantagesTxt ul li img {
     height: 80%;
@@ -211,7 +211,7 @@
     color:#02868b;
 }
 footer {
-    background: url("/images/top design.png") no-repeat;
+    background: url("/images/top designn.png") no-repeat;
     height: 518px;
     width: 100%;
     padding-top: 150px;
@@ -236,7 +236,7 @@ footer img:not(.flogo) {
     height: 100vh !important;
 }
 .advantagesTxt{
-    margin-top: -150px;
+    margin-top: 0;
 }
 .flogo {
     max-height: 150px !important;
@@ -245,13 +245,15 @@ footer img:not(.flogo) {
     /*.vh-100{
         min-height: 100vh !important;
     }*/
-
-    .advantagesTxt{
-        margin-top: -50px;
-    }
     .vh-100,.teamItems ,.teamtop ,.advantagesTxt ul li{
         height: auto !important;
     }
+    .advantagesTxt ul li:first-child{
+        display: none;
+    }
+.advantagesTxt ul li{
+    min-height: 200px;
+ }
     .top-design {
         background: url("/images/top design.png") no-repeat;
         width: 100%;
@@ -269,8 +271,7 @@ footer img:not(.flogo) {
         padding: 0;
     }
     .top-design {
-        min-height: 250px;
-        margin-top: -20vh !important;
+        min-height: 400px;
     }
     .logoMiddle{
         height: 5vh !important;

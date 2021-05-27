@@ -5,7 +5,6 @@ import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {useRouter} from "next/router";
 import Form from 'react-bootstrap/Form'
 import {Col, Row} from 'react-bootstrap'
-import red from "../../../assets/images/red.png";
 
 const theme = createMuiTheme({
     direction: 'rtl'
@@ -66,21 +65,21 @@ const HomePageForm = (props) => {
                 className="homeForm w-100 w-sm-75  d-flex flex-row align-items-center justify-content-center justify-content-md-start h-100"
                 dir="rtl">
                 {token == null ?
-                    <div className="homeForm d-flex flex-column flex-md-row align-items-center justify-content-center">
+                    <div className="d-flex flex-column flex-md-row align-items-center justify-content-center">
 
-                        <Form.Group as={Row} lg="6" md="6" sm="10" controlId="formPlaintextMobile"
+                        <Form.Group as={Row} lg="6" md="10" sm="10" controlId="formPlaintextMobile"
                                     className="w-75 w-sm-100 mb-0 ml-0 ml-md-3 text-right">
                             <Form.Label column lg="4" md="4" sm="2">
                                 شماره موبایل
                             </Form.Label>
-                            <Col lg="6" md="6" sm="10">
+                            <Col lg="6" md="10" sm="10">
                                 <Form.Control value={mobile} onKeyDown={handleKeyDown} maxLength="11"
                                               inputMode="numeric" onChange={mobileHandler}/>
                             </Col>
                             <Form.Label column lg="4" md="4" sm="2">
                                 کد معرف
                             </Form.Label>
-                            <Col lg="6" md="6" sm="10">
+                            <Col lg="6" md="10" sm="10">
                                 <Form.Control value={referralCode}
                                               maxLength="6" inputMode="numeric" onChange={referralCodeHandler}
                                               onKeyDown={handleKeyDown}/>
