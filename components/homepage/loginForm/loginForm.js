@@ -67,23 +67,27 @@ const HomePageForm = (props) => {
                 {token == null ?
                     <div className="d-flex flex-column flex-md-row align-items-center justify-content-center">
 
-                        <Form.Group as={Row} lg="6" md="10" sm="10" controlId="formPlaintextMobile"
+                        <Form.Group as={Row} lg="6" md="10" sm="12" controlId="formPlaintextMobile"
                                     className="w-75 w-sm-100 mb-0 ml-0 ml-md-3 text-right">
-                            <Form.Label column lg="4" md="4" sm="2">
+
+                            <Form.Label column lg="4" md="3" sm="2" className="col-3">
                                 شماره موبایل
                             </Form.Label>
-                            <Col lg="6" md="10" sm="10">
+                            <Col lg="6" md="9" sm="10" className="col-9">
                                 <Form.Control value={mobile} onKeyDown={handleKeyDown} maxLength="11"
                                               inputMode="numeric" onChange={mobileHandler}/>
                             </Col>
-                            <Form.Label column lg="4" md="4" sm="2">
+
+                            <Form.Label column lg="4" md="3" sm="2" className="col-3">
                                 کد معرف
                             </Form.Label>
-                            <Col lg="6" md="10" sm="10">
+                            <Col lg="6" md="9" sm="10" className="col-9">
                                 <Form.Control value={referralCode}
                                               maxLength="6" inputMode="numeric" onChange={referralCodeHandler}
                                               onKeyDown={handleKeyDown}/>
                             </Col>
+
+
                         </Form.Group>
                         <Col lg="6" md="6" sm="10" className="text-right md-0 mt-3">
                             <Button type="submit" className="homeFormBtn m-0 w-50 w-sm-100" variant="contained"
@@ -93,7 +97,6 @@ const HomePageForm = (props) => {
                                 ثبت سفارش
                             </Button>
                         </Col>
-
 
                         {/*<div className="w-50">
                             <TextField id="outlined-basic" label="شماره موبایل خود را وارد کنید." variant="filled"
