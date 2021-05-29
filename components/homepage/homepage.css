@@ -50,6 +50,9 @@
     color: #fff;
 }
 @media only screen and (max-width: 780px) {
+    .flogo {
+        height: 20vh !important;
+    }
     .homeDiv {
         flex-direction: column-reverse!important;
     }
@@ -78,7 +81,6 @@
         height: auto !important;
     }
     .footerItem {
-        width: 100% !important;
         background: #ef4d49;
         top: 35px;
         position: relative;
@@ -91,7 +93,7 @@
     color:#fff
 }
 .top-design {
-    background: url("/images/top design.png") no-repeat;
+    background: url("/images/top designn.png") no-repeat;
     width: 100%;
     background-size: cover;
 }
@@ -258,7 +260,7 @@ footer img:not(.flogo) {
         background: url("/images/top design.png") no-repeat;
         width: 100%;
         height: auto !important;
-        padding-bottom: 20px;
+        padding-bottom: 0;
     }
     .car {
         margin-top: 0 !important;
@@ -311,5 +313,27 @@ footer img:not(.flogo) {
 }
     footer img:not(.flogo) {
         max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    footer span {
+        font-size: 14px !important;
+    }
+    footer {
+        padding-top: 80px !important;
+    }
+    ul.footerItem{
+         flex-direction: column !important;
+     }
+    ul.footerItem li p {
+        width: 50% !important;
+        text-align: right;
+    }
+    ul.footerItem li:last-child{
+        margin-top: 10px!important;
+    }
+    .homeForm {
+        padding: 45px 0!important;
     }
 }

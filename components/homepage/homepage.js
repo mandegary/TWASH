@@ -148,14 +148,14 @@ const HomePage = (props) => {
                                 <div className="w-100 car" style={{height: "30vh", marginTop: "-10vh"}}>
                                     <img src={car} className="ml-5 img-fluid h-100"/>
                                 </div>
-                                <div className="top-design d-flex justify-content-center align-items-end align-items-md-center"
+                                <div className="top-design d-flex justify-content-center align-items-center"
                                      style={{height: "60vh"}}>
                                     <Form formAction={sendCode}/>
                                 </div>
                                 {/*<img src={red} className="img-fluid w-100" style={{height:"10vh",minHeight: "50px"}}/>*/}
                             </div>
 
-                            <div className="vh-100 d-md-flex flex-md-row pr-5 pl-5 w-100 advantagesTxt d-flex flex-column justify-content-center align-items-start">
+                            <div className="vh-100 d-md-flex flex-md-row pr-2 pl-2 pr-sm-5 pl-sm-5 w-100 advantagesTxt d-flex flex-column justify-content-center align-items-start">
                                 <ul className="order-md-0 order-1 vh-100 w-25 text-center w-sm-100">
                                     <li></li>
                                     <li onClick={(e)=>advantageTxtHandler(e,"صرفه جویی و مدیریت زمان","شما این امکان را دارید که سفارش خود را برای همین امروز و یا روزهای آینده (حداکثر دو هفته بعد) و در محل مورد نظر خود ثبت کنید. هنگامی که در منزل در حال استراحت هستید یا در محل کار مشغول فعالیت های روزانه، خودرویتان شسته خواهد شد و شما از صرف زمان در انجام فعالیت های دلخواه خود، لذت خواهید برد.")}>
@@ -265,29 +265,27 @@ const HomePage = (props) => {
                         </main>
 
                         <footer className="mt-5">
-                            <div className="w-100 h-100  d-md-flex flex-row justify-content-center align-items-center">
-                                <div className="w-25 text-center footerItem order">
-                                    <ul>
-                                        <li className="d-flex flex-row-reverse justify-content-center align-items-center justify-content-md-start m-4">
+                            <div className="w-100 h-100  d-flex flex-md-row flex-column justify-content-center align-items-center">
+                                    <ul className="w-25 w-sm-100 d-flex flex-md-column flex-row justify-content-center text-center footerItem order order-md-0 order-1 ">
+                                        <li className="d-flex flex-row-reverse justify-content-center align-items-center justify-content-md-start m-0 m-md-4 mr-sm-4">
                                             <img src={phone}/>
                                             <p className="mr-3">
                                                 09381564444
                                             </p>
                                         </li>
-                                        <li className="d-flex flex-row-reverse justify-content-center align-items-center justify-content-md-start m-4">
+                                        <li className="d-flex flex-row-reverse justify-content-center align-items-center justify-content-md-start m-0 m-md-4">
                                             <img src={mail}/>
                                             <p className="mr-3">
                                                 tsapp.ir@gmail.com
                                             </p>
                                         </li>
                                     </ul>
-                                </div>
 
-                                <div className="w-50 text-center footerItem">
-                                    <img src={flogo} className="img-fluid flogo" style={{height: "30vh"}}/>
+                                <div className="w-50 w-sm-100 text-center footerItem footerItemLogo order-md-1 order-0">
+                                    <img src={flogo} className="img-fluid flogo" style={{height: "25vh"}}/>
                                     <div className="">
                                         <div
-                                            className="mt-3 d-flex flex-row text-center justify-content-center align-items-center">
+                                            className="mt-3 d-flex flex-row text-right text-md-center  justify-content-center align-items-center pr-3 pl-3">
                                             <p>
                                                 آدرس: تهران، جنب ایستگاه متروی شریف ،منطقه فن آوری شریف
                                                 <br/>
@@ -299,8 +297,7 @@ const HomePage = (props) => {
                                     </div>
                                 </div>
 
-                                <div
-                                    className="w-25 text-center d-flex flex-md-column flex-row justify-content-center footerItem order-md-2">
+                                <div className="footerItemIcons w-25 w-sm-50 order-md-2 order-2  text-center d-flex flex-md-column flex-row justify-content-center footerItem order-md-2">
                                     <Link href="/tsapp">
                                         <a className="m-2" target="_blank">
                                             <img src={instagram}/>
@@ -316,9 +313,7 @@ const HomePage = (props) => {
                                             <img src={linkedin}/>
                                         </a>
                                     </Link>
-
                                 </div>
-
 
                             </div>
                         </footer>

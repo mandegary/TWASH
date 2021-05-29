@@ -62,7 +62,7 @@ const HomePageForm = (props) => {
     return (
         <MuiThemeProvider theme={theme}>
             <div
-                className="homeForm w-100 w-sm-75  d-flex flex-row align-items-center justify-content-center justify-content-md-start h-100"
+                className="homeForm w-100 d-flex flex-row align-items-center justify-content-center justify-content-md-start h-100"
                 dir="rtl">
                 {token == null ?
                     <div className="d-flex flex-column flex-md-row align-items-center justify-content-center">
@@ -90,7 +90,7 @@ const HomePageForm = (props) => {
                                     color="secondary"
                                     onClick={() => props.formAction(mobile, referralCode)}
                                     disabled={btnDisabled}>
-                                دریافت کد
+                                ثبت سفارش
                             </Button>
                         </Col>
 
