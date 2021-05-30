@@ -347,9 +347,9 @@ footer img:not(.flogo) {
         height: 30vh !important;
     }
 
-    /*.top-design {
-        height: auto !important;
-    }*/
+    .top-design {
+        /*height: auto !important;*/
+    }
 
     .advantagesTxt ul li p {
         text-align: center;

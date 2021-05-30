@@ -111,10 +111,12 @@ const HomePageForm = (props) => {
                             کد</Button>*/}
                     </div>
                     :
-                    <Button className="homeFormBtn w-25 w-sm-100" variant="contained" color="secondary"
+                    <Col lg="10" md="10" sm="10" className="m-auto col-10">
+                    <Button className="homeFormBtn w-100" variant="contained" color="secondary"
                             onClick={createOrder}>
                         ثبت سفارش
                     </Button>
+                    </Col>
                 }
             </div>
         </MuiThemeProvider>
