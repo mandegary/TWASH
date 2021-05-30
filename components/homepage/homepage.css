@@ -264,7 +264,7 @@ footer img:not(.flogo) {
     }
     .car {
         margin-top: 0 !important;
-        margin-bottom: 50px;
+        margin-bottom: -90px;
     }
     .advantagesTxt ul li img {
         max-height: 50px;
