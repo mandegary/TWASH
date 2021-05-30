@@ -139,7 +139,7 @@ const HomePage = (props) => {
                 displayLoginForm ?
                     <React.Fragment>
                         <main className="homeMain">
-                            <div className="vh-100 position-relative">
+                            <div className="vh-100 position-relative home-Form">
                                 <div className="mt-3 d-flex flex-column justify-content-center align-items-center logoMiddle"
                                      style={{height: "20vh"}}>
                                     <img src={logo} className="mb-2 img-fluid " style={{height: "80%"}}/>

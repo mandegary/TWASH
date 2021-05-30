@@ -328,7 +328,7 @@ footer img:not(.flogo) {
     }
 
     .top-design {
-        min-height: 400px;
+        min-height: 340px;
     }
 
     .logoMiddle {
@@ -348,8 +348,9 @@ footer img:not(.flogo) {
     }
 
     .top-design {
-        /*height: auto !important;*/
+       /* height: auto !important;*/
     }
+
 
     .advantagesTxt ul li p {
         text-align: center;
@@ -368,7 +369,26 @@ footer img:not(.flogo) {
     .car img {
         max-height: 200px;
     }
-
+    .home-Form{
+        height: 80vh!important;
+        min-height:350px;
+    }
+    #header {
+        height: 20vh!important;
+        min-height: 100px;
+    }
+    .logoMiddle {
+        height: 5% !important;
+    }
+    .car {
+        height: 30% !important;
+    }
+    .top-design {
+        height: 85% !important;
+    }
+    .top-design .homeForm {
+        margin-top: 20% !important;
+    }
 }
 
 @media only screen and (min-width: 1600px) {
