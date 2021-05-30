@@ -59,7 +59,7 @@
     width: 80% !important;
 }
 .homeForm{
-    z-index: 9999;
+    z-index: 999;
 }
 @media only screen and (max-width: 780px) {
     .homeForm {
