@@ -96,6 +96,7 @@ export default function CreateOrder() {
                         carBrand: responseJson.order.user_car != undefined ? responseJson.order.user_car.model != undefined ?responseJson.order.user_car.model.brand_id : 0: 0,
                         brandTitle: responseJson.order.user_car != undefined ? responseJson.order.user_car.model != undefined ?responseJson.order.user_car.model.brand.name :"":"",
                         selectedCar: responseJson.order.user_car_id,
+                        selectedCarTitle:responseJson.order.user_car.model.name,
                         date: responseJson.order.reserved_day,
                         carTag: responseJson.order.user_car != undefined ? responseJson.order.user_car.plaque : "",
                         cardFile:responseJson.order.user_car != undefined ? responseJson.order.user_car.card_image : ""
@@ -142,7 +143,7 @@ export default function CreateOrder() {
         Notiflix.Loading.Dots();
         let data = new FormData()
         data.append('car_model_id', orderData.carModel)
-        if (orderData.selectedCar > 0) data.append('user_car_id', orderData.selectedCar)
+        if (orderData.user_cars) data.append('user_cars', orderData.user_cars)
         if (orderData.carTag != undefined) data.append('car_plaque', orderData.carTag)
         if (orderData.cardImg != undefined) data.append('car_card_image', orderData.cardImg)
         data.append('absence', orderData.absence)

@@ -326,13 +326,18 @@ const Order = (props) => {
 
         if (!isEmpty(props.orderData)) {
             setOrderData(props.orderData)
+            let _servicesTitle=[]
             if (props.orderData.services.includes(1)) {
                 setRooShoyi(true)
+                setIsTooOrRooSelected(true)
                 setRooShoyiClass("true")
+                _servicesTitle.push("روشویی")
             }
             if (props.orderData.services.includes(2)) {
+                setIsTooOrRooSelected(true)
                 setTooShooyi(true)
                 setTooShooyiClass("true")
+                _servicesTitle.push("توشویی")
             }
             if (props.orderData.services.includes(4)) {
                 setLastikWax(true)
@@ -342,7 +347,11 @@ const Order = (props) => {
                 setDashboardWax(true)
                 setDashboardWaxClass("true")
             }
-            setServicesTitle(props.orderData.servicesTitle)
+            console.log(props.orderData)
+            if(props.orderData.servicesTitle !=undefined)
+                setServicesTitle(props.orderData.servicesTitle)
+            else
+                setServicesTitle(_servicesTitle)
             setServices(props.orderData.services);
             setState({
                 ...state,
@@ -352,76 +361,112 @@ const Order = (props) => {
                 lastikWax: props.orderData.services.includes(5) ? true : false
             })
             //calculatePrice(props.orderData.services, props.orderData.carModel)
-            setCarModels(props.orderData.carModels)
-            setCarModelsHolder(props.orderData.carModelsHolder)
-            setCarsHolder(props.orderData.user_cars)
-            setCarBrands(props.orderData.carBrands)
 
-            let _cars = [];
-            props.orderData.user_cars.map((car, index) =>
-                car.name != "" ? _cars.push({title: car.model.name, id: car.id}) : null
-            )
-            setCars(_cars)
-            setDate(momentJalaali(props.orderData.date).format('YYYY-M-D'))
-            let x = props.orderData.dateTimesHolder[props.orderData.day]
-            let t=[]
-            let _keys = Object.keys(x.times)
-            for(let i=0;i<_keys.length;i++)
-                t.push(<MenuItem key={i} value={_keys[i]} name={_keys[i]}>{_keys[i]}</MenuItem>)
-            setTimes(t);
-            /*setTimes(timesHolder.map((time, index) =>
-                <MenuItem key={index} value={time}>{time}</MenuItem>
-            ))*/
-            validate(true)
-            setDateTimesHolder(props.orderData.dateTimesHolder)
-            let _dates = Object.keys(props.orderData.dateTimesHolder);
-            setDatesHolder(_dates.map((date, index) =>
-                <MenuItem key={index} value={date}>{date}</MenuItem>
-            ))
-            setDate(props.orderData.day)
-            setTimestamp(props.orderData.date)
-            setTime(props.orderData.time)
-            setTimeEnd(props.orderData.endTime)
+
+            if(props.orderData.user_cars != undefined) {
+                setCarBrands(props.orderData.carBrands)
+                setCarModels(props.orderData.carModels)
+                setCarModelsHolder(props.orderData.carModelsHolder)
+                setCarsHolder(props.orderData.user_cars)
+                let _cars = [];
+                props.orderData.user_cars.map((car, index) =>
+                    car.name != "" ? _cars.push({title: car.model.name, id: car.id}) : null
+                )
+                setCars(_cars)
+
+                if (props.orderData.selectedCar > 0) {
+                    setCarBrand(0)
+                    setCarModel(0)
+                    setCarBrandTitle("")
+                    setCarModelTitle("")
+                    setSelectedCarIsSelected(true)
+                    setSelectedCar(props.orderData.selectedCar)
+                    setCarModel(props.orderData.selectedCar)
+                    for (let i = 0; i < props.orderData.user_cars.length; i++)
+                        if (props.orderData.user_cars[i].id == props.orderData.selectedCar) {
+                            setSelectedCarTitle(props.orderData.user_cars[i].model.name)
+                            setSelectedCarIsSelected(true)
+                            if (props.orderData.carTag == undefined &&props.orderData.user_cars[i].plaque!=null ) {
+                                setCarTag(props.orderData.user_cars[i].plaque)
+                                setNum0(props.orderData.user_cars[i].plaque[0])
+                                setNum1(props.orderData.user_cars[i].plaque[1])
+                                setNum2(props.orderData.user_cars[i].plaque[2])
+                                setNum3(props.orderData.user_cars[i].plaque[3])
+                                setNum4(props.orderData.user_cars[i].plaque[4])
+                                setNum5(props.orderData.user_cars[i].plaque[5])
+                                setNum6(props.orderData.user_cars[i].plaque[6])
+                                setNum7(props.orderData.user_cars[i].plaque[7])
+                            }
+                            if (props.orderData.cardImg == undefined) setFile(props.orderData.user_cars[i].card_image)
+                            if(props.orderData.absence) setShowCarItems(true)
+
+                        }
+                } else {
+                    setCarBrandTitle(props.orderData.carModel);
+                    setCarModelTitle(props.orderData.modelTitle);
+                    setCarBrandTitle(props.orderData.brandTitle)
+                    setCarBrand(props.orderData.carBrand)
+
+                }
+            }
+
+            else {
+                fetchCars();
+                fetchBrands()
+                fetchCarModels()
+                console.log(props.orderData)
+                if (props.orderData.selectedCar > 0) {
+                    setCarBrand(0)
+                    setCarModel(0)
+                    setCarBrandTitle(props.orderData.brandTitle)
+                    setCarModelTitle(props.orderData.selectedCarTitle)
+                    setSelectedCarIsSelected(true)
+                    setSelectedCar(props.orderData.selectedCar)
+                    setCarModel(props.orderData.selectedCar)
+                    setSelectedCarTitle(props.orderData.selectedCarTitle)
+                    setSelectedCarBrandTitle(props.orderData.brandTitle)
+                    setSelectedCarModelTitle(props.orderData.selectedCarTitle);
+                } else {
+                    setCarBrandTitle(props.orderData.carModel);
+                    setCarModelTitle(props.orderData.modelTitle);
+                    setCarBrandTitle(props.orderData.brandTitle)
+                    setCarBrand(props.orderData.carBrand)
+                }
+            }
+
+            if(props.orderData.datetimesholder !=undefined){
+                setDate(momentJalaali(props.orderData.date).format('YYYY-M-D'))
+                let x = props.orderData.dateTimesHolder[props.orderData.day]
+                let t=[]
+                let _keys = Object.keys(x.times)
+                for(let i=0;i<_keys.length;i++)
+                    t.push(<MenuItem key={i} value={_keys[i]} name={_keys[i]}>{_keys[i]}</MenuItem>)
+                setTimes(t);
+                /*setTimes(timesHolder.map((time, index) =>
+                    <MenuItem key={index} value={time}>{time}</MenuItem>
+                ))*/
+
+                setDateTimesHolder(props.orderData.dateTimesHolder)
+                let _dates = Object.keys(props.orderData.dateTimesHolder);
+                setDatesHolder(_dates.map((date, index) =>
+                    <MenuItem key={index} value={date}>{date}</MenuItem>
+                ))
+                setDate(props.orderData.day)
+                setTimestamp(props.orderData.date)
+                setTime(props.orderData.time)
+                setTimeEnd(props.orderData.endTime)
+                validate(true)
+            }
+            else {
+                fetchTimes()
+                validate(false)
+            }
+
+
             calculatePrice(props.orderData.services, props.orderData.carModel)
             setPrice(props.orderData.price)
             setToggle(props.orderData.absence)
 
-            if (props.orderData.selectedCar > 0) {
-                setCarBrand(0)
-                setCarModel(0)
-                setCarBrandTitle("")
-                setCarModelTitle("")
-                setSelectedCarIsSelected(true)
-                setSelectedCar(props.orderData.selectedCar)
-                setCarModel(props.orderData.selectedCar)
-                for (let i = 0; i < props.orderData.user_cars.length; i++)
-                    if (props.orderData.user_cars[i].id == props.orderData.selectedCar) {
-                        setSelectedCarTitle(props.orderData.user_cars[i].model.name)
-                        setSelectedCarIsSelected(true)
-                        if (props.orderData.carTag == undefined) {
-                            setCarTag(props.orderData.user_cars[i].plaque)
-                            setNum0(props.orderData.user_cars[i].plaque[0])
-                            setNum1(props.orderData.user_cars[i].plaque[1])
-                            setNum2(props.orderData.user_cars[i].plaque[2])
-                            setNum3(props.orderData.user_cars[i].plaque[3])
-                            setNum4(props.orderData.user_cars[i].plaque[4])
-                            setNum5(props.orderData.user_cars[i].plaque[5])
-                            setNum6(props.orderData.user_cars[i].plaque[6])
-                            setNum7(props.orderData.user_cars[i].plaque[7])
-                        }
-                        if (props.orderData.cardImg == undefined) setFile(props.orderData.user_cars[i].card_image)
-                        setShowCarItems(true)
-                        /*setCarBrandTitle(props.orderData.user_cars[i].model.brand.name);
-                        setCarModelTitle(props.orderData.user_cars[i].model.name);
-                        setSelectedCarBrandTitle(props.orderData.user_cars[i].model.brand.name)
-                        setSelectedCarModelTitle(props.orderData.user_cars[i].model.name);*/
-                    }
-            } else {
-                setCarBrandTitle(props.orderData.carModel);
-                setCarModelTitle(props.orderData.modelTitle);
-                setCarBrandTitle(props.orderData.brandTitle)
-                setCarBrand(props.orderData.carBrand)
-            }
 
             if (props.orderData.carTag != undefined) {
                 let tag = props.orderData.carTag.split("");
@@ -1141,7 +1186,6 @@ const Order = (props) => {
         validate(result);
     };
     const timeHandler = (event) => {
-        console.log(event);
         setTime(event.target.value);
         let index = timesHolder.indexOf(event.target.value);
         let _m = hoursToMinutes (event.target.value)
@@ -1149,6 +1193,8 @@ const Order = (props) => {
         setTimeEnd(minutesToHours (_m))
         setOrderData({...orderData, time: event.target.value, endTime: timesHolder[index + 1], absence: toggle ? 1 : 0})
         let result = ((carBrand != 0 && carModel != 0) || selectedCar != 0) && date != "" && event.target.value != "" && services.length > 0 && isTooOrRooSelected;
+        console.log(services.length > 0)
+        console.log( isTooOrRooSelected)
         validate(result);
     }
     function getTimeStamp(input) {

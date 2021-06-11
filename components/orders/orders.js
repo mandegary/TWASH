@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from "react";
 import "./orders.css"
+import {useRouter} from "next/router";
+import Rating from '@material-ui/lab/Rating';
+import StarRatings from 'react-star-ratings';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 import {Col, Container, Row} from "react-bootstrap";
 import {
@@ -10,10 +13,9 @@ import {
     FormLabel,
     RadioGroup,
     FormControlLabel,
-    TextField, InputLabel, Select
+    TextField, InputLabel, Select,Box
 } from "@material-ui/core";
 import moment from "moment-jalaali";
-import StarRatings from 'react-star-ratings';
 import {VerifyToken, verifyToken} from "../Helpers";
 import Notiflix from "notiflix";
 import {addCommas} from "persian-tools2";
@@ -29,13 +31,14 @@ import axios from "axios";
 /*import NewLocationForm from "../user/newLocationMap";*/
 import NewLocationForm from "../order/mapp";
 import delBtn from "../../assets/images/del.svg";
-
+import Order from "./order"
 const theme = createMuiTheme({
     direction: 'rtl'
 });
 
 const Orders = (props) => {
-    const [ordersHolder, setOrdersHolder] = useState("");
+    const router = useRouter()
+    const [ordersHolder, setOrdersHolder] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = React.useState(false);
     const [showEditTimeModal, setShowEditTimeModal] = React.useState(false);
@@ -51,6 +54,9 @@ const Orders = (props) => {
     const [locations, setLocations] = useState([]);
     const [id, setId] = useState("");
     const [datesArray, setDatesArray] = useState([]);
+    const [datesHolder, setDatesHolder] = useState([]);
+    const [dateTimesHolder, setDateTimesHolder] = useState({});
+    const [value, setValue] = useState(0);
     const [enabledRange, setEnabledRange] = useState({
         min: moment().add(-1, 'days'),
         max: moment().add(14, 'days')
@@ -75,7 +81,7 @@ const Orders = (props) => {
 
     useEffect(() => {
         fetchOrders()
-        let dateArray = [];
+        /*let dateArray = [];
         for(let i=0;i<10;i++)
             dateArray.push(moment().add(i, 'days'))
         setDatesArray(dateArray.map((date, index) =>
@@ -92,7 +98,8 @@ const Orders = (props) => {
         }, 1000);
         return () => clearInterval(interval);
 
-        timesHandler(t);
+        timesHandler(t);*/
+        fetchTimes()
         fetchLocations();
     }, [])
 
@@ -105,6 +112,42 @@ const Orders = (props) => {
         "16:00", "17:00", "18:00", "19:00",
         "20:00", "21:00", "22:00"
     ];
+    function fetchTimes(){
+        const abortController = new AbortController()
+        const promise = window
+            .fetch(url + '/order/times', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'dataType': 'jsonp',   //you may use jsonp for cross origin request
+                    'Access-Control-Allow-Origin': '*',
+                },
+                method: 'GET',
+                mode: 'cors',
+                signal: abortController.signal
+            })
+            .then(res => res.json())
+            .then(responseJson => {
+                setDateTimesHolder(responseJson.times);
+                let x = Object.keys(responseJson.times);
+                setDatesHolder(x.map((date, index) =>
+                    <MenuItem key={index} value={date}>{date}</MenuItem>
+                ))
+
+                /*setDateTimesHolder(responseJson.times);
+                let x = Object.values(responseJson.times);
+                console.log(Object.values(responseJson.times))
+                setDatesHolder(x.map((date, index) =>
+                    <MenuItem key={index} value={date.timestamp}>{date.timeTxt}</MenuItem>
+                ))*/
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        // Cancel the request if it takes more than delayFetch seconds
+        setTimeout(() => abortController.abort(), process.env.delayFetch)
+    }
+
     const timesHandler = (newDate) => {
         let today = new Date();
         let currentH = (today.getHours() + 3).toString()
@@ -155,7 +198,9 @@ const Orders = (props) => {
         var d = new Date(date[0], date[1] - 1, date[2], time[0], time[1], time[2]);
         return d.getTime() / 1000;
     }
-
+    function isEmpty(obj) {
+        return Object.keys(obj).length === 0;
+    }
     const dateHandler = (value) => {
         console.log(value)
         let _d = value.format('YYYY-M-D HH:mm:ss')
@@ -167,12 +212,26 @@ const Orders = (props) => {
         console.log(_timestamp * 1000)
     }
     const datesHandler = (e) => {
-        let value= e.target.value;
+        let x = dateTimesHolder[e.target.value]
+        let _keys = Object.keys(x.times)
+        let _values = Object.values(x)
+        //console.log(e.target.value)
+        let t=[]
+        for(let i=0;i<_keys.length;i++)
+            t.push(<MenuItem key={i} value={_keys[i]} name={_keys[i]}>{_keys[i]}</MenuItem>)
+        setTimes(t);
+        //console.log(e.target.value);
+        //setDay(e.target.value);
+        setDate(e.target.value);
+        if(x.timestamp!=undefined) setTimestamp(x.timestamp)
+        //console.log(x.timestamp)
+
+        /*let value= e.target.value;
         let _d = value
         let _timestamp = getTimeStamp(_d)
         setDate(value);
         timesHandler(value)
-        setTimestamp(_timestamp)
+        setTimestamp(_timestamp)*/
     }
     const closeModal = () => {
         setShowModal(false);
@@ -195,6 +254,11 @@ const Orders = (props) => {
     const viewEditAddressModal = (_id) => {
         setId(_id)
         setShowEditAddressModal(true)
+    }
+    const ratingHandler =(newRating, name) => {
+        alert(value)
+        alert(newRating)
+        setValue(newRating);
     }
     const editTime = () => {
         if(time=="")
@@ -303,108 +367,7 @@ const Orders = (props) => {
                             var myobj = document.getElementById("NotiflixLoadingWrap");
                             myobj.remove();
                         }
-                        setOrdersHolder(responseJson.orders.map((order, index) =>
-                                <Row className="orderSummary">
-                                    <Col xl={12} lg={12} md={12} sm={12} xs={12}>
-                                        {order.user_car != null ?
-                                            <div>خودروی انتخاب شده :
-                                                {order.user_car.model.brand.name}
-                                                -
-                                                {order.user_car.model.name}
-
-                                            </div>
-                                            : null
-                                        }
-                                        <div>خدمات انتخاب شده : {
-                                            order.items.map(function (elem) {
-                                                return elem.title;
-                                            }).join(" - ")
-                                            /*order.items.map((service, index) =>
-                                                service.title + " . "
-                                            )*/
-                                        }</div>
-
-                                        <div>هزینه : {addCommas(order.final)} تومان</div>
-
-                                        <div>زمان شست و شو :
-                                             {moment(order.reserved_day).locale('fa').format('dddd jD jMMMM jYYYY')} از ساعت {
-                                                [order.human_reserved_time.slice(0, 2), ":", order.human_reserved_time.slice(2)].join('')
-                                            }
-                                            &nbsp;
-                                            تا {order.human_reserved_time == "2100"?
-                                                "23:00"
-                                                :
-                                                order.human_reserved_time == "2200"?
-                                                    "24:00"
-                                                    :
-                                                        timesHolder[timesHolder.indexOf([order.human_reserved_time.slice(0, 2), ":", order.human_reserved_time.slice(2)].join('')) + 2]
-                                            }</div>
-                                        <div>محل شست و شو : {
-                                            order.user_address.description
-                                        }</div>
-                                        <div>وضعیت درخواست : {
-                                            order.human_status == "init" ? "جدید" :
-                                                order.human_status == "waiting_for_payment" ? "در انتظار پرداخت" :
-                                                    order.human_status == "payment_done" ? "پرداخت شده" :
-                                                        order.human_status == "payment_failed" ? "پرداخت ناموفق" :
-                                                            order.human_status == "confirmed" ? "تایید شده توسط اپراتور" :
-                                                                order.human_status == "accepted" ? "تایید شده توسط واشمن" :
-                                                                    order.human_status == "done" ? "اتمام درخواست" :
-                                                                        order.human_status == "canceled_by_user" ? "درخواست توسط شما لغو شده است." :
-                                                                            order.human_status == "canceled_by_operator" ? "درخواست توسط اپراتور لغو شده است." :
-                                                                                order.human_status == "canceled_by_system" ? "درخواست توسط سیستم لغو شده است." :
-                                                                                    order.human_status == "archived" ? "اتمام" :
-                                                                                        "-"
-                                        }</div>
-                                        {
-                                            <div className="btns">
-                                                {/*{
-                                                    !order.payment_done && order.payment.payment_method ?
-                                                        <div>
-                                                            <Button className="beforeAfterBtn" variant="contained">
-                                                                پرداخت
-                                                                </Button>
-                                                        </div>
-                                                        : null
-                                                }*/}
-                                            {
-                                                order.images.before != null || order.images.after != null ?
-                                                <div>
-                                                    <Button className="beforeAfterBtn" variant="contained"
-                                                            onClick={() => viewModal(order.images.before, order.images.after)}>مشاهده
-                                                        تصاویر</Button>
-                                                </div>
-                                                : null
-                                            }
-                                                {
-                                                    order.editable  &&
-                                                    <React.Fragment>
-                                                        <div>
-                                                            <Button className="editBtn" variant="contained"
-                                                                    onClick={() => viewEditAddressModal(order.id)}>ویرایش مکان سفارش</Button>
-                                                        </div>
-
-                                                        <div>
-                                                            <Button className="editBtn" variant="contained"
-                                                                    onClick={() => viewEditTimeModal(order.id , order.human_reserved_time , order.reserved_day)}>ویرایش زمان سفارش</Button>
-                                                        </div>
-                                                    </React.Fragment>
-
-                                                }
-                                            </div>
-                                        }
-
-                                        {/*<div>میزان رضایت:<StarRatings
-                                        rating={4}
-                                        starDimension="20px"
-                                        starSpacing="5px"
-                                        starRatedColor="#00878B"
-                                    />
-                                    </div>*/}
-                                    </Col>
-                                </Row>
-                            )
-                        )
+                        setOrdersHolder(responseJson.orders)
                         setLoading(false)
                     }
             })
@@ -446,6 +409,45 @@ const Orders = (props) => {
         // Cancel the request if it takes more than delayFetch seconds
         setTimeout(() => abortController.abort(), process.env.delayFetch)
     };
+    const pay=(id)=>{
+        Notiflix.Loading.Dots();
+        const abortController = new AbortController()
+        const promise = window
+            .fetch(url + `/order/${id}/payment`, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'dataType': 'jsonp',   //you may use jsonp for cross origin request
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': "Bearer " + token
+                },
+                method: 'GET',
+                mode: 'cors',
+                signal: abortController.signal
+            })
+            .then(res => res.json())
+            .then(responseJson => {
+                if (responseJson.message == "لینک پرداخت با موفقیت دریافت شد.") {
+                    if (document.getElementById("NotiflixNotifyWrap") != undefined) {
+                        var myobj = document.getElementById("NotiflixNotifyWrap");
+                        myobj.remove();
+                    }
+                    if (document.getElementById("NotiflixLoadingWrap") != undefined) {
+                        var myobj = document.getElementById("NotiflixLoadingWrap");
+                        myobj.remove();
+                    }
+                    if (responseJson.payment_data != null) {
+                        Notiflix.Notify.Success('به درگاه پرداخت منتقل می شوید...');
+                        router.push(responseJson.payment_data.original.action)
+                    }
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        // Cancel the request if it takes more than delayFetch seconds
+        setTimeout(() => abortController.abort(), process.env.delayFetch)
+    }
     return (
         <MuiThemeProvider theme={theme}>
             <div className="ordersInfo" dir="rtl">
@@ -463,7 +465,9 @@ const Orders = (props) => {
                         :
                         <React.Fragment>
                             {
-                                ordersHolder
+                                ordersHolder.map((order, index) =>
+                                    <Order order={order} key={index} viewEditTimeModal={viewEditTimeModal} viewEditAddressModal={viewEditAddressModal} pay={pay}/>
+                                )
                             }
                             <Dialog open={showModal} onClose={closeModal} aria-labelledby="form-dialog-title"
                                     className="">
@@ -504,7 +508,7 @@ const Orders = (props) => {
                                                             value={date}
                                                             onChange={datesHandler}
                                                             label="تاریخ کارواش">
-                                                            {datesArray}
+                                                            {datesHolder}
                                                         </Select>
                                                     </FormControl>
                                                 </Col>

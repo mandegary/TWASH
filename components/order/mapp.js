@@ -42,6 +42,7 @@ const HomePageForm = (props) => {
         return Object.keys(obj).length === 0;
     }
     useEffect(() => {
+
         if(!isEmpty(props.mapData)){
             setLng(props.mapData.lng)
             setLat(props.mapData.lat)
