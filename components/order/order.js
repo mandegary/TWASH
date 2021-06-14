@@ -288,7 +288,6 @@ const Order = (props) => {
         }
         return minutes;
     }
-
     const timesHandler = (newDate) => {
         let today = new Date();
         let currentH = (today.getHours() +3).toString()
@@ -381,6 +380,8 @@ const Order = (props) => {
                     setCarModelTitle("")
                     setSelectedCarIsSelected(true)
                     setSelectedCar(props.orderData.selectedCar)
+                    setSelectedCarModelTitle(props.orderData.modelTitle)
+                    setSelectedCarBrandTitle(props.orderData.brandTitle)
                     setCarModel(props.orderData.selectedCar)
                     for (let i = 0; i < props.orderData.user_cars.length; i++)
                         if (props.orderData.user_cars[i].id == props.orderData.selectedCar) {
@@ -402,19 +403,21 @@ const Order = (props) => {
 
                         }
                 } else {
+                    setSelectedCarModelTitle(props.orderData.modelTitle)
+                    setSelectedCarBrandTitle(props.orderData.brandTitle)
                     setCarBrandTitle(props.orderData.carModel);
                     setCarModelTitle(props.orderData.modelTitle);
                     setCarBrandTitle(props.orderData.brandTitle)
                     setCarBrand(props.orderData.carBrand)
-
+                    setCarModel(props.orderData.carModel)
                 }
+
             }
 
             else {
                 fetchCars();
                 fetchBrands()
                 fetchCarModels()
-                console.log(props.orderData)
                 if (props.orderData.selectedCar > 0) {
                     setCarBrand(0)
                     setCarModel(0)
@@ -458,8 +461,7 @@ const Order = (props) => {
                 validate(true)
             }
             else {
-                fetchTimes()
-                validate(false)
+                fetchTimes(true)
             }
 
 
@@ -521,7 +523,7 @@ const Order = (props) => {
         token = JSON.parse(localStorage.getItem('accessToken'));
         ordersCount = JSON.parse(localStorage.getItem('orders'));
     }
-    function fetchTimes(){
+    function fetchTimes(_props){
         const abortController = new AbortController()
         const promise = window
             .fetch(url + '/order/times', {
@@ -542,7 +544,16 @@ const Order = (props) => {
                     setDatesHolder(x.map((date, index) =>
                         <MenuItem key={index} value={date}>{date}</MenuItem>
                     ))
-
+                if(_props)
+                {
+                    setDate(props.orderData.day)
+                    setDay(props.orderData.day)
+                    setTimestamp(props.orderData.date)
+                    setTime(props.orderData.time)
+                    setTimeEnd(props.orderData.endTime)
+                    datesHandle(null , props.orderData.day,responseJson.times)
+                    validate(true)
+                }
                 /*setDateTimesHolder(responseJson.times);
                 let x = Object.values(responseJson.times);
                 console.log(Object.values(responseJson.times))
@@ -688,7 +699,6 @@ const Order = (props) => {
         else setCarModels(carModelsHolder)
 
     }
-
     const fetchCarModels = (id) => {
         let q = "";
         if (id == "")
@@ -1001,34 +1011,6 @@ const Order = (props) => {
             })
         }
     }
-    const resetToggleState = (value) => {
-        setServices([])
-        setServicesTitle([])
-        setPrice("...")
-
-        setShowCarItems(false)
-        setToggle(false)
-        setRooShoyi(false)
-        setRooShoyiClass("false")
-        setTooShooyi(false)
-        setTooShooyiClass("false")
-        setRooShoyiTooShooyi(false)
-        setRooShoyiTooShooyiClass("false")
-        setDashboardWax(false)
-        setDashboardWaxClass("false")
-        setLastikWax(false)
-        setLastikWaxClass("false")
-        setOrderData({...orderData, absence: 0})
-        setState({
-            ...state,
-            rooShoyi: false,
-            tooShooyi: false,
-            rooShoyiTooShooyi: false,
-            dashboardWax: false,
-            lastikWax: false
-        })
-
-    }
     function removeItemOnce(arr, value) {
         var index = arr.indexOf(value);
         if (index > -1) {
@@ -1037,6 +1019,7 @@ const Order = (props) => {
         return arr;
     }
     const servicesHandler = (event) => {
+
         let _services = {...state, [event.target.name]: event.target.checked}
         let _selectedServices = [];
         let _selectedServicesTitle = []
@@ -1193,8 +1176,6 @@ const Order = (props) => {
         setTimeEnd(minutesToHours (_m))
         setOrderData({...orderData, time: event.target.value, endTime: timesHolder[index + 1], absence: toggle ? 1 : 0})
         let result = ((carBrand != 0 && carModel != 0) || selectedCar != 0) && date != "" && event.target.value != "" && services.length > 0 && isTooOrRooSelected;
-        console.log(services.length > 0)
-        console.log( isTooOrRooSelected)
         validate(result);
     }
     function getTimeStamp(input) {
@@ -1231,8 +1212,23 @@ const Order = (props) => {
         setOrderData({...orderData, date: _timestamp * 1000})
         validate(false);
     }
-    const datesHandle = (e) => {
-        let x = dateTimesHolder[e.target.value]
+    const datesHandle = (e , _date , _times) => {
+        let x
+        //console.log(e.target.value)
+        console.log(_date)
+        console.log(dateTimesHolder)
+        if(e!=null)
+         {
+
+             x = dateTimesHolder[e.target.value];
+             setDay(e.target.value);
+             setDate(e.target.value);
+         }
+        else {
+            x = _times[_date];
+            setDay(_date);
+            setDate(_date);
+        }
         let _keys = Object.keys(x.times)
         let _values = Object.values(x)
         //console.log(e.target.value)
@@ -1240,25 +1236,9 @@ const Order = (props) => {
         for(let i=0;i<_keys.length;i++)
             t.push(<MenuItem key={i} value={_keys[i]} name={_keys[i]}>{_keys[i]}</MenuItem>)
         setTimes(t);
-        console.log(e.target.value);
-        setDay(e.target.value);
-        setDate(e.target.value);
+
         if(x.timestamp!=undefined) setTimestamp(x.timestamp)
-        console.log(x.timestamp)
-        /*setTimes(_keys.map((time, index) =>
-            <MenuItem key={index} value={time}>{time}</MenuItem>
-        ))*/
-        /*setTime("")
-        let value= e.target.value;
-        let _d = value
-        let _timestamp = getTimeStamp(_d)
-        //var date = new Date(timestamp*1000);
-        setDate(value);
-        if (isEmpty(props.orderData))
-            timesHandler(value)
-        setTimestamp(_timestamp * 1000)
-        setOrderData({...orderData, date: _timestamp * 1000})
-        validate(false);*/
+
     }
     const createOrder = () => {
         let _orderData = {
