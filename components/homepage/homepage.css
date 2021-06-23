@@ -1,429 +1,436 @@
 .homeMain {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .main {
-    background: #F2F2F2;
+  background: #f2f2f2;
 }
 
 .homeBg {
-    background: linear-gradient(92deg, rgba(194, 220, 227, 0.85), rgba(118, 176, 191, 0.7)), url(/images/carwash.jpg);
-    height: 100vh;
-    background-clip: content-box;
-    width: 100%;
-    padding: 0 15px;
-    background-size: cover;
-    position: relative;
-    min-height: 506px;
+  background: linear-gradient(
+      92deg,
+      rgba(194, 220, 227, 0.85),
+      rgba(118, 176, 191, 0.7)
+    ),
+    url(/images/carwash.jpg);
+  height: 100vh;
+  background-clip: content-box;
+  width: 100%;
+  padding: 0 15px;
+  background-size: cover;
+  position: relative;
+  min-height: 506px;
 }
 
 .homeDiv {
-    position: absolute;
-    width: 90%;
-    display: flex;
-    flex-direction: row-reverse;
-    top: 100px;
+  position: absolute;
+  width: 90%;
+  display: flex;
+  flex-direction: row-reverse;
+  top: 100px;
 }
 
 .tWashTtx {
-    text-align: right;
-    direction: rtl;
+  text-align: right;
+  direction: rtl;
 }
 
 .tWashTtx h1 {
-    margin: 20px -10px 30px;
-    font-size: 28px;
-    font-weight: bold;
+  margin: 20px -10px 30px;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .tWashTtx li {
-    list-style: disc;
-    height: 40px;
-    padding-right: 15px;
-    margin: 10px;
-    font-size: 15px;
+  list-style: disc;
+  height: 40px;
+  padding-right: 15px;
+  margin: 10px;
+  font-size: 15px;
 }
 
 .downloadBtn.MuiButton-containedSecondary {
-    color: #fff;
-    background-color: rgb(240, 70, 65) !important;
+  color: #fff;
+  background-color: rgb(240, 70, 65) !important;
 }
 
 #header.homeHead {
-    background: #008d9a;
-    color: #fff;
+  background: #008d9a;
+  color: #fff;
 }
 
 #header.homeHead li.MenuItem a:hover {
-    border-bottom: 3px solid #fff;
-    color: #fff;
+  border-bottom: 3px solid #fff;
+  color: #fff;
 }
 
 @media only screen and (max-width: 780px) {
-    .flogo {
-        height: 20vh !important;
-    }
+  .flogo {
+    height: 20vh !important;
+  }
 
-    .homeDiv {
-        flex-direction: column-reverse !important;
-    }
+  .homeDiv {
+    flex-direction: column-reverse !important;
+  }
 
-    .homeDiv {
-        position: relative !important;
-        top: 5% !important;
-        margin: 0 auto !important;
-    }
+  .homeDiv {
+    position: relative !important;
+    top: 5% !important;
+    margin: 0 auto !important;
+  }
 
-    /*.top-design{
+  /*.top-design{
         max-height: 300px;
     }*/
-    .w-sm-100 {
-        width: 100% !important;
-    }
+  .w-sm-100 {
+    width: 100% !important;
+  }
 
-    .advantagesTxtCntr {
-        top: 0 !important;
-    }
+  .advantagesTxtCntr {
+    top: 0 !important;
+  }
 
-    .advantagesTxtCntr > div {
-        /* height: 300px; */
-        box-shadow: 2px 3px 7px 5px #ccc;
-        overflow-y: auto;
-    }
+  .advantagesTxtCntr > div {
+    /* height: 300px; */
+    box-shadow: 2px 3px 7px 5px #ccc;
+    overflow-y: auto;
+  }
 
-    .advantagesTxtCntr > img {
-        width: 80%;
-        top: -55px !important;
-        height: auto !important;
-    }
+  .advantagesTxtCntr > img {
+    width: 80%;
+    top: -55px !important;
+    height: auto !important;
+  }
 
-    .footerItem {
-        background: #ef4d49;
-        top: 35px;
-        position: relative;
-    }
+  .footerItem {
+    background: #ef4d49;
+    top: 20px;
+    position: relative;
+  }
 
-    .footerItem > img {
-        max-width: 200px;
-    }
+  .footerItem > img {
+    max-width: 200px;
+  }
 }
 
 .footerItem {
-    color: #fff
+  color: #fff;
 }
 
 .top-design {
-    background: url("/images/top designn.png") no-repeat;
-    width: 100%;
-    background-size: cover;
+  background: url("/images/top designn.png") no-repeat;
+  width: 100%;
+  background-size: cover;
 }
 
 .advantagesTxt ul li {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 20vh;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  cursor: pointer;
 }
 
 .advantagesTxt ul li p {
-    max-width: 60%;
-    text-align: right;
-    float: right;
-    color: #02868b;
-    margin: 10px;
-    direction: rtl;
-    font-size: 16px;
+  max-width: 60%;
+  text-align: right;
+  float: right;
+  color: #02868b;
+  margin: 10px;
+  direction: rtl;
+  font-size: 16px;
 }
 
 .advantagesTxt p {
-    direction: rtl;
+  direction: rtl;
 }
 
 .advantagesTxtCntr {
-    /*top: -150px;*/
-    position: relative;
-    display: inline-table;
+  /*top: -150px;*/
+  position: relative;
+  display: inline-table;
 }
 
 .advantagesTxtCntr > div {
-    height: 300px;
-    box-shadow: 2px 3px 7px 5px #ccc;
-    overflow: auto;
+  height: 300px;
+  box-shadow: 2px 3px 7px 5px #ccc;
+  overflow: auto;
 }
 
 .advantagesTxt ul li img {
-    height: 80%;
-    min-height: 40px;
+  height: 80%;
+  min-height: 40px;
 }
 
 .teamtop {
-    background: #a3d5d5
+  background: #a3d5d5;
 }
 
 .teamtop img {
-    object-fit: contain;
+  object-fit: contain;
 }
 
 .teamItems {
-    margin-top: -50px;
-    position: relative;
-    z-index: -1;
+  margin-top: -50px;
+  position: relative;
+  z-index: -1;
 }
 
 .teamItems p {
-    box-shadow: 2px 3px 7px 5px #ccc;
-    margin: 0 auto;
-    text-align: center;
-    padding-top: 125px;
-    margin-top: -135px;
-    padding-bottom: 20px;
-    line-height: 2;
-    direction: rtl;
-    text-align: justify;
-    padding-right: 20px;
-    padding-left: 20px;
-    height: auto;
+  box-shadow: 2px 3px 7px 5px #ccc;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 125px;
+  margin-top: -135px;
+  padding-bottom: 20px;
+  line-height: 2;
+  direction: rtl;
+  text-align: justify;
+  padding-right: 20px;
+  padding-left: 20px;
+  height: auto;
 }
 
 .team ul li {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .team ul li div {
-    background: url("/images/teamtop.png") no-repeat;
-    color: #02868b;
-    width: 90%;
-    height: 184px;
-    display: inline-block;
-    text-align: center;
-    padding-top: 90px;
-    direction: rtl;
-    font-size: 20px;
-    font-weight: bold;
-    background-size: contain;
-    background-position: center center;
+  background: url("/images/teamtop.png") no-repeat;
+  color: #02868b;
+  width: 90%;
+  height: 184px;
+  display: inline-block;
+  text-align: center;
+  padding-top: 90px;
+  direction: rtl;
+  font-size: 20px;
+  font-weight: bold;
+  background-size: contain;
+  background-position: center center;
 }
 
 .brd {
-    height: 8px;
-    background: red;
-    margin: 0 auto;
-    border-radius: 50px;
-    box-shadow: 3px 4px 10px 2px #888;
-    z-index: 10000;
-    position: relative;
+  height: 8px;
+  background: red;
+  margin: 0 auto;
+  border-radius: 50px;
+  box-shadow: 3px 4px 10px 2px #888;
+  z-index: 10000;
+  position: relative;
 }
 
 .brdPink {
-    height: 30px;
-    background: pink;
-    margin: 0;
-    border-radius: 50px;
-    width: 40%;
+  height: 30px;
+  background: pink;
+  margin: 0;
+  border-radius: 50px;
+  width: 40%;
 }
 
 .surpriseTxt {
-    line-height: 2;
+  line-height: 2;
 }
 
 .surpriseTxt h6 {
-    color: #02868b;
-    font-size: 24pt;
+  color: #02868b;
+  font-size: 24pt;
 }
 
 .surpriseTxt p {
-    font-size: 18px;
-    direction: rtl;
-    color: #000;
+  font-size: 18px;
+  direction: rtl;
+  color: #000;
 }
 
 .comments > div {
-    min-height: 220px;
-    border-radius: 20px;
+  min-height: 220px;
+  border-radius: 20px;
 }
 
 .comments p {
-    direction: rtl;
+  direction: rtl;
 }
 
 .comments span {
-    color: #02868b;
+  color: #02868b;
 }
 
 footer {
-    background: url("/images/top designn.png") no-repeat;
-    height: 518px;
-    width: 100%;
-    padding-top: 150px;
-    background-size: cover;
+  background: url("/images/top designn.png") no-repeat;
+  height: 518px;
+  width: 100%;
+  padding-top: 150px;
+  background-size: cover;
 }
 
 .text-center {
-    /*color: #fff;
+  /*color: #fff;
     font-size:18px*/
 }
 
 .text-center span {
-    font-size: 22px;
+  font-size: 22px;
 }
 
 .text-center div img {
-    width: 61px;
-    margin-left: 10px;
-    margin-top: -25px;
+  width: 61px;
+  margin-left: 10px;
+  margin-top: -25px;
 }
 
 footer img:not(.flogo) {
-    max-width: 40px;
+  max-width: 40px;
 }
 
 .vh-100 {
-    height: 100vh !important;
+  height: 100vh !important;
 }
 
 .advantagesTxt {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .flogo {
-    max-height: 150px !important;
+  max-height: 150px !important;
 }
 
 @media only screen and (max-width: 992px) {
-    /*.vh-100{
+  /*.vh-100{
         min-height: 100vh !important;
     }*/
-    .vh-100, .teamItems, .teamtop, .advantagesTxt ul li {
-        height: auto !important;
-    }
+  .vh-100,
+  .teamItems,
+  .teamtop,
+  .advantagesTxt ul li {
+    height: auto !important;
+  }
 
-    .advantagesTxt ul li:first-child {
-        display: none;
-    }
+  .advantagesTxt ul li:first-child {
+    display: none;
+  }
 
-    .advantagesTxt ul li {
-        min-height: 200px;
-    }
+  .advantagesTxt ul li {
+    min-height: 200px;
+  }
 
-    .top-design {
-        background: url("/images/top design.png") no-repeat;
-        width: 100%;
-        height: auto !important;
-        padding-bottom: 0;
-    }
+  .top-design {
+    background: url("/images/top design.png") no-repeat;
+    width: 100%;
+    height: auto !important;
+    padding-bottom: 0;
+  }
 
-    .car {
-        margin-top: 0 !important;
-        margin-bottom: -80px;
-    }
+  .car {
+    margin-top: 0 !important;
+    margin-bottom: -80px;
+  }
 
-    .advantagesTxt ul li img {
-        max-height: 50px;
-    }
+  .advantagesTxt ul li img {
+    max-height: 50px;
+  }
 
-    .advantagesTxt {
-        padding: 0;
-    }
+  .advantagesTxt {
+    padding: 0;
+  }
 
-    .top-design {
-        min-height: 340px;
-    }
+  .top-design {
+    min-height: 340px;
+  }
 
-    .logoMiddle {
-        height: 5vh !important;
-    }
+  .logoMiddle {
+    height: 5vh !important;
+  }
 
-    .logoMiddle img:last-child {
-        height: 100% !important;
-    }
+  .logoMiddle img:last-child {
+    height: 100% !important;
+  }
 
-    .logoMiddle img:first-child {
-        display: none;
-    }
+  .logoMiddle img:first-child {
+    display: none;
+  }
 
-    .car {
-        height: 30vh !important;
-    }
+  .car {
+    height: 30vh !important;
+  }
 
-    .top-design {
-       /* height: auto !important;*/
-    }
+  .top-design {
+    /* height: auto !important;*/
+  }
 
-
-    .advantagesTxt ul li p {
-        text-align: center;
-    }
+  .advantagesTxt ul li p {
+    text-align: center;
+  }
 }
 
 @media only screen and (max-width: 600px) {
-    .homeBg {
-        min-height: 600px !important;
-    }
+  .homeBg {
+    min-height: 600px !important;
+  }
 
-    .homeDiv {
-        top: 20px;
-    }
+  .homeDiv {
+    top: 20px;
+  }
 
-    .car img {
-        max-height: 200px;
-    }
-    .home-Form{
-        height: 80vh!important;
-        min-height:350px;
-    }
-    #header {
-        height: 20vh!important;
-        min-height: 100px;
-    }
-    .logoMiddle {
-        height: 5% !important;
-    }
-    .car {
-        height: 30% !important;
-    }
-    .top-design {
-        height: 85% !important;
-    }
-    .top-design .homeForm {
-        margin-top: 20% !important;
-    }
+  .car img {
+    max-height: 200px;
+  }
+  .home-Form {
+    height: 80vh !important;
+    min-height: 350px;
+  }
+  #header {
+    height: 20vh !important;
+    min-height: 100px;
+  }
+  .logoMiddle {
+    height: 5% !important;
+  }
+  .car {
+    height: 30% !important;
+  }
+  .top-design {
+    height: 85% !important;
+  }
+  .top-design .homeForm {
+    margin-top: 20% !important;
+  }
 }
 
 @media only screen and (min-width: 1600px) {
-    .car {
-        margin-top: -160px;
-    }
+  .car {
+    margin-top: -160px;
+  }
 
-    footer img:not(.flogo) {
-        max-width: 100%;
-    }
+  footer img:not(.flogo) {
+    max-width: 100%;
+  }
 }
 
 @media only screen and (max-width: 550px) {
-    footer span {
-        font-size: 14px !important;
-    }
+  footer span {
+    font-size: 14px !important;
+  }
 
-    footer {
-        padding-top: 80px !important;
-    }
+  footer {
+    padding-top: 80px !important;
+  }
 
-    ul.footerItem {
-        flex-direction: column !important;
-    }
+  ul.footerItem {
+    flex-direction: column !important;
+  }
 
-    ul.footerItem li p {
-        width: 50% !important;
-        text-align: right;
-    }
+  ul.footerItem li p {
+    width: 50% !important;
+    text-align: right;
+  }
 
-    ul.footerItem li:last-child {
-        margin-top: 10px !important;
-    }
+  ul.footerItem li:last-child {
+    margin-top: 10px !important;
+  }
 
-    .homeForm {
-        padding: 45px 0 !important;
-    }
+  .homeForm {
+    padding: 45px 0 !important;
+  }
 }

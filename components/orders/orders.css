@@ -1,218 +1,224 @@
 .orderSummary {
-    background: #A3D5D3;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: right;
-    line-height: 3;
-    min-width: 350px;
-    max-width: 600px;
-    margin: 20px auto;
+  background: #a3d5d3;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: right;
+  line-height: 3;
+  min-width: 350px;
+  max-width: 600px;
+  margin: 20px auto;
 }
 .orderSummary button {
-    /* float: left; */
-    background: #BFBFBF;
-    color: #000;
-    height: 50px;
-    margin: 20px 10px 5px;
-    width: 155px;
+  /* float: left; */
+  background: #bfbfbf;
+  color: #000;
+  height: 50px;
+  margin: 20px 10px 5px;
+  width: 155px;
+}
+[class*="MuiDialogActions"] {
+  justify-content: center !important;
 }
 .userEditProfile .mapContainer .userLocation {
-    right: 10px;
-    bottom: 10px;
-    position: absolute;
-    z-index: 100000;
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    background: #fff;
-    border-radius: 50%;
-    padding: 5px;
+  right: 10px;
+  bottom: 10px;
+  position: absolute;
+  z-index: 100000;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 5px;
 }
 .ordersInfo {
-    background: #fff;
-    padding-top: 25px;
-    padding-bottom: 20px;
-    min-height: 90vh;
+  background: #fff;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  min-height: 90vh;
 }
 .no-order {
-    background: #fff;
-    height: 90vh;
-    text-align: center;
-    padding-top: 5%;
-    direction: rtl;
-    line-height: 5;
-    margin: 0 auto;
+  background: #fff;
+  height: 90vh;
+  text-align: center;
+  padding-top: 5%;
+  direction: rtl;
+  line-height: 5;
+  margin: 0 auto;
 }
 .no-order a {
-    background: red;
-    margin: 0 auto;
-    height: 50px;
-    text-align: center;
-    line-height: 2;
-    padding: 10px 0;
-    color: #fff;
-    border-radius: 5px;
-    width: 300px;
-    display: block;
+  background: red;
+  margin: 0 auto;
+  height: 50px;
+  text-align: center;
+  line-height: 2;
+  padding: 10px 0;
+  color: #fff;
+  border-radius: 5px;
+  width: 300px;
+  display: block;
 }
 .no-order h3 {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 }
-.beforeAfter{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.beforeAfter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .beforeAfter div {
-    width: 100%;
-    height: 200px;
-    margin: 10px auto;
-    position: relative;
+  width: 100%;
+  height: 200px;
+  margin: 10px auto;
+  position: relative;
 }
 .beforeAfter span {
-    position: absolute;
-    bottom: 0;
-    background: #ccc;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    z-index: 100000;
-    opacity: .5;
-    color: #000;
-    cursor: default;
-    height: 35px;
-    padding: 5px 0;
+  position: absolute;
+  bottom: 0;
+  background: #ccc;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 100000;
+  opacity: 0.5;
+  color: #000;
+  cursor: default;
+  height: 35px;
+  padding: 5px 0;
 }
 .beforeAfter img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
-.beforeAfterBtn , .editBtn{
-    cursor: pointer;
+.beforeAfterBtn,
+.editBtn {
+  cursor: pointer;
 }
 .tether-element.tether-out-of-bounds.tether-out-of-bounds-top.tether-element-attached-bottom.tether-element-attached-center.tether-target-attached-top.tether-target-attached-center.tether-enabled {
-    z-index: 10000;
-    transform: translateX(525px) translateY(0) translateZ(0px) !important;
-    top: 20% !important;
+  z-index: 10000;
+  transform: translateX(525px) translateY(0) translateZ(0px) !important;
+  top: 20% !important;
 }
-.editTime .MuiFilledInput-root, .MuiSelect-select:focus {
-    background-color: #BFBFBF !important;
+.editTime .MuiFilledInput-root,
+.MuiSelect-select:focus {
+  background-color: #bfbfbf !important;
 }
 .editTime .MuiFormControl-root {
-    width: 100%;
+  width: 100%;
 }
 .editTime .orderRow.row {
-    width: 80%;
-    border: none;
+  width: 80%;
+  border: none;
 }
 .editTime .datepicker-input {
-    width: 100%;
-    height: 50px;
-    border-radius: 4px;
-    border: none;
-    background: #BFBFBF;
-    color: #000;
-    padding-right: 15px;
-    text-align: right;
+  width: 100%;
+  height: 50px;
+  border-radius: 4px;
+  border: none;
+  background: #bfbfbf;
+  color: #000;
+  padding-right: 15px;
+  text-align: right;
 }
 .MuiDialog-paperWidthSm {
-    min-width: 40%;
+  min-width: 40%;
 }
 .editTime .down {
-    position: absolute;
-    left: 25px;
-    top: 17px;
-    cursor: pointer;
+  position: absolute;
+  left: 25px;
+  top: 17px;
+  cursor: pointer;
 }
 .editTime .servicesTime {
-    font-size: 14px;
-    margin-top: 12px;
-    width: 100%;
-    padding-right: 5px;
-    direction: rtl;
-    text-align: center;
+  font-size: 14px;
+  margin-top: 12px;
+  width: 100%;
+  padding-right: 5px;
+  direction: rtl;
+  text-align: center;
 }
 .editTime .orderRow {
-    width: 80%;
-    border: none;
-    margin: 15px auto;
+  width: 80%;
+  border: none;
+  margin: 15px auto;
 }
-.editItems div[class*="MuiFormControl-root"], .editItems span.newItemTitle {
-    width: 100%;
+.editItems div[class*="MuiFormControl-root"],
+.editItems span.newItemTitle {
+  width: 100%;
 }
 .editItems span.newItemTitle {
-    margin: 20px 0 0;
-    display: block;
+  margin: 20px 0 0;
+  display: block;
 }
 .orderSummary .btns {
-    width: 100%;
-    max-height: 200px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  max-height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .MuiDialogContent-root .orderBtn.orderMapBtn {
-    /* max-width: 32%; */
-    z-index: 100000;
-    position: relative;
-    margin: 0 auto;
-    bottom: 60px;
+  /* max-width: 32%; */
+  z-index: 100000;
+  position: relative;
+  margin: 0 auto;
+  bottom: 60px;
 }
 .MuiDialogContent-root .userLocation {
-    right: 50px;
-    bottom: 125px;
-    position: absolute;
+  right: 50px;
+  bottom: 125px;
+  position: absolute;
 }
 .orderMapDescription div {
-    background: #BFBFBF !important;
+  background: #bfbfbf !important;
 }
 .MuiDialogContent-root .mapboxgl-control-container {
-    bottom: 210px;
+  bottom: 210px;
 }
 @media only screen and (max-width: 700px) {
-    .btns {
-        flex-direction: column;
-    }
-    .orderSummary button {
-        width: 180px;
-    }
+  .btns {
+    flex-direction: column;
+  }
+  .orderSummary button {
+    width: 180px;
+  }
 }
 @media only screen and (max-width: 600px) {
-    .orderSummary {
-        width: 100%;
-        min-width: 100%;
-    }
-    .MuiDialogContent-root .orderBtn button {
-        width: 90% !important;
-    }
+  .orderSummary {
+    width: 100%;
+    min-width: 100%;
+  }
+  .MuiDialogContent-root .orderBtn button {
+    width: 90% !important;
+  }
 }
 @media only screen and (max-width: 500px) {
-    .MuiDialogContent-root .orderMapDescription {
-        right: 25px !important;
-        width: 80% !important;
-        top: 80px !important;
-    }
-    .MuiDialogContent-root .favoriteBtn {
-        right: 25px !important;
-        width: 80% !important;
-        top: 10px !important;
-    }
-    .favoriteBtn button {
-        width: 100% !important;
-        right: 0;
-        margin: 0;
-    }
-    .MuiDialogContent-root .orderMapDescription > div {
-        width: 100%!important;
-    }
-    .MuiDialogContent-root .orderMapDescription textarea {
-        padding: 15px 0;
-    }
-    .favorites {
-        width: 80%;
-    }
+  .MuiDialogContent-root .orderMapDescription {
+    right: 25px !important;
+    width: 80% !important;
+    top: 80px !important;
+  }
+  .MuiDialogContent-root .favoriteBtn {
+    right: 25px !important;
+    width: 80% !important;
+    top: 10px !important;
+  }
+  .favoriteBtn button {
+    width: 100% !important;
+    right: 0;
+    margin: 0;
+  }
+  .MuiDialogContent-root .orderMapDescription > div {
+    width: 100% !important;
+  }
+  .MuiDialogContent-root .orderMapDescription textarea {
+    padding: 15px 0;
+  }
+  .favorites {
+    width: 80%;
+  }
 }
