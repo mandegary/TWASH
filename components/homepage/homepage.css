@@ -104,7 +104,7 @@
 
   .footerItem {
     background: #ef4d49;
-    top: 20px;
+    top: 35px;
     position: relative;
   }
 
@@ -432,5 +432,21 @@ footer img:not(.flogo) {
 
   .homeForm {
     padding: 45px 0 !important;
+  }
+}
+@media only screen and (max-width: 320px) {
+  footer {
+    height: 100%;
+  }
+  .footerItem {
+    top: 0;
+    padding-top: 10px;
+  }
+  ul.footerItem li {
+    flex-direction: column !important;
+  }
+  ul.footerItem li p {
+    width: 100% !important;
+    text-align: center;
   }
 }
