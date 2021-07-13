@@ -181,7 +181,7 @@ const Orders = (props) => {
                     className="beforeAfterBtn"
                     variant="contained"
                     onClick={() =>
-                      viewModal(
+                      props.viewImgsModal(
                         props.order.images.before,
                         props.order.images.after
                       )

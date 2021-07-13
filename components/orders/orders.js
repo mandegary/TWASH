@@ -236,7 +236,7 @@ const Orders = (props) => {
     const closeModal = () => {
         setShowModal(false);
     }
-    const viewModal = (prev, next) => {
+    const viewImgsModal = (prev, next) => {
         setBeforeImg(prev)
         setAfterImg(next)
         setShowModal(true)
@@ -466,7 +466,7 @@ const Orders = (props) => {
                         <React.Fragment>
                             {
                                 ordersHolder.map((order, index) =>
-                                    <Order order={order} key={index} viewEditTimeModal={viewEditTimeModal} viewEditAddressModal={viewEditAddressModal} pay={pay}/>
+                                    <Order order={order} key={index} viewEditTimeModal={viewEditTimeModal} viewEditAddressModal={viewEditAddressModal} viewImgsModal={viewImgsModal} pay={pay}/>
                                 )
                             }
                             <Dialog open={showModal} onClose={closeModal} aria-labelledby="form-dialog-title"

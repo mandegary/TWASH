@@ -172,8 +172,8 @@ const HomePage = (props) => {
               {/*<img src={red} className="img-fluid w-100" style={{height:"10vh",minHeight: "50px"}}/>*/}
             </div>
 
-            <div className="vh-100 d-md-flex flex-md-row pr-2 pl-2 pr-sm-5 pl-sm-5 w-100 advantagesTxt d-flex flex-column justify-content-center align-items-start">
-              <ul className="order-md-0 order-1 vh-100 w-25 text-center w-sm-100">
+            <div className="advantages vh-100 d-md-flex flex-md-row pr-2 pl-2 pr-sm-5 pl-sm-5 w-100 advantagesTxt d-flex flex-column justify-content-center align-items-start">
+              <ul className="order-md-0 order-1 vh-100 w-25 text-center w-sm-100 d-flex d-md-block ">
                 <li></li>
                 <li
                   onClick={(e) =>
@@ -251,7 +251,7 @@ const HomePage = (props) => {
                   </p>
                 </div>
               </div>
-              <ul className="order-md-2 order-2 vh-100 w-25 text-center w-sm-100">
+              <ul className="order-md-2 order-2 vh-100 w-25 text-center w-sm-100 d-flex d-md-block ">
                 <li></li>
                 <li
                   onClick={(e) =>

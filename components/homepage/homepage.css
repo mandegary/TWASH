@@ -450,3 +450,19 @@ footer img:not(.flogo) {
     text-align: center;
   }
 }
+@media only screen and (max-width: 780px) {
+  .advantages ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .advantages ul li {
+    width: 25%;
+    min-height: 10px !important;
+    height: 50px !important;
+  }
+
+  .advantages ul li p {
+    display: none;
+  }
+}

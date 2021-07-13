@@ -80,8 +80,7 @@ const Toolbar = (props) => {
   const [balance, setBalance] = useState(0);
   const [orderId, setOrderId] = useState(0);
   const { dispatch } = useContext(AuthContext);
-  const title =
-    "با ثبت نام در سی تپ با استفاده از این کد از تی سپ اعتبار بگیرید.";
+
   Notiflix.Notify.Init({
     width: "250px",
     useIcon: false,
@@ -100,8 +99,8 @@ const Toolbar = (props) => {
   //let isChrome = /chrome/.test( navigator.userAgent.toLowerCase());
   let token = "",
     code = "",
-    name,
-    family;
+    name = "",
+    family = "";
   if (typeof window != "undefined") {
     token = JSON.parse(localStorage.getItem("accessToken"));
     code = JSON.parse(localStorage.getItem("refferalCode"));
@@ -110,6 +109,9 @@ const Toolbar = (props) => {
     if (JSON.parse(localStorage.getItem("family")) != undefined)
       family = JSON.parse(localStorage.getItem("family"));
   }
+  let refferalLink = "https://tsapp.ir/refferal/" + code;
+  const title =
+    "با ثبت نام در تی‌سپ با استفاده از این لینک از تی‌سپ اعتبار بگیرید.  ";
 
   useEffect(() => {
     if (document.getElementById("NotiflixNotifyWrap") != undefined) {
@@ -330,14 +332,14 @@ const Toolbar = (props) => {
                 {code}
               </div>
               <TelegramShareButton
-                url={code}
+                url={refferalLink}
                 title={title}
                 className="Demo__some-network__share-button"
               >
                 <TelegramIcon size={32} round />
               </TelegramShareButton>
               <WhatsappShareButton
-                url={code}
+                url={refferalLink}
                 title={title}
                 separator=" :: "
                 className="Demo__some-network__share-button"
@@ -345,14 +347,14 @@ const Toolbar = (props) => {
                 <WhatsappIcon size={32} round />
               </WhatsappShareButton>
               <TwitterShareButton
-                url={code}
+                url={refferalLink}
                 title={title}
                 className="Demo__some-network__share-button"
               >
                 <TwitterIcon size={32} round />
               </TwitterShareButton>
               <EmailShareButton
-                url={code}
+                url={refferalLink}
                 subject={title}
                 body="body"
                 className="Demo__some-network__share-button"
@@ -360,7 +362,7 @@ const Toolbar = (props) => {
                 <EmailIcon size={32} round />
               </EmailShareButton>
               <FacebookShareButton
-                url={code}
+                url={refferalLink}
                 quote={title}
                 className="Demo__some-network__share-button"
               >
