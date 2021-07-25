@@ -8,7 +8,7 @@ function Header() {
             <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
             <meta content="utf-8" http-equiv="encoding"/>
             <link rel="manifest" href="/manifest.json"/>
-            <link rel="shortcut icon" href="/images/favicon.ico" />
+            <link rel="shortcut icon" href="/images/favicon.ico"/>
             <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
             <meta name="viewport"
                   content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, height=device-height , shrink-to-fit=no"/>
@@ -28,9 +28,28 @@ function Header() {
                   integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
                   crossOrigin="anonymous"/>
 
-                  <script dangerouslySetInnerHTML={{ __html:`
+            <script dangerouslySetInnerHTML={{
+                __html: `
                   !function (t, e, n) { t.yektanetAnalyticsObject = n, t[n] = t[n] || function () { t[n].q.push(arguments) }, t[n].q = t[n].q || []; var a = new Date, r = a.getFullYear().toString() + "0" + a.getMonth() + "0" + a.getDate() + "0" + a.getHours(), c = e.getElementsByTagName("script")[0], s = e.createElement("script"); s.id = "ua-script-iKBIUJRs"; s.dataset.analyticsobject = n; s.async = 1; s.type = "text/javascript"; s.src = "https://cdn.yektanet.com/rg_woebegone/scripts_v3/iKBIUJRs/rg.complete.js?v=" + r, c.parentNode.insertBefore(s, c) }(window, document, "yektanet");
-                              `}} />
+                              `
+            }}/>
+
+            {/*Google Tag Manager*/}
+
+            <script dangerouslySetInnerHTML={{
+                __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWTK79T');
+            `
+            }}/>
+
+            {/*BEGIN RAYCHAT CODE*/}
+            <script dangerouslySetInnerHTML={{
+                __html: `
+            !function(){function t(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,localStorage.getItem("rayToken")?t.src="https://app.raychat.io/scripts/js/"+o+"?rid="+localStorage.getItem("rayToken")+"&href="+window.location.href:t.src="https://app.raychat.io/scripts/js/"+o+"?href="+window.location.href;var e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(t,e)}var e=document,a=window,o="0664014e-5ff3-48c2-8100-d64ad64e7eb6";"complete"==e.readyState?t():a.attachEvent?a.attachEvent("onload",t):a.addEventListener("load",t,!1)}();
+            `
+            }}/>
+
+
         </Head>
     )
 }

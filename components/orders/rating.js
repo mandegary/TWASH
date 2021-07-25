@@ -47,14 +47,15 @@ const Rating = (props) => {
     setValue(newRating);
   };
 
-  const createRate = () => {
-    if (value == 0) {
-      Notiflix.Notify.Failure("لطفا امتیاز خود را از 1 تا 5 ثبت کنید.");
-    } else {
+  const createRate = (isCreate) => {
+
       Notiflix.Loading.Dots();
       let data = new FormData();
-      data.append("rating", value);
-      data.append("description", description);
+    if (isCreate) {
+      data.append("rating", isCreate ? value : null);
+      data.append("description", isCreate ? description : null);
+      //Notiflix.Notify.Failure("لطفا امتیاز خود را از 1 تا 5 ثبت کنید.");
+    }
 
       axios
         .post(url + `/order/${props.orderId}/rate`, data, {
@@ -97,7 +98,7 @@ const Rating = (props) => {
             }
           }
         });
-    }
+
   };
 
   return (
@@ -154,7 +155,7 @@ const Rating = (props) => {
         </DialogContent>
         <DialogActions>
           <Button
-            onClick={createRate}
+            onClick={()=>createRate(true)}
             color="primary"
             variant="fill"
             className="dialogBtn"
@@ -162,7 +163,7 @@ const Rating = (props) => {
             تایید
           </Button>
           <Button
-            onClick={props.onClose}
+            onClick={()=>createRate(false)}
             color="primary"
             variant="fill"
             className="dialogBtn"

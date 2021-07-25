@@ -236,6 +236,9 @@ const Orders = (props) => {
     const closeModal = () => {
         setShowModal(false);
     }
+    const cancleRating = () => {
+        setShowModal(false);
+    }
     const viewImgsModal = (prev, next) => {
         setBeforeImg(prev)
         setAfterImg(next)

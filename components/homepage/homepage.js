@@ -9,7 +9,7 @@ import Toolbar from "../../containers/Header/Toolbar/Toolbar";
 import axios from "axios";
 import Notiflix from "notiflix";
 import Link from "next/link";
-
+import ImagesSection from "./imagesSection/imagesSection"
 import logo from "../../assets/images/logo.png";
 import subject from "../../assets/images/subject.png";
 import car from "../../assets/images/car.png";
@@ -391,6 +391,9 @@ const HomePage = (props) => {
                 </div>
               </div>
             </div>
+
+            <ImagesSection/>
+
           </main>
 
           <footer className="mt-5">
