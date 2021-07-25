@@ -1,0 +1,27 @@
+
+imgSlides{
+    position: relative;
+}
+.imgSlide {
+    position: absolute;
+    width: 40%;
+    height: 350px;
+    object-fit: fill;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 30px;
+}
+.imgSlide.activeSlide{
+    z-index: 99999;
+}
+.imgSlide0 {
+    z-index: 9999;
+}
+.imgSlide1 {
+    z-index: 999;
+}
+.imgSlide2 {
+    z-index: 99;
+}
+.imgSlide3 {
+    z-index: 9;
+}
