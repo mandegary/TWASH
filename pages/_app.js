@@ -13,7 +13,15 @@ function MyApp({Component, pageProps}) {
     return <StylesProvider jss={jss}>
         <AuthContextProvider>
             <Head/>
-            {typeof window !== 'undefined' && (<Component {...pageProps} />)}
+            {typeof window !== 'undefined' && (
+                <>
+                <noscript>
+                    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWTK79T"
+                                  height="0" width="0" style="display:none;visibility:hidden"></iframe>
+                </noscript>
+                    <Component {...pageProps} />
+                </>
+                )}
         </AuthContextProvider>
     </StylesProvider>
 }

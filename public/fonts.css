@@ -12,3 +12,10 @@
 /*  url("/fonts/YekanBakh-Bold/YekanBakh-Bold.woff2") format("woff2"),*/
     url("/fonts/YekanBakh-Bold/YekanBakh-Bold.ttf") format("ttf")
 }
+@font-face {
+    font-family: "revicons";
+    fallback: fallback;
+    src: url("/fonts/revicons/revicons.woff") format('woff'),
+    url("/fonts/revicons/revicons.ttf") format('ttf'),
+    url("/fonts/revicons/revicons.eot") format('ttf')
+}

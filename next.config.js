@@ -2,8 +2,11 @@ const withCSS = require('@zeit/next-css');
 const withFonts = require('next-fonts');
 const withImages = require('next-images')
 const withVideos = require('next-videos')
+const withSass = require('@zeit/next-sass')
+
 //git push -u origin master
-module.exports = withVideos(withImages(withFonts(withCSS({
+module.exports = withVideos(withImages(withFonts(withSass(withCSS({
+    experimental: { scss: true },
     env:{
         url:"https://api.tsapp.ir/api",
         //url:"http://185.231.59.154/api",
@@ -26,4 +29,4 @@ module.exports = withVideos(withImages(withFonts(withCSS({
         // Important: return the modified config
         return config
     }
-}))))
+})))))
