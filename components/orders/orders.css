@@ -1,14 +1,18 @@
-.orderSummary {
+.ordersSummary {
   background: #a3d5d3;
   padding: 20px;
   border-radius: 10px;
   text-align: right;
   line-height: 3;
-  min-width: 350px;
+  min-width: 200px;
   max-width: 600px;
   margin: 20px auto;
+  display: flex;
+  flex-direction: column;
 }
-.orderSummary button {
+.ordersSummary > div {
+}
+.ordersSummary button {
   /* float: left; */
   background: #bfbfbf;
   color: #000;
@@ -152,7 +156,7 @@
   margin: 20px 0 0;
   display: block;
 }
-.orderSummary .btns {
+.ordersSummary .btns {
   width: 100%;
   max-height: 200px;
   display: flex;
@@ -183,12 +187,16 @@
   .btns {
     flex-direction: column;
   }
-  .orderSummary button {
+  .ordersSummary button {
     width: 180px;
+  }
+  .ordersSummary .btns {
+    flex-direction: column !important;
+    min-height: 400px;
   }
 }
 @media only screen and (max-width: 600px) {
-  .orderSummary {
+  .ordersSummary {
     width: 100%;
     min-width: 100%;
   }
@@ -196,6 +204,12 @@
     width: 90% !important;
   }
 }
+@media only screen and (max-width: 300px) {
+  .ordersSummary button {
+    width: 130px;
+  }
+}
+
 @media only screen and (max-width: 500px) {
   .MuiDialogContent-root .orderMapDescription {
     right: 25px !important;
